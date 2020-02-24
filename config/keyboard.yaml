@@ -1,0 +1,15 @@
+#config_version=5
+
+keyboard:
+  s:
+    switch: s_start
+  q:
+    switch: s_right_orbit
+  t:
+    switch: s_trough_1
+    toggle: True
+  r:
+    switch: s_right_orbit
+  p:
+    switch: s_plunger
+

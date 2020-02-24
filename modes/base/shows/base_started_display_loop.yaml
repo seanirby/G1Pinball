@@ -1,0 +1,236 @@
+#show_version=5
+
+- duration: .025
+  lights:
+    l_serial_chain_0_1: white
+- duration: .025
+  lights:
+    l_serial_chain_0_1: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_2: white
+- duration: .025
+  lights:
+    l_serial_chain_0_2: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_3: white
+- duration: .025
+  lights:
+    l_serial_chain_0_3: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_4: white
+- duration: .025
+  lights:
+    l_serial_chain_0_4: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_5: white
+- duration: .025
+  lights:
+    l_serial_chain_0_5: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_6: white
+- duration: .025
+  lights:
+    l_serial_chain_0_6: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_7: white
+- duration: .025
+  lights:
+    l_serial_chain_0_7: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_8: white
+- duration: .025
+  lights:
+    l_serial_chain_0_8: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_9: white
+- duration: .025
+  lights:
+    l_serial_chain_0_9: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_10: white
+- duration: .025
+  lights:
+    l_serial_chain_0_10: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_11: white
+- duration: .025
+  lights:
+    l_serial_chain_0_11: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_12: white
+- duration: .025
+  lights:
+    l_serial_chain_0_12: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_13: white
+- duration: .025
+  lights:
+    l_serial_chain_0_13: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_14: white
+- duration: .025
+  lights:
+    l_serial_chain_0_14: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_15: white
+- duration: .025
+  lights:
+    l_serial_chain_0_15: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_16: white
+- duration: .025
+  lights:
+    l_serial_chain_0_16: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_17: white
+- duration: .025
+  lights:
+    l_serial_chain_0_17: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_18: white
+- duration: .025
+  lights:
+    l_serial_chain_0_18: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_19: white
+- duration: .025
+  lights:
+    l_serial_chain_0_19: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_20: white
+- duration: .025
+  lights:
+    l_serial_chain_0_20: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_21: white
+- duration: .025
+  lights:
+    l_serial_chain_0_21: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_22: white
+- duration: .025
+  lights:
+    l_serial_chain_0_22: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_23: white
+- duration: .025
+  lights:
+    l_serial_chain_0_23: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_24: white
+- duration: .025
+  lights:
+    l_serial_chain_0_24: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_25: white
+- duration: .025
+  lights:
+    l_serial_chain_0_25: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_26: white
+- duration: .025
+  lights:
+    l_serial_chain_0_26: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_27: white
+- duration: .025
+  lights:
+    l_serial_chain_0_27: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_28: white
+- duration: .025
+  lights:
+    l_serial_chain_0_28: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_29: white
+- duration: .025
+  lights:
+    l_serial_chain_0_29: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_30: white
+- duration: .025
+  lights:
+    l_serial_chain_0_30: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_31: white
+- duration: .025
+  lights:
+    l_serial_chain_0_31: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_32: white
+- duration: .025
+  lights:
+    l_serial_chain_0_32: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_33: white
+- duration: .025
+  lights:
+    l_serial_chain_0_33: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_34: white
+- duration: .025
+  lights:
+    l_serial_chain_0_34: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_35: white
+- duration: .025
+  lights:
+    l_serial_chain_0_35: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_36: white
+- duration: .025
+  lights:
+    l_serial_chain_0_36: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_37: white
+- duration: .025
+  lights:
+    l_serial_chain_0_37: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_38: white
+- duration: .025
+  lights:
+    l_serial_chain_0_38: orange
+- duration: .025
+  lights:
+    l_serial_chain_0_39: white
+- duration: .025
+  lights:
+    l_serial_chain_0_39: orange

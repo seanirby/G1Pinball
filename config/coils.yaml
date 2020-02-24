@@ -1,0 +1,57 @@
+#config_version=5
+
+coils:
+  c_flipper_lower_left_main:
+    number: A1-B0-0
+    default_pulse_ms: 24.5
+  c_flipper_lower_left_hold:
+    number: A1-B0-1
+    allow_enable: true
+  c_flipper_lower_right_main:
+    number: A1-B0-2
+    default_pulse_ms: 24  
+  c_flipper_lower_right_hold:
+    number: A1-B0-3
+    allow_enable: true
+  c_flipper_mid_left_main:
+    number: A1-B1-0
+    default_pulse_ms: 16
+  c_flipper_mid_left_hold:
+    number: A1-B1-1
+    allow_enable: true
+  c_flipper_mid_right_main:
+    number: A1-B1-2
+    default_pulse_ms: 13
+  c_flipper_mid_right_hold:
+    number: A1-B1-3
+    allow_enable: true
+  c_flipper_upper_right_main:
+    number: A1-B1-4
+    default_pulse_ms: 18
+  c_flipper_upper_right_hold:
+    number: A1-B1-5
+    allow_enable: true
+  c_pop_a:
+    number: A3-B0-0
+    default_pulse_ms: 15
+  c_pop_b:
+    number: A3-B0-1
+    default_pulse_ms: 15
+  c_pop_c:
+    number: A3-B0-2
+    default_pulse_ms: 15
+  c_scoop_eject:
+    number: A3-B1-0
+  c_drops:
+    number: A3-B1-1
+    default_pulse_ms: 40
+  c_slings_left:
+    number: A3-B1-2
+    default_pulse_ms: 5
+  c_slings_right:
+    number: A3-B1-3
+    default_pulse_ms: 5
+# doesnt exist
+  c_trough_eject:
+    number: A10-B0-5
+

@@ -1,0 +1,13 @@
+#config_version=5
+
+show_player:
+  mode_attract_started: attract_display_loop
+
+slides:
+  attract_started:
+    widgets:
+      - type: text
+        text: ATTRACT MODE HI SEAN
+
+slide_player:
+  mode_attract_started: attract_started

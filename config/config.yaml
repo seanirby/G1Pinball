@@ -1,0 +1,42 @@
+#config_version=5
+
+hardware:
+  platform: p3_roc
+  driverboards: pdb
+
+p_roc:
+  debug: True
+  pd_led_boards:
+    5:
+      use_ws281x_0: True
+
+config:
+- autofire_coils.yaml
+- ball_devices.yaml 
+- coils.yaml
+- drop_targets.yaml
+- flippers.yaml
+- keyboard.yaml
+- lights.yaml
+- modes.yaml
+- playfields.yaml
+- switches.yaml
+
+displays:
+  window:
+    width: 800
+    height: 600
+
+slides:
+  welcome_slide:
+    widgets:
+      - type: text
+        text: SOME PINBALL GAME!
+        font_size: 100
+        color: red
+      - type: rectangle
+        width: 240
+        height: 60
+
+slide_player:
+  init_done: welcome_slide
