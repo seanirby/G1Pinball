@@ -1,0 +1,15 @@
+#config_version=5
+
+mode: 
+  start_events: ball_starting
+  priority: 300
+
+counters:
+   charge:
+      count_events: s_left_inlane_active, s_right_inlane_active
+      count_complete_value: 10
+      reset_on_complete: False
+
+variable_player:
+  counter_charge_hit:
+    charge: 1

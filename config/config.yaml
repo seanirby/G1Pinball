@@ -21,6 +21,7 @@ config:
 - modes.yaml
 - playfields.yaml
 - switches.yaml
+- player_vars.yaml
 
 displays:
   window:

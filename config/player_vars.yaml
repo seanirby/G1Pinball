@@ -1,0 +1,5 @@
+#config_version=5
+
+player_vars:
+  charge:
+    initial_value: 0

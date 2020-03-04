@@ -20,6 +20,13 @@ slide_player:
         anchor_x: left
         anchor_y: bottom
       - type: text
+        text: ENERGY (charge)
+        x: 10
+        y: 60
+        font_size: 20
+        anchor_x: left
+        anchor_y: bottom
+      - type: text
         text: BALL (ball)
         y: 10
         x: right-10
