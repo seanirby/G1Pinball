@@ -3,19 +3,19 @@
 coils:
   c_flipper_lower_left_main:
     number: A1-B0-0
-    default_pulse_ms: 24.5
+    default_pulse_ms: 24
   c_flipper_lower_left_hold:
     number: A1-B0-1
     allow_enable: true
   c_flipper_lower_right_main:
     number: A1-B0-2
-    default_pulse_ms: 24  
+    default_pulse_ms: 24
   c_flipper_lower_right_hold:
     number: A1-B0-3
     allow_enable: true
   c_flipper_mid_left_main:
     number: A1-B1-0
-    default_pulse_ms: 16
+    default_pulse_ms: 15
   c_flipper_mid_left_hold:
     number: A1-B1-1
     allow_enable: true
@@ -27,7 +27,7 @@ coils:
     allow_enable: true
   c_flipper_upper_right_main:
     number: A1-B1-4
-    default_pulse_ms: 18
+    default_pulse_ms: 14
   c_flipper_upper_right_hold:
     number: A1-B1-5
     allow_enable: true
@@ -47,10 +47,10 @@ coils:
     default_pulse_ms: 40
   c_slings_left:
     number: A3-B1-2
-    default_pulse_ms: 5
+    default_pulse_ms: 4
   c_slings_right:
     number: A3-B1-3
-    default_pulse_ms: 5
+    default_pulse_ms: 4
 # doesnt exist
   c_trough_eject:
     number: A10-B0-5

@@ -234,3 +234,9 @@
 - duration: .025
   lights:
     l_serial_chain_0_39: green
+- duration: .025
+  lights:
+    l_serial_chain_0_40: white
+- duration: .025
+  lights:
+    l_serial_chain_0_40: green

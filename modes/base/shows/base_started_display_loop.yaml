@@ -222,15 +222,3 @@
 - duration: .025
   lights:
     l_serial_chain_0_37: orange
-- duration: .025
-  lights:
-    l_serial_chain_0_38: white
-- duration: .025
-  lights:
-    l_serial_chain_0_38: orange
-- duration: .025
-  lights:
-    l_serial_chain_0_39: white
-- duration: .025
-  lights:
-    l_serial_chain_0_39: orange

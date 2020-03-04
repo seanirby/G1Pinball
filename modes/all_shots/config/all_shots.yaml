@@ -29,22 +29,23 @@ shows:
         (a): off
         (b): off
         (c): off
-  bash_lit:
+  single_lit:
     - time: 0
       lights:
         (a): red
-  bash_hit_once:
+  single_hit_once:
     - time: 0
       lights:
         (a): yellow
-  bash_hit_twice:
+  single_hit_twice:
     - time: 0
       lights:
         (a): green
-  bash_unlit:
+  single_unlit:
     - time: 0
       lights:
         (a): off
+
 
         
 shot_profiles:
@@ -59,15 +60,14 @@ shot_profiles:
       - name: complete
         show: all_unlit
   bar:
+    loop: true
     states:
       - name: initial
-        show: bash_lit
-      - name: bash_hit_once
-        show: bash_hit_once
-      - name: bash_hit_twice
-        show: bash_hit_twice
-      - name: complete
-        show: bash_unlit
+        show: single_lit
+      - name: single_hit_once
+        show: single_hit_once
+      - name: single_hit_twice
+        show: single_hit_twice
 
 shots:
   zone_left:
@@ -105,20 +105,23 @@ shots:
       a: l_serial_chain_0_27
       b: l_serial_chain_0_28
       c: l_serial_chain_0_29
-  deadend_left:
-    switch: s_dead_end_left
+  secret_rollover:
+    switch: s_secret_rollover
+    profile: bar
+    show_tokens:
+      a: l_serial_chain_0_40
+  ramp_left:
+    switch: s_ramp_left
     profile: foo
     show_tokens:
-      a: l_serial_chain_0_39
+      a: l_serial_chain_0_37
       b: l_serial_chain_0_38
-      c: l_serial_chain_0_37
-  deadend_right:
-    switch: s_dead_end_right
-    profile: foo
+      c: l_serial_chain_0_39
+  ramp_right:
+    switch: s_ramp_right
+    profile: bar
     show_tokens:
-      a: l_serial_chain_0_24
-      b: l_serial_chain_0_25
-      c: l_serial_chain_0_26
+      a: l_serial_chain_0_26
   orbit_left:
     advance_events: seq_orbit_left_hit
     profile: foo
