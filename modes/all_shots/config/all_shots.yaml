@@ -72,11 +72,9 @@ shot_profiles:
 shots:
   zone_left:
     advance_events: seq_zone_left_center_hit, seq_zone_left_left_hit, seq_zone_left_right_hit
-    profile: foo
+    profile: bar
     show_tokens:
       a: l_serial_chain_0_4
-      b: l_serial_chain_0_5
-      c: l_serial_chain_0_6
   turnaround:
     switch: s_turnaround_gate
     profile: foo
