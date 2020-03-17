@@ -23,6 +23,48 @@ config:
 - switches.yaml
 - player_vars.yaml
 
+sound_system:
+  master_volume: 0.75
+  tracks:
+     music:
+       type: sound_loop
+       simultaneous_sounds: 1
+       volume: 0.5
+     voice:
+       type: standard
+       simultaneous_sounds: 1
+       volume: 0.7
+     sfx:
+       type: standard
+       simultaneous_sounds: 8
+       volume: 0.4
+
+assets:
+  sounds:
+    default:
+      load: on_demand
+    music:
+      track: music
+      # preload for testing purposes only
+      load: preload
+    sfx:
+      track: sfx
+    voice:
+      track: voice
+
+sounds:
+  timing_x:
+    max_queue_time: 0
+  strange_pursuit:
+    max_queue_time: 0
+
+sound_loop_sets:
+  timing_x_snippet:
+    sound: timing_x
+    events_when_played: timing_x_started
+    events_when_stopped: timing_x_stopped
+    events_when_looping: timing_x_looped
+
 displays:
   window:
     width: 800

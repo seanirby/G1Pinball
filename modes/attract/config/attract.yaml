@@ -11,3 +11,9 @@ slides:
 
 slide_player:
   mode_attract_started: attract_started
+
+sound_loop_player:
+  mode_attract_started:
+    music:
+      action: play
+      sound_loop_set: timing_x_snippet
