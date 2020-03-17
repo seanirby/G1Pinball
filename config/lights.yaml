@@ -11,6 +11,18 @@ light_settings:
       linear_cutoff: 0.0
 
 lights:
+  l_pop_a:
+    channels:
+      red:
+        - number: 5-80
+  l_pop_b:
+    channels:
+      red:
+        - number: 5-78
+  l_pop_c:
+    channels:
+      red:
+        - number: 5-73
   # top lanes
   l_serial_chain_0_1:
     number: 5-100-101-102

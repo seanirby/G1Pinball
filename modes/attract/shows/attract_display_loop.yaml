@@ -1,5 +1,22 @@
 #show_version=5
-
+- duration: .025
+  lights:
+    l_pop_a: on
+- duration: .025
+  lights:
+    l_pop_a: off
+- duration: .025
+  lights:
+    l_pop_b: on
+- duration: .025
+  lights:
+    l_pop_b: off
+- duration: .025
+  lights:
+    l_pop_c: on
+- duration: .025
+  lights:
+    l_pop_c: off
 - duration: .025
   lights:
     l_serial_chain_0_1: white

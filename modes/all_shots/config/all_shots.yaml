@@ -45,8 +45,14 @@ shows:
     - time: 0
       lights:
         (a): off
-
-
+  pulse_on:
+    - time: 0
+      lights:
+        (a): on
+  pulse_off:
+    - time: 0
+      lights:
+        (a): off
         
 shot_profiles:
   foo:
@@ -68,10 +74,32 @@ shot_profiles:
         show: single_hit_once
       - name: single_hit_twice
         show: single_hit_twice
+  baz: #pops
+    loop: true
+    states:
+      - name: initial
+        show: pulse_on
+      - name: complete
+        show: pulse_off
 
 shots:
+  pop_a:
+    advance_events: s_pop_a_active, s_pop_a_inactive
+    profile: baz
+    show_tokens:
+      a: l_pop_a
+  pop_b:
+    advance_events: s_pop_b_active, s_pop_b_inactive
+    profile: baz
+    show_tokens:
+      a: l_pop_b
+  pop_c:
+    advance_events: s_pop_c_active, s_pop_c_inactive
+    profile: baz
+    show_tokens:
+      a: l_pop_c
   zone_left:
-    advance_events: seq_zone_left_center_hit, seq_zone_left_left_hit, seq_zone_left_right_hit
+    advance_events: s_left_zone_center_active, s_left_zone_left_active, s_left_zone_right_active
     profile: bar
     show_tokens:
       a: l_serial_chain_0_4
