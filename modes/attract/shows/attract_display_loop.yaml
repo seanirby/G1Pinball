@@ -1,16 +1,21 @@
 #show_version=5
 
-- duration: 1.391
+- duration: .190
+  lights:
+    l_pop_a: off
+    l_pop_b: off
+    l_pop_c: off
+- duration: .190
   lights:
     l_pop_a: off
     l_pop_b: on
     l_pop_c: on
-- duration: 1.391
+- duration: .190
   lights:
     l_pop_a: on
     l_pop_b: off
     l_pop_c: on
-- duration: 1.391
+- duration: .190
   lights:
     l_pop_a: on
     l_pop_b: on

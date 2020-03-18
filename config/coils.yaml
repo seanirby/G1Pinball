@@ -15,7 +15,7 @@ coils:
     allow_enable: true
   c_flipper_mid_left_main:
     number: A1-B1-0
-    default_pulse_ms: 16
+    default_pulse_ms: 15
   c_flipper_mid_left_hold:
     number: A1-B1-1
     allow_enable: true

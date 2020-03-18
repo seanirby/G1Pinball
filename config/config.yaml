@@ -53,13 +53,17 @@ assets:
       track: voice
 
 sounds:
+  gates_of_steel:
+    max_queue_time: 0
   timing_x:
     max_queue_time: 0
   strange_pursuit:
     max_queue_time: 0
 
 sound_loop_sets:
-  timing_x_snippet:
+  gates_of_steel_set:
+    sound: gates_of_steel
+  timing_x_set:
     sound: timing_x
     events_when_played: timing_x_started
     events_when_stopped: timing_x_stopped
