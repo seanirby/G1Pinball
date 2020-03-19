@@ -1,0 +1,164 @@
+#config_version=5
+
+mode:
+  start_events: ball_starting
+  priority: 300
+  code: foo.Foo
+
+# show_player:
+#   timer_high_value_shot_timer_tick: 
+#     three_light_high_value:
+#       speed: 10
+#       # value: (device.timers.high_value_shot_timer.ticks_remaining)
+#       # type: int
+
+shows:
+  three_light_normal_value:
+    - duration: 1
+      lights:
+        (a): orange
+        (b): orange
+        (c): orange
+  three_light_high_value:
+    - duration: 1
+      lights:
+        (a): red
+        (b): orange
+        (c): orange
+    - duration: 1
+      lights:
+        (a): orange
+        (b): red
+        (c): orange
+    - duration: 1
+      lights:
+        (a): orange
+        (b): orange
+        (c): red
+  three_light_off:
+    - duration: -1
+      lights:
+        (a): off
+        (b): off
+        (c): off
+  one_light_normal_value:
+    - duration: 1
+      lights:
+        (a): orange
+    - duration: 1
+      lights:
+        (a): off
+  one_light_high_value:
+    - duration: 1
+      lights:
+        (a): red
+    - duration: 1
+      lights:
+        (a): orange
+  one_light_off:
+    - duration: -1
+      lights:
+        (a): off
+
+shot_profiles:
+  one_light_shot:
+    states:
+      - name: normal_value
+        show: one_light_normal_value
+      - name: high_value
+        show: one_light_high_value
+      - name: complete
+        show: one_light_off
+  three_light_shot:
+    states:
+      - name: normal_value
+        show: three_light_normal_value
+      - name: high_value
+        show: three_light_high_value
+      - name: complete
+        show: three_light_off
+
+shots:
+  ramp_left_lower:
+    profile: three_light_shot
+    # disable_events: s_ramp_left_lower_active
+    show_tokens:
+      a: l_serial_chain_0_37
+      b: l_serial_chain_0_38
+      c: l_serial_chain_0_39
+  rollover_button:
+    profile: one_light_shot
+#    disable_events: s_rollover_button_active
+    show_tokens:
+      a: l_serial_chain_0_40
+  orbit_left:
+    profile: three_light_shot
+#    disable_events: seq_orbit_left_hit
+    show_tokens:
+      a: l_serial_chain_0_12
+      b: l_serial_chain_0_11
+      c: l_serial_chain_0_10
+  ramp_left_upper:
+    profile: three_light_shot
+#    disable_events: s_ramp_left_upper_active
+    show_tokens:
+      a: l_serial_chain_0_7
+      b: l_serial_chain_0_8
+      c: l_serial_chain_0_9
+  zone_left:
+    profile: three_light_shot
+#    disable_events: s_left_zone_center_active, s_left_zone_left_active, s_left_zone_right_active
+    show_tokens:
+      a: l_serial_chain_0_6
+      b: l_serial_chain_0_5
+      c: l_serial_chain_0_4
+  gate_right:
+    profile: three_light_shot
+#    disable_events: s_gate_right_active
+    show_tokens:
+      a: l_serial_chain_0_18
+      b: l_serial_chain_0_19
+      c: l_serial_chain_0_20
+  inner_loop:
+    profile: three_light_shot
+#    disable_events: s_inner_loop_active
+    show_tokens:
+      a: l_serial_chain_0_23
+      b: l_serial_chain_0_22
+      c: l_serial_chain_0_21
+  scoop:
+    profile: three_light_shot
+#    disable_events: s_scoop_active
+    show_tokens:
+      a: l_serial_chain_0_29
+      b: l_serial_chain_0_28
+      c: l_serial_chain_0_27
+  ramp_right:
+    profile: one_light_shot
+#    disable_events: s_ramp_right_active
+    show_tokens:
+      a: l_serial_chain_0_26
+  orbit_right:
+    profile: three_light_shot
+#    disable_events: seq_orbit_right_hit
+    show_tokens:
+      a: l_serial_chain_0_30
+      b: l_serial_chain_0_31
+      c: l_serial_chain_0_32
+
+sequence_shots:
+  seq_orbit_right:
+    switch_sequence: s_orbit_right, s_orbit_left
+    sequence_timeout: 1s
+  seq_orbit_left:
+    switch_sequence: s_orbit_left, s_orbit_right
+    sequence_timeout: 1s
+
+# # controlled in codee
+# timers:
+#   high_value_shot_timer:
+#     start_value: 0
+#     end_value: 10
+#     control_events:
+#       - action: start
+#         event: mode_foo_started

@@ -1,222 +1,218 @@
 #config_version=5
 
-mode:
-  start_events: ball_starting
-  priority: 200
-
-shows:
-  all_lit:
-    - time: 0
-      lights:
-        (a): red
-        (b): yellow
-        (c): green
-  two_lit:
-    - time: 0
-      lights:
-        (a): off
-        (b): yellow
-        (c): green
-  one_lit:
-    - time: 0
-      lights:
-        (a): off
-        (b): off
-        (c): green
-  all_unlit:
-    - time: 0
-      lights:
-        (a): off
-        (b): off
-        (c): off
-  single_lit:
-    - time: 0
-      lights:
-        (a): red
-  single_hit_once:
-    - time: 0
-      lights:
-        (a): yellow
-  single_hit_twice:
-    - time: 0
-      lights:
-        (a): green
-  single_unlit:
-    - time: 0
-      lights:
-        (a): off
-  pulse_on:
-    - time: 0
-      lights:
-        (a): on
-  pulse_off:
-    - time: 0
-      lights:
-        (a): off
+# shows:
+#   all_lit:
+#     - time: 0
+#       lights:
+#         (a): red
+#         (b): yellow
+#         (c): green
+#   two_lit:
+#     - time: 0
+#       lights:
+#         (a): off
+#         (b): yellow
+#         (c): green
+#   one_lit:
+#     - time: 0
+#       lights:
+#         (a): off
+#         (b): off
+#         (c): green
+#   all_unlit:
+#     - time: 0
+#       lights:
+#         (a): off
+#         (b): off
+#         (c): off
+#   single_lit:
+#     - time: 0
+#       lights:
+#         (a): red
+#   single_hit_once:
+#     - time: 0
+#       lights:
+#         (a): yellow
+#   single_hit_twice:
+#     - time: 0
+#       lights:
+#         (a): green
+#   single_unlit:
+#     - time: 0
+#       lights:
+#         (a): off
+#   pulse_on:
+#     - time: 0
+#       lights:
+#         (a): on
+#   pulse_off:
+#     - time: 0
+#       lights:
+#         (a): off
         
-shot_profiles:
-  foo:
-    states:
-      - name: initial
-        show: all_lit
-      - name: hit_once
-        show: two_lit
-      - name: hit_twice
-        show: one_lit
-      - name: complete
-        show: all_unlit
-  bar:
-    loop: true
-    states:
-      - name: initial
-        show: single_lit
-      - name: single_hit_once
-        show: single_hit_once
-      - name: single_hit_twice
-        show: single_hit_twice
-  baz: #pops
-    loop: true
-    states:
-      - name: initial
-        show: pulse_on
-      - name: complete
-        show: pulse_off
+# shot_profiles:
+#   foo:
+#     states:
+#       - name: initial
+#         show: all_lit
+#       - name: hit_once
+#         show: two_lit
+#       - name: hit_twice
+#         show: one_lit
+#       - name: complete
+#         show: all_unlit
+#   bar:
+#     loop: true
+#     states:
+#       - name: initial
+#         show: single_lit
+#       - name: single_hit_once
+#         show: single_hit_once
+#       - name: single_hit_twice
+#         show: single_hit_twice
+#   baz: #pops
+#     loop: true
+#     states:
+#       - name: initial
+#         show: pulse_on
+#       - name: complete
+#         show: pulse_off
 
-shots:
-  pop_a:
-    advance_events: s_pop_a_active, s_pop_a_inactive
-    profile: baz
-    show_tokens:
-      a: l_pop_a
-  pop_b:
-    advance_events: s_pop_b_active, s_pop_b_inactive
-    profile: baz
-    show_tokens:
-      a: l_pop_b
-  pop_c:
-    advance_events: s_pop_c_active, s_pop_c_inactive
-    profile: baz
-    show_tokens:
-      a: l_pop_c
-  zone_left:
-    advance_events: s_left_zone_center_active, s_left_zone_left_active, s_left_zone_right_active
-    profile: bar
-    show_tokens:
-      a: l_serial_chain_0_4
-  turnaround:
-    switch: s_turnaround_gate
-    profile: foo
-    show_tokens:
-      a: l_serial_chain_0_9
-      b: l_serial_chain_0_8
-      c: l_serial_chain_0_7
-  lair_right_gate:
-    switch: s_right_lair_gate
-    profile: foo
-    show_tokens:
-      a: l_serial_chain_0_20
-      b: l_serial_chain_0_19
-      c: l_serial_chain_0_18
-  inner_loop:
-    switch: s_inner_loop
-    profile: foo
-    show_tokens:
-      a: l_serial_chain_0_23
-      b: l_serial_chain_0_22
-      c: l_serial_chain_0_21
-  scoop:
-    switch: s_scoop
-    profile: foo
-    show_tokens:
-      a: l_serial_chain_0_27
-      b: l_serial_chain_0_28
-      c: l_serial_chain_0_29
-  secret_rollover:
-    switch: s_secret_rollover
-    profile: bar
-    show_tokens:
-      a: l_serial_chain_0_40
-  ramp_left:
-    switch: s_ramp_left
-    profile: foo
-    show_tokens:
-      a: l_serial_chain_0_37
-      b: l_serial_chain_0_38
-      c: l_serial_chain_0_39
-  ramp_right:
-    switch: s_ramp_right
-    profile: bar
-    show_tokens:
-      a: l_serial_chain_0_26
-  orbit_left:
-    advance_events: seq_orbit_left_hit
-    profile: foo
-    show_tokens:
-      a: l_serial_chain_0_10
-      b: l_serial_chain_0_11
-      c: l_serial_chain_0_12
-  orbit_right:
-    advance_events: seq_orbit_right_hit
-    profile: foo
-    show_tokens:
-      a: l_serial_chain_0_32
-      b: l_serial_chain_0_31
-      c: l_serial_chain_0_30
-  bash_left:
-    advance_events: seq_bash_diagonal_left_a_timeout
-    profile: bar
-    show_tokens:
-      a: l_serial_chain_0_17
-  bash_diagonal_left:
-    advance_events: seq_bash_diagonal_left_a_hit, seq_bash_diagonal_left_b_hit
-    profile: bar
-    show_tokens:
-      a: l_serial_chain_0_16
-  bash_forward:
-    # only need one of these since diagonal_right_b is identical
-    advance_events: seq_bash_diagonal_left_b_timeout
-    profile: bar
-    show_tokens:
-      a: l_serial_chain_0_15
-  bash_diagonal_right:
-    advance_events: seq_bash_diagonal_right_a_hit, seq_bash_diagonal_right_b_hit
-    profile: bar
-    show_tokens:
-      a: l_serial_chain_0_14
-  bash_right:
-    advance_events: seq_bash_diagonal_right_a_timeout
-    profile: bar
-    show_tokens:
-      a: l_serial_chain_0_13
+# shots:
+#   pop_a:
+#     advance_events: s_pop_a_active, s_pop_a_inactive
+#     profile: baz
+#     show_tokens:
+#       a: l_pop_a
+#   pop_b:
+#     advance_events: s_pop_b_active, s_pop_b_inactive
+#     profile: baz
+#     show_tokens:
+#       a: l_pop_b
+#   pop_c:
+#     advance_events: s_pop_c_active, s_pop_c_inactive
+#     profile: baz
+#     show_tokens:
+#       a: l_pop_c
+#   zone_left:
+#     advance_events: s_left_zone_center_active, s_left_zone_left_active, s_left_zone_right_active
+#     profile: bar
+#     show_tokens:
+#       a: l_serial_chain_0_4
+#   turnaround:
+#     switch: s_turnaround_gate
+#     profile: foo
+#     show_tokens:
+#       a: l_serial_chain_0_9
+#       b: l_serial_chain_0_8
+#       c: l_serial_chain_0_7
+#   lair_right_gate:
+#     switch: s_right_lair_gate
+#     profile: foo
+#     show_tokens:
+#       a: l_serial_chain_0_20
+#       b: l_serial_chain_0_19
+#       c: l_serial_chain_0_18
+#   inner_loop:
+#     switch: s_inner_loop
+#     profile: foo
+#     show_tokens:
+#       a: l_serial_chain_0_23
+#       b: l_serial_chain_0_22
+#       c: l_serial_chain_0_21
+#   scoop:
+#     switch: s_scoop
+#     profile: foo
+#     show_tokens:
+#       a: l_serial_chain_0_27
+#       b: l_serial_chain_0_28
+#       c: l_serial_chain_0_29
+#   secret_rollover:
+#     switch: s_secret_rollover
+#     profile: bar
+#     show_tokens:
+#       a: l_serial_chain_0_40
+#   ramp_left:
+#     switch: s_ramp_left
+#     profile: foo
+#     show_tokens:
+#       a: l_serial_chain_0_37
+#       b: l_serial_chain_0_38
+#       c: l_serial_chain_0_39
+#   ramp_right:
+#     switch: s_ramp_right
+#     profile: bar
+#     show_tokens:
+#       a: l_serial_chain_0_26
+#   orbit_left:
+#     advance_events: seq_orbit_left_hit
+#     profile: foo
+#     show_tokens:
+#       a: l_serial_chain_0_10
+#       b: l_serial_chain_0_11
+#       c: l_serial_chain_0_12
+#   orbit_right:
+#     advance_events: seq_orbit_right_hit
+#     profile: foo
+#     show_tokens:
+#       a: l_serial_chain_0_32
+#       b: l_serial_chain_0_31
+#       c: l_serial_chain_0_30
+#   bash_left:
+#     advance_events: seq_bash_diagonal_left_a_timeout
+#     profile: bar
+#     show_tokens:
+#       a: l_serial_chain_0_17
+#   bash_diagonal_left:
+#     advance_events: seq_bash_diagonal_left_a_hit, seq_bash_diagonal_left_b_hit
+#     profile: bar
+#     show_tokens:
+#       a: l_serial_chain_0_16
+#   bash_forward:
+#     # only need one of these since diagonal_right_b is identical
+#     advance_events: seq_bash_diagonal_left_b_timeout
+#     profile: bar
+#     show_tokens:
+#       a: l_serial_chain_0_15
+#   bash_diagonal_right:
+#     advance_events: seq_bash_diagonal_right_a_hit, seq_bash_diagonal_right_b_hit
+#     profile: bar
+#     show_tokens:
+#       a: l_serial_chain_0_14
+#   bash_right:
+#     advance_events: seq_bash_diagonal_right_a_timeout
+#     profile: bar
+#     show_tokens:
+#       a: l_serial_chain_0_13
 
-sequence_shots:
-  seq_orbit_right:
-    switch_sequence: s_right_orbit, s_left_orbit
-    sequence_timeout: 1s
-  seq_orbit_left:
-    switch_sequence: s_left_orbit, s_right_orbit
-    sequence_timeout: 1s
-  seq_bash_diagonal_left_a:
-    switch_sequence: s_newton_left, s_newton_forward
-    sequence_timeout: 100ms
-  seq_bash_diagonal_left_b:
-    switch_sequence: s_newton_forward, s_newton_left
-    sequence_timeout: 100ms
-  seq_bash_diagonal_right_a:
-    switch_sequence: s_newton_right, s_newton_forward
-    sequence_timeout: 100ms
-  seq_bash_diagonal_right_b:
-    switch_sequence: s_newton_forward, s_newton_right
-    sequence_timeout: 100ms
-  seq_zone_left_center:
-    switch_sequence: s_right_lair_gate, s_left_zone_center
-    sequence_timeout: 3s
-    cancel_switches: s_pop_a, s_pop_b, s_pop_c
-  seq_zone_left_left:
-    switch_sequence: s_right_lair_gate, s_left_zone_left
-    sequence_timeout: 3s
-    cancel_switches: s_pop_a, s_pop_b, s_pop_c
-  seq_zone_left_right:
-    switch_sequence: s_right_lair_gate, s_left_zone_right
-    sequence_timeout: 3s
-    cancel_switches: s_pop_a, s_pop_b, s_pop_c
+# sequence_shots:
+#   seq_orbit_right:
+#     switch_sequence: s_right_orbit, s_left_orbit
+#     sequence_timeout: 1s
+#   seq_orbit_left:
+#     switch_sequence: s_left_orbit, s_right_orbit
+#     sequence_timeout: 1s
+#   seq_bash_diagonal_left_a:
+#     switch_sequence: s_newton_left, s_newton_forward
+#     sequence_timeout: 100ms
+#   seq_bash_diagonal_left_b:
+#     switch_sequence: s_newton_forward, s_newton_left
+#     sequence_timeout: 100ms
+#   seq_bash_diagonal_right_a:
+#     switch_sequence: s_newton_right, s_newton_forward
+#     sequence_timeout: 100ms
+#   seq_bash_diagonal_right_b:
+#     switch_sequence: s_newton_forward, s_newton_right
+#     sequence_timeout: 100ms
+#   seq_zone_left_center:
+#     switch_sequence: s_right_lair_gate, s_left_zone_center
+#     sequence_timeout: 3s
+#     cancel_switches: s_pop_a, s_pop_b, s_pop_c
+#   seq_zone_left_left:
+#     switch_sequence: s_right_lair_gate, s_left_zone_left
+#     sequence_timeout: 3s
+#     cancel_switches: s_pop_a, s_pop_b, s_pop_c
+#   seq_zone_left_right:
+#     switch_sequence: s_right_lair_gate, s_left_zone_right
+#     sequence_timeout: 3s
+#     cancel_switches: s_pop_a, s_pop_b, s_pop_c

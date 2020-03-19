@@ -142,7 +142,7 @@ lights:
     subtype: led
     type: grb
     tags: first_shot
-  # right dead end
+  # right ramp
   l_serial_chain_0_24:
     number: 5-169-170-171
     subtype: led

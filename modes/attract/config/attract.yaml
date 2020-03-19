@@ -16,16 +16,16 @@ slide_player:
 # what we need is a reliable way to jump to landmark parts in the song reliably
 # with a counter or a beat counter we can do this
 
-# could start a timer when 
-sound_loop_player:
-  mode_attract_started:
-    music:
-      action: play
-      sound_loop_set: gates_of_steel_set
-  # timer_foo_tick:
-  #   music:
-  #     action: jump_to
-  #     time: 0
+# # could start a timer when 
+# sound_loop_player:
+#   mode_attract_started:
+#     music:
+#       action: play
+#       sound_loop_set: gates_of_steel_set
+#   # timer_foo_tick:
+#   #   music:
+#   #     action: jump_to
+#   #     time: 0
 
 # a - 10.148
 # b - 28.189
