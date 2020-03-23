@@ -27,6 +27,13 @@ slide_player:
         anchor_x: left
         anchor_y: bottom
       - type: text
+        text: BONUS MULTIPLIER (bonus_multiplier)
+        x: 10
+        y: 80
+        font_size: 20
+        anchor_x: left
+        anchor_y: bottom
+      - type: text
         text: BALL (ball)
         y: 10
         x: right-10
@@ -37,3 +44,5 @@ slide_player:
 variable_player:
   s_right_orbit_active:
     score: 100
+  s_thin_standup_left_active:
+    bonus_multiplier: 1

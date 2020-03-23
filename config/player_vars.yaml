@@ -1,5 +1,8 @@
 #config_version=5
 
 player_vars:
+  bonus_multiplier:
+    initial_value: 1
   charge:
     initial_value: 0
+

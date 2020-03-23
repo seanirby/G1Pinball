@@ -5,13 +5,6 @@ mode:
   priority: 300
   code: foo.Foo
 
-# show_player:
-#   timer_high_value_shot_timer_tick: 
-#     three_light_high_value:
-#       speed: 10
-#       # value: (device.timers.high_value_shot_timer.ticks_remaining)
-#       # type: int
-
 shows:
   three_light_normal_value:
     - duration: 1

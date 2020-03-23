@@ -1,0 +1,28 @@
+#config_version=5
+
+# Abbreviated mode section to test dynamic keep_multiplier
+# See here for more info: http://docs.missionpinball.org/en/latest/game_logic/bonus/configuring_bonus.html
+
+mode_settings:
+   display_delay_ms: 1s
+   hurry_up_delay_ms: 0
+   keep_multiplier: No
+   bonus_entries:
+    - event: bonus_ramps
+      score: 400
+
+slide_player:
+   bonus_multiplier: bonus_multiplier_slide
+   bonus_total: bonus_total_slide
+
+slides:
+  bonus_multiplier_slide:
+    - type: text
+      text: "Multiplier"
+    - type: text
+      text: "(multiplier)X"
+  bonus_total_slide:
+    - type: text
+      text: "Total Bonus"
+    - type: text
+      text: (score)

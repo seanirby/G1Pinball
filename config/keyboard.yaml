@@ -3,13 +3,11 @@
 keyboard:
   s:
     switch: s_start
-  q:
-    switch: s_right_orbit
   t:
     switch: s_trough_1
     toggle: True
   r:
-    switch: s_right_orbit
+    switch: s_orbit_right
   p:
     switch: s_plunger
 
