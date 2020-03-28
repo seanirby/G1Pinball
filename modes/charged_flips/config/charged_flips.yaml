@@ -3,13 +3,40 @@
 mode: 
   start_events: ball_starting
   priority: 300
+  code: charged_flips.ChargedFlips
 
 counters:
-   charge:
+   energy:
       count_events: s_left_inlane_active, s_right_inlane_active
-      count_complete_value: 10
+      count_complete_value: 9
       reset_on_complete: False
 
+
+# these are controlled in code
+timers:
+  charging_timer:
+    start_value: 0
+    end_value: 9
+    # might want to change this to something shorter than a second
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: charging_started
+  charge_release_timer:
+    start_value: 0
+    end_value: 2
+
+sound_player:
+  charging_started:
+    charge:
+      action: play
+  charging_stopped:
+    charge:
+      action: stop
+    charge_release:
+      action: play
+      
+
 variable_player:
-  counter_charge_hit:
-    charge: 1
+  counter_energy_hit:
+    energy: 1

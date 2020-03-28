@@ -20,7 +20,7 @@ slide_player:
         anchor_x: left
         anchor_y: bottom
       - type: text
-        text: ENERGY (charge)
+        text: ENERGY (energy)
         x: 10
         y: 60
         font_size: 20

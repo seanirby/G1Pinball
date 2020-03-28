@@ -3,6 +3,6 @@
 player_vars:
   bonus_multiplier:
     initial_value: 1
-  charge:
+  energy:
     initial_value: 0
 

@@ -38,6 +38,7 @@ sound_system:
        type: standard
        simultaneous_sounds: 8
        volume: 0.4
+       preload: yes
 
 assets:
   sounds:
@@ -49,6 +50,7 @@ assets:
       load: preload
     sfx:
       track: sfx
+      load: preload
     voice:
       track: voice
 
@@ -58,6 +60,10 @@ sounds:
   timing_x:
     max_queue_time: 0
   strange_pursuit:
+    max_queue_time: 0
+  charge:
+    max_queue_time: 0
+  charge_release:
     max_queue_time: 0
 
 sound_loop_sets:

@@ -147,6 +147,28 @@ sequence_shots:
     switch_sequence: s_orbit_left, s_orbit_right
     sequence_timeout: 1s
 
+variable_player:
+  s_ramp_left_lower_active:
+    score: 1000000
+  s_rollover_button_active:
+    score: 1000000
+  seq_orbit_left_hit:
+    score: 1000000
+  s_ramp_left_upper_active:
+    score: 1000000
+  s_zone_center_active:
+    score: 1000000
+  s_gate_right_active:
+    score: 1000000
+  s_inner_loop_active:
+    score: 1000000
+  s_inner_scoop_active:
+    score: 1000000
+  s_ramp_right_active:
+    score: 1000000
+  seq_orbit_right_hit:
+    score: 1000000
+
 # # controlled in codee
 # timers:
 #   high_value_shot_timer:

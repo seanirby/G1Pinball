@@ -5,3 +5,4 @@ monitor/logs/*
 .projectile
 __pycache__/
 *.py[co]
+venv/
