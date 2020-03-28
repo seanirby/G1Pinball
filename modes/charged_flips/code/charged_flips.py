@@ -30,6 +30,13 @@ class ChargedFlips(Mode):
         self.add_mode_event_handler('s_left_flipper_active', self.flipper_pressed, side="left")
         self.add_mode_event_handler('timer_charge_release_timer_complete', self.reset_multiplier)
 
+    # def add_energy(self, **kwargs):
+    #     print("PLAYER ENERGY")
+    #     print(self.player.energy)
+
+    #     if kwargs['side'] == 'left':
+    #         import pdb; pdb.set_trace()
+
     def reset_multiplier(self, **kwargs):
         self._current_multiplier = 1
 
@@ -44,6 +51,8 @@ class ChargedFlips(Mode):
             charging_timer.stop()
             charging_timer.reset()
 
+            self.machine.counters.energy.enable()
+            
             # only fire off the charge release if I have a charged up multiplier
             if self._current_multiplier > 1:
                 self.machine.timers['charge_release_timer'].restart()

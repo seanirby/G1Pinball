@@ -3,5 +3,8 @@
 modes:
   - base
   - charged_flips
-  - foo
+  # all shots mode
+  - foo               
+  # alternating ramps mode
+  - bar
   - bonus
