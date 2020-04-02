@@ -2,7 +2,7 @@
 
 mode:
   start_events: ball_starting
-  priority: 300
+  priority: 100
 
 slide_player:
   mode_base_started:
@@ -41,8 +41,114 @@ slide_player:
         anchor_y: bottom
         font_size: 50
 
+shots:
+  sh_ramp_left_lower:
+    switch: s_ramp_left_lower
+    show_tokens:
+      a: l_serial_chain_0_37
+      b: l_serial_chain_0_38
+      c: l_serial_chain_0_39
+  sh_rollover_button:
+    switch: s_rollover_button
+    show_tokens:
+      a: l_serial_chain_0_40
+  sh_orbit_left:
+    hit_events: seq_orbit_left
+    show_tokens:
+      a: l_serial_chain_0_12
+      b: l_serial_chain_0_11
+      c: l_serial_chain_0_10
+  sh_ramp_left_upper:
+    switch: s_ramp_left_upper
+    show_tokens:
+      a: l_serial_chain_0_7
+      b: l_serial_chain_0_8
+      c: l_serial_chain_0_9
+  sh_zone_left:
+    switch: s_zone_left_center, s_zone_left_left, s_zone_left_right
+    show_tokens:
+      a: l_serial_chain_0_6
+      b: l_serial_chain_0_5
+      c: l_serial_chain_0_4
+  sh_bash_forward:
+    switch: s_bash_forward
+  sh_bash_left:
+    switch: s_bash_left
+  sh_bash_right:
+    switch: s_bash_right
+  sh_gate_right:
+    switch: s_gate_right
+    show_tokens:
+      a: l_serial_chain_0_18
+      b: l_serial_chain_0_19
+      c: l_serial_chain_0_20
+  sh_inner_loop:
+    switch: s_inner_loop
+    show_tokens:
+      a: l_serial_chain_0_23
+      b: l_serial_chain_0_22
+      c: l_serial_chain_0_21
+  sh_scoop:
+    switch: s_scoop
+    show_tokens:
+      a: l_serial_chain_0_29
+      b: l_serial_chain_0_28
+      c: l_serial_chain_0_27
+  sh_ramp_right:
+    switch: s_ramp_right
+    show_tokens:
+      a: l_serial_chain_0_26
+      b: l_serial_chain_0_25
+      c: l_serial_chain_0_24
+  sh_orbit_right:
+    hit_events: seq_orbit_right
+    show_tokens:
+      a: l_serial_chain_0_30
+      b: l_serial_chain_0_31
+      c: l_serial_chain_0_32
+  # lower playfield
+  sh_sling_left:
+    hit_events: s_sling_left_top_active, s_sling_left_bottom_active
+  sh_sling_right:
+    hit_events: s_sling_right_top_active, s_sling_right_bottom_active
+
+sequence_shots:
+  seq_orbit_right:
+    switch_sequence: s_orbit_right, s_orbit_left
+    sequence_timeout: 1s
+  seq_orbit_left:
+    switch_sequence: s_orbit_left, s_orbit_right
+    sequence_timeout: 1s
+# TODO: add bash hits for diagonal
+
 variable_player:
   s_right_orbit_active:
     score: 100
   s_thin_standup_left_active:
     bonus_multiplier: 1
+
+sound_player:
+  sh_sling_left_hit:
+    sling:
+      action: play
+  sh_sling_right_hit:
+    sling:
+      action: play
+  s_pop_a_active:
+    pop:
+      action: play
+  s_pop_b_active:
+    pop:
+      action: play
+  s_pop_c_active:
+    pop:
+      action: play
+  sh_inner_loop_hit:
+    pos_med_3:
+      action: play
+  sh_ramp_left_lower_hit:
+    pos_med_5:
+      action: play
+  sh_ramp_right_hit:
+    pos_med_5:
+      action: play

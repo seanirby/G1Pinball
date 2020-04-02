@@ -2,7 +2,7 @@
 
 mode:
   start_events: ball_starting
-  priority: 300
+  priority: 200
   code: bar.Bar
 
 state_machines:
@@ -99,7 +99,7 @@ shot_profiles:
         show: bar_bash_right_lit
 
 shots:
-  bar_ramp_left_lower:
+  bar_ramp_left:
     profile: bar_three_light_shot
     show_tokens:
       a: l_serial_chain_0_37
@@ -119,6 +119,8 @@ shots:
       c: l_serial_chain_0_15
       d: l_serial_chain_0_16
       e: l_serial_chain_0_17
+
+
         
 variable_player:
   s_ramp_left_lower_active:

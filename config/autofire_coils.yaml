@@ -3,16 +3,16 @@
 autofire_coils:
   ac_sling_left_top:
     coil: c_slings_left
-    switch: s_left_sling_top
+    switch: s_sling_left_top
   ac_sling_left_bottom:
     coil: c_slings_left
-    switch: s_left_sling_bottom
+    switch: s_sling_left_bottom
   ac_sling_right_top:
     coil: c_slings_right
-    switch: s_right_sling_top
+    switch: s_sling_right_top
   ac_sling_right_bottom:
     coil: c_slings_right
-    switch: s_right_sling_bottom
+    switch: s_sling_right_bottom
   pop_a:
     coil: c_pop_a
     switch: s_pop_a

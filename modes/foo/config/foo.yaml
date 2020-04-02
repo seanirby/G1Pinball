@@ -72,7 +72,7 @@ shot_profiles:
         show: three_light_off
 
 shots:
-  ramp_left_lower:
+  foo_ramp_left_lower:
     profile: three_light_shot
     # disable_events: s_ramp_left_lower_active
     show_tokens:
@@ -138,14 +138,6 @@ shots:
       a: l_serial_chain_0_30
       b: l_serial_chain_0_31
       c: l_serial_chain_0_32
-
-sequence_shots:
-  seq_orbit_right:
-    switch_sequence: s_orbit_right, s_orbit_left
-    sequence_timeout: 1s
-  seq_orbit_left:
-    switch_sequence: s_orbit_left, s_orbit_right
-    sequence_timeout: 1s
 
 variable_player:
   s_ramp_left_lower_active:

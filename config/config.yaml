@@ -24,7 +24,7 @@ config:
 - player_vars.yaml
 
 sound_system:
-  master_volume: 0.75
+  master_volume: 1.5
   tracks:
      music:
        type: sound_loop
@@ -37,7 +37,7 @@ sound_system:
      sfx:
        type: standard
        simultaneous_sounds: 8
-       volume: 0.4
+       volume: 1
        preload: yes
 
 assets:
@@ -54,16 +54,37 @@ assets:
     voice:
       track: voice
 
+# Define non-default settings for sounds here
+# sounds that should be instantaneous need to be set here with max queue time
 sounds:
   gates_of_steel:
-    max_queue_time: 0
-  timing_x:
-    max_queue_time: 0
-  strange_pursuit:
     max_queue_time: 0
   charge:
     max_queue_time: 0
   charge_release:
+    max_queue_time: 0
+  # sling sounds
+  other_short_3: 
+    max_queue_time: 0
+  other_short_4: 
+    max_queue_time: 0
+  other_short_5: 
+    max_queue_time: 0
+  other_short_6: 
+    max_queue_time: 0
+  # pop sounds
+  other_short_10: 
+    max_queue_time: 0
+  other_short_11: 
+    max_queue_time: 0
+  other_short_12: 
+    max_queue_time: 0
+  other_short_13: 
+    max_queue_time: 0
+  # ramp sounds
+  pos_med_3:
+    max_queue_time: 0
+  pos_med_5:
     max_queue_time: 0
 
 sound_loop_sets:
@@ -74,6 +95,27 @@ sound_loop_sets:
     events_when_played: timing_x_started
     events_when_stopped: timing_x_stopped
     events_when_looping: timing_x_looped
+
+sound_pools:
+  sling:
+    load: preload
+    type: sequence
+    track: sfx
+    sounds:
+      - other_short_3
+      - other_short_4
+      - other_short_5
+      - other_short_6
+  pop:
+    load: preload
+    type: random
+    track: sfx
+    sounds:
+      - other_short_10
+      - other_short_11
+      - other_short_12
+      - other_short_13
+    
 
 displays:
   window:

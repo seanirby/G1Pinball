@@ -30,13 +30,6 @@ class ChargedFlips(Mode):
         self.add_mode_event_handler('s_left_flipper_active', self.flipper_pressed, side="left")
         self.add_mode_event_handler('timer_charge_release_timer_complete', self.reset_multiplier)
 
-    # def add_energy(self, **kwargs):
-    #     print("PLAYER ENERGY")
-    #     print(self.player.energy)
-
-    #     if kwargs['side'] == 'left':
-    #         import pdb; pdb.set_trace()
-
     def reset_multiplier(self, **kwargs):
         self._current_multiplier = 1
 
@@ -100,17 +93,13 @@ class ChargedFlips(Mode):
         return self.machine.switch_controller.is_state(s_flipper, False, self.flipper_down_delay)
 
     def charging_tick(self, **kwargs):
-        print("tick")
         timer = self.machine.timers['charging_timer']
         
         if timer.ticks >= 9 and self.player.energy >= 9:
-            print("BAZ")
             self._current_multiplier = 4
         elif timer.ticks >= 6 and timer.ticks < 9 and self.player.energy >= 6:
-            print("BAR")
             self._current_multiplier = 3
         elif timer.ticks >= 3 and timer.ticks < 6 and self.player.energy >= 3:
-            print("FOO")
             self._current_multiplier = 2
 
 

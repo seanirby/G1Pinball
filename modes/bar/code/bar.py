@@ -6,12 +6,12 @@ class Bar(Mode):
         super().__init__(*args, **kwargs)
 
     def mode_start(self, **kwargs):
-        self.add_mode_event_handler("s_ramp_right_active", self.ramp_hit, side="right")
-        self.add_mode_event_handler("s_ramp_left_lower_active", self.ramp_hit, side="left")
+        self.add_mode_event_handler("sh_ramp_left_lower_hit", self.ramp_hit, side="left")
+        self.add_mode_event_handler("sh_ramp_right_hit", self.ramp_hit, side="right")
 
-        self.add_mode_event_handler("s_bash_forward_active", self.bash_hit, side="center")  
-        self.add_mode_event_handler("s_bash_left_active", self.bash_hit, side="left")
-        self.add_mode_event_handler("s_bash_right_active", self.bash_hit, side="right")
+        self.add_mode_event_handler("sh_bash_forward_hit", self.bash_hit, side="center")
+        self.add_mode_event_handler("sh_bash_left_hit", self.bash_hit, side="left")
+        self.add_mode_event_handler("sh_bash_right_hit", self.bash_hit, side="right")
         self.add_mode_event_handler('timer_bar_bash_timer_tick', self.bar_bash_timer_tick)
         self.add_mode_event_handler('timer_bar_bash_timer_complete', self.bash_timer_complete)
 
@@ -22,8 +22,8 @@ class Bar(Mode):
         bar_bash_timer = self.machine.timers['bar_bash_timer']
 
         self.machine.counters.bar_ramp_count.reset()
-        self.machine.shots['bar_ramp_right'].jump(0)
-        self.machine.shots['bar_ramp_left_lower'].jump(0)
+        self.machine.shots.bar_ramp_right.jump(0)
+        self.machine.shots.bar_ramp_left.jump(0)
 
         bar_bash_timer.stop()
         bar_bash_timer.reset()
@@ -51,22 +51,22 @@ class Bar(Mode):
             # start bash timer
             if side == 'right':
                 self.machine.events.post('bar_right_hit')
-                self.machine.shots['bar_ramp_right'].jump(1)
-                self.machine.shots['bar_ramp_left_lower'].jump(0)
+                self.machine.shots.bar_ramp_right.jump(1)
+                self.machine.shots.bar_ramp_left.jump(0)
             else:
                 self.machine.events.post('bar_left_hit')
-                self.machine.shots['bar_ramp_right'].jump(0)
-                self.machine.shots['bar_ramp_left_lower'].jump(1)
+                self.machine.shots.bar_ramp_right.jump(0)
+                self.machine.shots.bar_ramp_left.jump(1)
         elif bar_state.state == 'left_ramp_lit' and side == 'left':
             bar_bash_timer.restart()
             self.machine.events.post('bar_left_hit')
-            self.machine.shots['bar_ramp_right'].jump(0)
-            self.machine.shots['bar_ramp_left_lower'].jump(1)
+            self.machine.shots.bar_ramp_right.jump(0)
+            self.machine.shots.bar_ramp_left.jump(1)
         elif bar_state.state == 'right_ramp_lit' and side == 'right':
             bar_bash_timer.restart()
             self.machine.events.post('bar_right_hit')
-            self.machine.shots['bar_ramp_right'].jump(1)
-            self.machine.shots['bar_ramp_left_lower'].jump(0)
+            self.machine.shots.bar_ramp_right.jump(1)
+            self.machine.shots.bar_ramp_left.jump(0)
 
     def bash_hit(self, **kwargs):
         side = kwargs['side']

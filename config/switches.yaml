@@ -90,13 +90,13 @@ switches:
     number: A4-B1-0
   s_right_inlane:
     number: A4-B1-1
-  s_right_sling_top:
+  s_sling_right_top:
     number: A4-B1-2
-  s_right_sling_bottom:
+  s_sling_right_bottom:
     number: A4-B1-3
-  s_left_sling_top:
+  s_sling_left_top:
     number: A4-B1-4
-  s_left_sling_bottom:
+  s_sling_left_bottom:
     number: A4-B1-5
   s_left_inlane:
     number: A4-B1-6

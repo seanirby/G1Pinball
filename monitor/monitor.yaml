@@ -187,10 +187,10 @@ switch:
   s_left_outlane:
     x: 0.09237218354667266
     y: 0.7164383561643836
-  s_left_sling_bottom:
+  s_sling_left_bottom:
     x: 0.2424769818100157
     y: 0.736986301369863
-  s_left_sling_top:
+  s_sling_left_top:
     x: 0.22969433475595977
     y: 0.7007299270072993
   s_left_zone_center:
@@ -259,10 +259,10 @@ switch:
   s_right_outlane:
     x: 0.8128752152107194
     y: 0.7041095890410959
-  s_right_sling_bottom:
+  s_sling_right_bottom:
     x: 0.6650797215360431
     y: 0.7424657534246575
-  s_right_sling_top:
+  s_sling_right_top:
     x: 0.692791376600045
     y: 0.6863013698630137
   s_rollover_button:
