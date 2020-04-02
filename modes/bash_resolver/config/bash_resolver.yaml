@@ -52,19 +52,19 @@ show_player:
 
 sequence_shots:
   seq_bash_center:
-    event_sequence: bash_resolver_center_hit, bash_resolver_started
+    event_sequence: bash_resolver_center_hit, bash_resolver_debounce_started
     sequence_timeout: 100ms
   seq_bash_left:
-    event_sequence: bash_resolver_left_hit, bash_resolver_started
+    event_sequence: bash_resolver_left_hit, bash_resolver_debounce_started
     sequence_timeout: 100ms
   seq_bash_right:
-    event_sequence: bash_resolver_right_hit, bash_resolver_started
+    event_sequence: bash_resolver_right_hit, bash_resolver_debounce_started
     sequence_timeout: 100ms
   seq_bash_diagonal_left:
-    event_sequence: bash_resolver_diagonal_left_hit, bash_resolver_started
+    event_sequence: bash_resolver_diagonal_left_hit, bash_resolver_debounce_started
     sequence_timeout: 100ms
   seq_bash_diagonal_right:
-    event_sequence: bash_resolver_diagonal_right_hit, bash_resolver_started
+    event_sequence: bash_resolver_diagonal_right_hit, bash_resolver_debounce_started
     sequence_timeout: 100ms
 
 # this state machine is used to find the direction the bash mech was hit
@@ -81,6 +81,9 @@ state_machines:
         label: x
       first_hit_right:
         label: x
+      debounce:
+        label: x
+        events_when_started: bash_resolver_debounce_started
     transitions:
       # start
       - source: start
@@ -94,37 +97,51 @@ state_machines:
         events: s_bash_left_active
       # transitions from forward
       - source: first_hit_forward
-        target: start
+        target: debounce
         events: timer_bash_hit_timeout_complete
         events_when_transitioning: bash_resolver_center_hit
       - source: first_hit_forward
-        target: start
+        target: debounce
         events: s_bash_left_active
         events_when_transitioning: bash_resolver_diagonal_right_hit
       - source: first_hit_forward
-        target: start
+        target: debounce
         events: s_bash_right_active
         events_when_transitioning: bash_resolver_diagonal_left_hit
       # transitions from left
       - source: first_hit_left
-        target: start
+        target: debounce
         events: timer_bash_hit_timeout_complete
         events_when_transitioning: bash_resolver_left_hit
       - source: first_hit_left
-        target: start
+        target: debounce
         events: s_bash_forward_active
         events_when_transitioning: bash_resolver_diagonal_left_hit
       # transitions from right
       - source: first_hit_right
-        target: start
+        target: debounce
         events: timer_bash_hit_timeout_complete
         events_when_transitioning: bash_resolver_right_hit
       - source: first_hit_right
-        target: start
+        target: debounce
         events: s_bash_forward_active
         events_when_transitioning: bash_resolver_diagonal_right_hit
+      # debounce
+      - source: debounce
+        target: start
+        events: timer_bash_resolver_debounce_complete
 
 timers:
+  # my bash target likes to ricochet so hard it might fires another switch
+  # using this timer to add a debounce so that errant switches won't effect a detected hit
+  bash_resolver_debounce:
+    tick_interval: 100ms
+    end_value: 2
+    control_events:
+      - action: start
+        event: bash_resolver_debounce_started
+      - action: reset
+        event: timer_bash_resolver_debounce_complete
   bash_hit_timeout:
     end_value: 1
     tick_interval: 100ms
