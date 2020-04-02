@@ -70,12 +70,6 @@ shots:
       a: l_serial_chain_0_6
       b: l_serial_chain_0_5
       c: l_serial_chain_0_4
-  sh_bash_forward:
-    switch: s_bash_forward
-  sh_bash_left:
-    switch: s_bash_left
-  sh_bash_right:
-    switch: s_bash_right
   sh_gate_right:
     switch: s_gate_right
     show_tokens:
@@ -119,7 +113,6 @@ sequence_shots:
   seq_orbit_left:
     switch_sequence: s_orbit_left, s_orbit_right
     sequence_timeout: 1s
-# TODO: add bash hits for diagonal
 
 variable_player:
   s_right_orbit_active:

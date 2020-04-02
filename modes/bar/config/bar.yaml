@@ -1,7 +1,7 @@
 #config_version=5
 
 mode:
-  start_events: ball_starting
+  start_events: bar_song_selected
   priority: 200
   code: bar.Bar
 
@@ -120,8 +120,6 @@ shots:
       d: l_serial_chain_0_16
       e: l_serial_chain_0_17
 
-
-        
 variable_player:
   s_ramp_left_lower_active:
     score: 1000000

@@ -2,6 +2,7 @@
 
 modes:
   - base
+  - bash_resolver
   - charged_flips
   # all shots mode
   - foo               
