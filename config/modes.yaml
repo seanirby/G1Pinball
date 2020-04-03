@@ -1,11 +1,14 @@
 #config_version=5
 
 modes:
+  # attract
+  # constantly running
   - base
   - bash_resolver
   - charged_flips
-  # all shots mode
+  - song_select
+  # songs ('modes' in pinball parlance)
   - foo               
-  # alternating ramps mode
   - bar
+  # ball over
   - bonus

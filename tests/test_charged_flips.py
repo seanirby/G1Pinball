@@ -7,11 +7,11 @@ class TestChargedFlips(MpfMachineTestCase):
         self.machine.playfield.add_ball = MagicMock()
         # self.machine.ball_controller.num_balls_known = 3
         self.assertModeRunning('attract')
-        self.hit_switch_and_run("s_trough", 30)
+        self.hit_switch_and_run("s_trough", 1)
         self.hit_and_release_switch("s_start")
 
         # All this stuff may be unnecessary but its what I need to do currently when I run mpf both -x 
-        self.release_switch_and_run("s_trough", 30)
+        self.release_switch_and_run("s_trough", 1)
         self.hit_and_release_switch("s_plunger")
         self.hit_and_release_switch("s_orbit_right")
         self.assertIsNotNone(self.machine.game)
