@@ -9,9 +9,11 @@ class Bar(Mode):
         self.add_mode_event_handler("sh_ramp_left_lower_hit", self.ramp_hit, side="left")
         self.add_mode_event_handler("sh_ramp_right_hit", self.ramp_hit, side="right")
 
-        self.add_mode_event_handler("sh_bash_forward_hit", self.bash_hit, side="center")
-        self.add_mode_event_handler("sh_bash_left_hit", self.bash_hit, side="left")
-        self.add_mode_event_handler("sh_bash_right_hit", self.bash_hit, side="right")
+        self.add_mode_event_handler("seq_bash_center_hit", self.bash_hit, side="center")
+        self.add_mode_event_handler("seq_bash_diagonal_left_hit", self.bash_hit, side="left")
+        self.add_mode_event_handler("seq_bash_left_hit", self.bash_hit, side="left")
+        self.add_mode_event_handler("seq_bash_diagonal_right_hit", self.bash_hit, side="right")
+        self.add_mode_event_handler("seq_bash_right_hit", self.bash_hit, side="right")
         self.add_mode_event_handler('timer_bar_bash_timer_tick', self.bar_bash_timer_tick)
         self.add_mode_event_handler('timer_bar_bash_timer_complete', self.bash_timer_complete)
 

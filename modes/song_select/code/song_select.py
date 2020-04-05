@@ -1,7 +1,7 @@
 from mpf.core.mode import Mode
 
 class SongSelect(Mode):
-    songs = ['foo', 'bar', 'baz', 'bap', 'bat']
+    songs = ['bar', 'foo']
     initial_shot_charge = [0, 0, 0, 0, 0]
     bash_left_shot = "sh_song_select_bash_left"
     bash_diagonal_left_shot = "sh_song_select_bash_diagonal_left"
@@ -22,33 +22,33 @@ class SongSelect(Mode):
         super().__init__(*args, **kwargs)
         self._bash_charge = [None] * 5
         self._bash_prox_profile = [None] * 5
+        self._songs_completed = []
 
     def mode_start(self, **kwargs):
         self._charge_bash_arr(self.initial_shot_charge)
-        self._bash_prox_profile = [1, 2 ,1]
+        self._bash_prox_profile = [1, 2, 1]
+        self._songs_completed = []
 
         # Todo: understand the lifecycle of this
-        self.machine.events.post('song_select_state_skill_shot_start')
+        self.machine.events.post('song_select_state_start_complete')
 
         # bash hit handlers
-        # left
         self.add_mode_event_handler(self._shot_hit_event(0), self._handle_bash_hit, direction=0)
-        # left diag
         self.add_mode_event_handler(self._shot_hit_event(1), self._handle_bash_hit, direction=1)
-        # center
         self.add_mode_event_handler(self._shot_hit_event(2), self._handle_bash_hit, direction=2)
-        # right diag
         self.add_mode_event_handler(self._shot_hit_event(3), self._handle_bash_hit, direction=3)
-        # right
         self.add_mode_event_handler(self._shot_hit_event(4), self._handle_bash_hit, direction=4)
 
-        # scoop hit handlers:
-        self.add_mode_event_handler('sh_song_select_scoop_hit', self._handle_scoop_hit)
+        # state handlers
+        self.add_mode_event_handler('song_select_song_wait_started', self._handle_song_wait_started)
+        self.add_mode_event_handler('song_select_song_running_started', self._handle_song_running_started)
 
-    def _handle_scoop_hit(self, **kwargs):
-        if self.machine.state_machines.song_select.state == 'qualified':
-            print('starting song')
-            
+    def _handle_song_wait_started(self, **kwargs):
+        self.machine.shots.sh_song_select_scoop.jump(0)
+
+    def _handle_song_running_started(self, **kwargs):
+        self.machine.events.post('bar_song_selected')
+
     def _shot_hit_event(self, i):
         return self._get_shot_name(i) + "_hit"
 
@@ -96,7 +96,7 @@ class SongSelect(Mode):
                     self._charge_bash(i, current_charge + self._bash_prox_profile[prox_effect_index])
 
             if self._is_bash_fully_charged():
-                self.machine.events.post('song_select_state_qualified_start')
+                self.machine.events.post('song_select_state_qualifying_complete')
                 for shot in self.bash_shots_arr:
                     self.machine.shots[shot].jump(3)
                 self.machine.shots.sh_song_select_scoop.jump(1)

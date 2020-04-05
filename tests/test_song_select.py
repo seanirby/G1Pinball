@@ -50,12 +50,23 @@ class TestSongSelect(MpfMachineTestCase):
         # TODO use assert charge profile
         self._assert_charge_profile(0, 0, 0, 0, 0)
         # equivalent to sh_song_select_bash_left_hit
-        self.hit_switch_and_run("s_bash_right", 2)
+        self.hit_and_release_switch("s_bash_right")
+        self.advance_time_and_run(1)
         self._assert_charge_profile(2, 1, 0, 0, 0)
         # equivalent to sh_song_select_bash_right_hit
-        self.hit_switch_and_run("s_bash_left", 2)
+        self.hit_and_release_switch("s_bash_left")
+        self.advance_time_and_run(1)
         self._assert_charge_profile(2, 1, 0, 1, 2)
         # equivalent to sh_song_select_bash_center_hit
-        self.hit_switch_and_run("s_bash_forward")
+        self.hit_and_release_switch("s_bash_forward")
+        self.advance_time_and_run(1)
 
         self.assertEqual(self.machine.state_machines.song_select.state, 'qualified')
+        self.hit_and_release_switch("s_scoop")
+
+        self.assertEqual(self.machine.state_machines.song_select.state, 'song_wait')
+
+        # todo - find a way to simulate scoop hit and test for song_running
+        # self.advance_time_and_run(5)
+        # self.assertEqual(self.machine.state_machines.song_select.state, 'song_running')
+        

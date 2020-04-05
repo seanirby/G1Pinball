@@ -107,17 +107,34 @@ state_machines:
       qualifying:
         label: here we hit the bash the booji until the its ready
       qualified:
-        label: placeholder, mode is ready to start at the scoop
+        label: mode is ready to start at the scoop
+      song_wait:
+        label: song is about to start, cleanup and wait for shows to finish
+        events_when_started: song_select_song_wait_started
+      song_running:
+        label: song has started, using this state primarily to wait
+        events_when_started: song_select_song_running_started
     transitions:
       - source: start
         target: skill_shot
-        events: song_select_state_skill_shot_start
+        events: song_select_state_start_complete
       - source: skill_shot
         target: qualifying
         events: timer_song_select_skill_shot_timeout_complete
       - source: qualifying
         target: qualified
-        events: song_select_state_qualified_start
+        events: song_select_state_qualifying_complete
+      - source: qualified
+        target: song_wait
+        # todo - due to how shot inheritance works i have to use the base scoop hit here
+        events: sh_scoop_hit
+      - source: song_wait
+        target: song_running
+        events: balldevice_bd_scoop_ball_eject_success
+      - source: song_running
+        target: start
+        # todo add the right drain event
+        events: some_drain_event
 
 timers:
   song_select_skill_shot_timeout:
@@ -125,13 +142,8 @@ timers:
     end_value: 4
     control_events:
       - action: start
-        event: song_select_state_skill_shot_start
+        event: song_select_state_start_complete
       - action: reset
         event: timer_song_select_skill_shot_timeout_complete
-          
-      
-    
-      
-      
-        
+
 
