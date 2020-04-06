@@ -86,7 +86,7 @@ switches:
     type: 'NC'
   s_rollover_button:
     number: A4-B0-6
-  s_right_outlane:
+  s_outlane_right:
     number: A4-B1-0
   s_right_inlane:
     number: A4-B1-1
@@ -100,7 +100,7 @@ switches:
     number: A4-B1-5
   s_left_inlane:
     number: A4-B1-6
-  s_left_outlane:
+  s_outlane_left:
     number: A4-B1-7
 # fake
   s_drain:

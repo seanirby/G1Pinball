@@ -57,8 +57,6 @@ assets:
 # Define non-default settings for sounds here
 # sounds that should be instantaneous need to be set here with max queue time
 sounds:
-  gates_of_steel:
-    max_queue_time: 0
   charge:
     max_queue_time: 0
   charge_release:
@@ -87,15 +85,6 @@ sounds:
   pos_med_5:
     max_queue_time: 0
 
-sound_loop_sets:
-  gates_of_steel_set:
-    sound: gates_of_steel
-  timing_x_set:
-    sound: timing_x
-    events_when_played: timing_x_started
-    events_when_stopped: timing_x_stopped
-    events_when_looping: timing_x_looped
-
 sound_pools:
   sling:
     load: preload
@@ -116,7 +105,6 @@ sound_pools:
       - other_short_12
       - other_short_13
     
-
 displays:
   window:
     width: 800

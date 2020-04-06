@@ -6,49 +6,49 @@ mode:
   start_events: ball_starting
   priority: 100
 
-# Comment out if not testing
-shows:
-  bash_direction_pulse:
-    - duration: 100ms
-      lights:
-        (a): blue
-    - duration: 100ms
-      lights:
-        (a): off
-    - duration: 100ms
-      lights:
-        (a): blue
-    - duration: 100ms
-      lights:
-        (a): off
-    - duration: 100ms
-      lights:
-        (a): blue
-    - duration: -1
-      lights:
-        (a): off
+# # Comment out if not testing
+# shows:
+#   bash_direction_pulse:
+#     - duration: 100ms
+#       lights:
+#         (a): blue
+#     - duration: 100ms
+#       lights:
+#         (a): off
+#     - duration: 100ms
+#       lights:
+#         (a): blue
+#     - duration: 100ms
+#       lights:
+#         (a): off
+#     - duration: 100ms
+#       lights:
+#         (a): blue
+#     - duration: -1
+#       lights:
+#         (a): off
 
-show_player:
-  seq_bash_left_hit:
-    bash_direction_pulse:
-      show_tokens:
-        a:   l_serial_chain_0_13
-  seq_bash_diagonal_left_hit:
-    bash_direction_pulse:
-      show_tokens:
-        a:   l_serial_chain_0_14
-  seq_bash_center_hit:
-    bash_direction_pulse:
-      show_tokens:
-        a:   l_serial_chain_0_15
-  seq_bash_diagonal_right_hit:
-    bash_direction_pulse:
-      show_tokens:
-        a:   l_serial_chain_0_16
-  seq_bash_right_hit:
-    bash_direction_pulse:
-      show_tokens:
-        a:   l_serial_chain_0_17
+# show_player:
+#   seq_bash_left_hit:
+#     bash_direction_pulse:
+#       show_tokens:
+#         a:   l_serial_chain_0_13
+#   seq_bash_diagonal_left_hit:
+#     bash_direction_pulse:
+#       show_tokens:
+#         a:   l_serial_chain_0_14
+#   seq_bash_center_hit:
+#     bash_direction_pulse:
+#       show_tokens:
+#         a:   l_serial_chain_0_15
+#   seq_bash_diagonal_right_hit:
+#     bash_direction_pulse:
+#       show_tokens:
+#         a:   l_serial_chain_0_16
+#   seq_bash_right_hit:
+#     bash_direction_pulse:
+#       show_tokens:
+#         a:   l_serial_chain_0_17
 
 sequence_shots:
   seq_bash_center:

@@ -1,53 +1,101 @@
 from mpf.core.mode import Mode
 
 class SongSelect(Mode):
-    songs = ['bar', 'foo']
+    # equivalent to number of chargeable bash directions
+    num_songs = 5
     initial_shot_charge = [0, 0, 0, 0, 0]
-    bash_left_shot = "sh_song_select_bash_left"
-    bash_diagonal_left_shot = "sh_song_select_bash_diagonal_left"
-    bash_center_shot = "sh_song_select_bash_center"
-    bash_diagonal_right_shot = "sh_song_select_bash_diagonal_right"
-    bash_right_shot = "sh_song_select_bash_right"
     bash_max_charge = 2
     bash_shots_arr = [
-        bash_left_shot,
-        bash_diagonal_left_shot,
-        bash_center_shot,
-        bash_diagonal_right_shot,
-        bash_right_shot
-        ]
+        "sh_song_select_bash_left",
+        "sh_song_select_bash_diagonal_left",
+        "sh_song_select_bash_center",
+        "sh_song_select_bash_diagonal_right",
+        "sh_song_select_bash_right"
+    ]
+    bash_prox_profile = [1, 2, 1]
         
     def __init__(self, *args, **kwargs):
         """Initialize bonus mode."""
         super().__init__(*args, **kwargs)
-        self._bash_charge = [None] * 5
-        self._bash_prox_profile = [None] * 5
-        self._songs_completed = []
 
     def mode_start(self, **kwargs):
-        self._charge_bash_arr(self.initial_shot_charge)
-        self._bash_prox_profile = [1, 2, 1]
-        self._songs_completed = []
+        self._initialize_bash_charge()
 
         # update widgets
         self._update_widgets()
-
-        # Todo: understand the lifecycle of this
-        self.machine.events.post('song_select_state_start_complete')
+        self._initialize_state_machine()
 
         # bash hit handlers
-        self.add_mode_event_handler(self._shot_hit_event(0), self._handle_bash_hit, direction=0)
-        self.add_mode_event_handler(self._shot_hit_event(1), self._handle_bash_hit, direction=1)
-        self.add_mode_event_handler(self._shot_hit_event(2), self._handle_bash_hit, direction=2)
-        self.add_mode_event_handler(self._shot_hit_event(3), self._handle_bash_hit, direction=3)
-        self.add_mode_event_handler(self._shot_hit_event(4), self._handle_bash_hit, direction=4)
+        self.add_mode_event_handler("seq_bash_left_hit", self._handle_bash_hit, direction=0)
+        self.add_mode_event_handler("seq_bash_diagonal_left_hit", self._handle_bash_hit, direction=1)
+        self.add_mode_event_handler("seq_bash_center_hit", self._handle_bash_hit, direction=2)
+        self.add_mode_event_handler("seq_bash_diagonal_right_hit", self._handle_bash_hit, direction=3)
+        self.add_mode_event_handler("seq_bash_right_hit", self._handle_bash_hit, direction=4)
 
-        # state handlers
-        self.add_mode_event_handler('song_select_song_wait_started', self._handle_song_wait_started)
-        self.add_mode_event_handler('song_select_song_running_started', self._handle_song_running_started)
+        # state transition handlers
+        self.add_mode_event_handler('song_select_skill_shot_started', self._handle_skill_shot_started)
+        self.add_mode_event_handler('song_select_qualifying_started', self._handle_qualifying_started)
+        self.add_mode_event_handler('song_select_qualified_started', self._handle_qualified_started)
+
+    def _initialize_state_machine(self):
+        song_selected = self.machine.game.player['song_selected']
+
+        if self._have_song_selected():
+            self.machine.events.post('song_select_start_qualified')
+        else: 
+            self.machine.events.post('song_select_start_skill_shot')
+
+    def _handle_skill_shot_started(self, **kwargs):
+        pass
+
+    def _handle_qualifying_started(self, **kwargs):
+        pass
+
+    def _handle_qualified_started(self, **kwargs):
+        self.machine.shots.sh_song_select_scoop.jump(1)
+
+        song_index = None
+
+        if self._have_song_selected():
+            song_index = self.machine.game.player["song_selected"]
+        else:
+            incomplete_songs =  []
+            for i in range(0, self.num_songs):
+                pvar_name = "song_{0}_completed".format(i)
+                shot_name = self._get_shot_name(i)
+                is_incomplete = self.machine.game.player[pvar_name] == 0
+                if is_incomplete:
+                    incomplete_songs.append(shot_name)
+
+            centermost_index = int(len(incomplete_songs)/2)
+            song_index = centermost_index
+
+        # TODO - handle what happens when all are complete
+        self._select_song(song_index)
+
+    def _have_song_selected(self):
+        return 0 <= self.machine.game.player['song_selected'] < self.num_songs
+
+    def _select_song(self, i):
+        for j in range(0, self.num_songs):
+            shot_name = self._get_shot_name(j)
+            if i == j:
+                self.machine.game.player["song_selected"] = j
+                # selected
+                self.machine.shots[shot_name].jump(4)
+                self.machine.events.post("song_select_{0}_status_selected".format(j))
+            else:
+                completed_status = self.machine.game.player["song_{0}_completed".format(j)]
+                self.machine.shots[shot_name].jump(3)
+                # for updating widgets
+                if completed_status > 0:
+                    self.machine.events.post("song_select_{0}_status_completed".format(j))
+                else:
+                    self.machine.events.post("song_select_{0}_status_unselected".format(j))
+
+
 
     def _update_widgets(self):
-        self.machine.events.post('song_select_bar_song_status_complete')
         # iterate through all available songs
         # check their status, if done post events
         pass
@@ -64,50 +112,71 @@ class SongSelect(Mode):
     def _get_shot_name(self, i):
         return self.bash_shots_arr[i]
 
-    def _charge_bash(self, i, amt):
+    def _set_bash_charge(self, i, amt):
         limited_charge = max(min(amt, self.bash_max_charge), 0)
-        self._bash_charge[i] = limited_charge
+        self.machine.game.player["bash_{0}_charge".format(i)] = amt
         shot = self.machine.shots[self.bash_shots_arr[i]]
         # TODO - assumes order of shot profile states, this is bad
         shot.jump(limited_charge)
 
-    def _charge_bash_arr(self, arr):
-        for i, amt in enumerate(arr):
-            self._charge_bash(i, amt)
+    def _initialize_bash_charge(self):
+        for i in range(0, self.num_songs):
+            amt = self.machine.game.player["bash_{0}_charge".format(i)]
+            self._set_bash_charge(i, amt)
             
     def _is_bash_fully_charged(self):
-        for i, amt in enumerate(self._bash_charge):
+        for i in range(0, self.num_songs):
+            amt = self.machine.game.player["bash_{0}_charge".format(i)]
             if amt < self.bash_max_charge:
                 return False
 
         return True
 
+    def _get_bash_charge(self, i):
+        return self.machine.game.player["bash_{0}_charge".format(i)]
+
+    def _get_bash_charge(self, i):
+        return self.machine.game.player["bash_{0}_charge".format(i)]
+
     def _handle_bash_hit(self, **kwargs):
         state = self.machine.state_machines.song_select.state
-        import pdb; pdb.set_trace()
+        hit_shot_index = kwargs['direction']
+
         if state == 'qualifying':
-            print('bash hit while in qualifying')
-            # j is the direction on the bash we hit
-            hit_shot_index = kwargs['direction']
+            self._handle_bash_hit_qualifying(hit_shot_index)
+        elif state == 'qualified':
+            self._handle_bash_hit_qualified(hit_shot_index)
 
-            # this always works because _bash_prox_profile should always be an odd length
-            prox_effect_center_index = int(len(self._bash_prox_profile)/2)
+    def _handle_bash_hit_qualifying(self, hit_shot_index):
+        # this always works because bash_prox_profile should always be an odd length
+        prox_effect_center_index = int(len(self.bash_prox_profile)/2)
 
-            # need to 'move' our proximity effect so the center is over hit_shot_index
-            prox_effect_index_offset = -prox_effect_center_index + hit_shot_index
+        # need to 'move' our proximity effect so the center is over hit_shot_index
+        prox_effect_index_offset = -prox_effect_center_index + hit_shot_index
 
-            for i, charge in enumerate(self._bash_charge):
-                prox_effect_index = i - prox_effect_index_offset
-                current_charge = self._bash_charge[i]
+        for i in range(0, self.num_songs):
+            prox_effect_index = i - prox_effect_index_offset
+            current_charge = self._get_bash_charge(i)
 
-                if (prox_effect_index >= 0) and (prox_effect_index < len(self._bash_prox_profile)):
-                    print("adding " + str(self._bash_prox_profile[prox_effect_index]) + " at " + str(i))
-                    self._charge_bash(i, current_charge + self._bash_prox_profile[prox_effect_index])
+            if (prox_effect_index >= 0) and (prox_effect_index < len(self.bash_prox_profile)):
+                self._set_bash_charge(i, current_charge + self.bash_prox_profile[prox_effect_index])
 
-            if self._is_bash_fully_charged():
-                self.machine.events.post('song_select_state_qualifying_complete')
-                for shot in self.bash_shots_arr:
-                    self.machine.shots[shot].jump(3)
-                self.machine.shots.sh_song_select_scoop.jump(1)
+        if self._is_bash_fully_charged():
+            self.machine.events.post('song_select_qualifying_complete')
 
-            print('checking if bash is fully charged, if so a song is qualified')
+    def _handle_bash_hit_qualified(self, hit_shot_index):
+        current_selection = self.machine.game.player["song_selected"]
+
+        if hit_shot_index == current_selection:
+            return
+
+        next_selection = None
+        if hit_shot_index > current_selection:
+            next_selection = current_selection + 1
+        else:
+            next_selection = current_selection - 1
+
+        next_selection = min(max(next_selection, 0), 5)
+
+        self._select_song(next_selection)
+                

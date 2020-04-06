@@ -2,7 +2,7 @@
 
 ball_devices:
   bd_trough:
-    ball_switches: s_trough
+    ball_switches: s_trough, s_outlane_left, s_outlane_right
     eject_coil: c_trough_eject
     tags: drain, home, trough
     eject_targets: bd_plunger

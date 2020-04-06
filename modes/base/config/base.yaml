@@ -7,6 +7,148 @@ mode:
 slide_player:
   mode_base_started: base_slide
 
+widget_player:
+  song_select_0_status_unselected:
+    song_select_0_song_widget:
+      action: update
+      widget_settings:
+        color: gray
+        z: 100
+        opacity: 100
+  song_select_0_status_selected:
+    song_select_0_song_widget:
+      action: update
+      widget_settings:
+        color: white
+        z: 100
+        opacity: 100
+  song_select_0_status_running:
+    song_select_0_song_widget:
+      action: update
+      widget_settings:
+        color: red
+        z: 100
+        opacity: 100
+  song_select_0_status_completed:
+    song_select_0_song_widget:
+      action: update
+      widget_settings:
+        color: green
+        z: 100
+        opacity: 100
+  song_select_1_status_unselected:
+    song_select_1_song_widget:
+      action: update
+      widget_settings:
+        color: gray
+        z: 100
+        opacity: 100
+  song_select_1_status_selected:
+    song_select_1_song_widget:
+      action: update
+      widget_settings:
+        color: white
+        z: 100
+        opacity: 100
+  song_select_1_status_running:
+    song_select_1_song_widget:
+      action: update
+      widget_settings:
+        color: red
+        z: 100
+        opacity: 100
+  song_select_1_status_completed:
+    song_select_1_song_widget:
+      action: update
+      widget_settings:
+        color: green
+        z: 100
+        opacity: 100
+  song_select_2_status_unselected:
+    song_select_2_song_widget:
+      action: update
+      widget_settings:
+        color: gray
+        z: 100
+        opacity: 100
+  song_select_2_status_selected:
+    song_select_2_song_widget:
+      action: update
+      widget_settings:
+        color: white
+        opacity: 100
+        z: 100
+  song_select_2_status_running:
+    song_select_2_song_widget:
+      action: update
+      widget_settings:
+        color: red
+        z: 100
+        opacity: 100
+  song_select_2_status_completed:
+    song_select_2_song_widget:
+      action: update
+      widget_settings:
+        color: green
+        z: 100
+        opacity: 100
+  song_select_3_status_unselected:
+    song_select_3_song_widget:
+      action: update
+      widget_settings:
+        color: gray
+        z: 100
+        opacity: 100
+  song_select_3_status_selected:
+    song_select_3_song_widget:
+      action: update
+      widget_settings:
+        color: white
+        z: 100
+        opacity: 100
+  song_select_3_status_running:
+    song_select_3_song_widget:
+      action: update
+      widget_settings:
+        color: red
+        z: 100
+        opacity: 100
+  song_select_3_status_completed:
+    song_select_3_song_widget:
+      action: update
+      widget_settings:
+        color: green
+        z: 100
+        opacity: 100
+  song_select_4_status_unselected:
+    song_select_4_song_widget:
+      action: update
+      widget_settings:
+        color: gray
+        z: 100
+        opacity: 100
+  song_select_4_status_selected:
+    song_select_4_song_widget:
+      action: update
+      widget_settings:
+        color: white
+        z: 100
+        opacity: 100
+  song_select_4_status_running:
+    song_select_4_song_widget:
+      action: update
+      widget_settings:
+        color: red
+        z: 100
+        opacity: 100
+  song_select_4_status_completed:
+    song_select_4_song_widget:
+      action: update
+      widget_settings:
+        color: green
+        z: 100
+        opacity: 100
+
 slides:
   base_slide:
     widgets:
@@ -38,8 +180,11 @@ slides:
         anchor_y: bottom
         font_size: 50
       - widget: song_select_section_title_widget
-      - widget: song_select_foo_song_widget
-      - widget: song_select_bar_song_widget
+      - widget: song_select_0_song_widget
+      - widget: song_select_1_song_widget
+      - widget: song_select_2_song_widget
+      - widget: song_select_3_song_widget
+      - widget: song_select_4_song_widget
 
 shots:
   sh_ramp_left_lower:
