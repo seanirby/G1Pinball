@@ -1,0 +1,94 @@
+#config_version=5
+
+widget_player:
+  # bar
+  song_select_bar_song_status_unselected:
+    song_select_bar_song_widget:
+      action: update
+      widget_settings:
+        color: gray
+  song_select_bar_song_status_selected:
+    song_select_bar_song_widget:
+      action: update
+      widget_settings:
+        color: white
+  song_select_bar_song_status_running:
+    song_select_bar_song_widget:
+      action: update
+      widget_settings:
+        color: red
+  song_select_bar_song_status_complete:
+    song_select_bar_song_widget:
+      action: update
+      widget_settings:
+        color: green
+  # foo
+  song_select_foo_song_status_unselected:
+    song_select_foo_song_widget:
+      action: update
+      widget_settings:
+        color: gray
+  song_select_foo_song_status_selected:
+    song_select_foo_song_widget:
+      action: update
+      widget_settings:
+        color: white
+  song_select_foo_song_status_running:
+    song_select_foo_song_widget:
+      action: update
+      widget_settings:
+        color: red
+  song_select_foo_song_status_complete:
+    song_select_foo_song_widget:
+      action: update
+      widget_settings:
+        color: green
+
+widgets:
+  song_select_section_title_widget:
+    - type: text
+      text: SONGS
+      x: 10
+      y: 580
+      font_size: 20
+      anchor_x: left  
+  # songs can be - incomplete, selected, running, complete
+  song_select_bar_song_widget:
+    - type: text
+      text: Gates of Steel
+      x: 10
+      y: 560
+      font_size: 20
+      anchor_x: left
+      color: orange
+  song_select_foo_song_widget:
+    - type: text
+      text: Strange Pursuit
+      x: 10
+      y: 540
+      font_size: 20
+      anchor_x: left
+      color: orange
+    # - type: text
+    #   text: Girl U Want
+    #   x: 10
+    #   y: 520
+    #   font_size: 20
+    #   anchor_x: left
+    #   color: gray
+    # - type: text
+    #   text: Cold War
+    #   x: 10
+    #   y: 500
+    #   font_size: 20
+    #   anchor_x: left
+    #   color: orange
+    # - type: text
+    #   text: Gut Feelin
+    #   x: 10
+    #   y: 480
+    #   font_size: 20
+    #   anchor_x: left
+    #   color: orange
+
+

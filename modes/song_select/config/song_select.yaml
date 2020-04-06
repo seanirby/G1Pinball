@@ -5,6 +5,9 @@ mode:
   code: song_select.SongSelect
   priority: 100
 
+config:
+  - widgets
+
 shows:
   song_select_bash_charge_0:
     - duration: -1

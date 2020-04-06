@@ -5,7 +5,10 @@ mode:
   priority: 100
 
 slide_player:
-  mode_base_started:
+  mode_base_started: base_slide
+
+slides:
+  base_slide:
     widgets:
       - type: text
         text: (score)
@@ -26,13 +29,7 @@ slide_player:
         font_size: 20
         anchor_x: left
         anchor_y: bottom
-      - type: text
-        text: BONUS MULTIPLIER (bonus_multiplier)
-        x: 10
-        y: 80
-        font_size: 20
-        anchor_x: left
-        anchor_y: bottom
+      # BALL INFO
       - type: text
         text: BALL (ball)
         y: 10
@@ -40,6 +37,9 @@ slide_player:
         anchor_x: right
         anchor_y: bottom
         font_size: 50
+      - widget: song_select_section_title_widget
+      - widget: song_select_foo_song_widget
+      - widget: song_select_bar_song_widget
 
 shots:
   sh_ramp_left_lower:

@@ -29,6 +29,9 @@ class SongSelect(Mode):
         self._bash_prox_profile = [1, 2, 1]
         self._songs_completed = []
 
+        # update widgets
+        self._update_widgets()
+
         # Todo: understand the lifecycle of this
         self.machine.events.post('song_select_state_start_complete')
 
@@ -42,6 +45,12 @@ class SongSelect(Mode):
         # state handlers
         self.add_mode_event_handler('song_select_song_wait_started', self._handle_song_wait_started)
         self.add_mode_event_handler('song_select_song_running_started', self._handle_song_running_started)
+
+    def _update_widgets(self):
+        self.machine.events.post('song_select_bar_song_status_complete')
+        # iterate through all available songs
+        # check their status, if done post events
+        pass
 
     def _handle_song_wait_started(self, **kwargs):
         self.machine.shots.sh_song_select_scoop.jump(0)
@@ -75,7 +84,7 @@ class SongSelect(Mode):
 
     def _handle_bash_hit(self, **kwargs):
         state = self.machine.state_machines.song_select.state
-
+        import pdb; pdb.set_trace()
         if state == 'qualifying':
             print('bash hit while in qualifying')
             # j is the direction on the bash we hit
