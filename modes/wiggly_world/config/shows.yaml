@@ -1,0 +1,34 @@
+#config_version=5
+
+shows:
+  ww_three_lit:
+    - duration: 1
+      lights:
+        (a): blue
+        (b): blue
+        (c): blue
+  ww_three_lit_wiggler:
+    - duration: 1
+      lights:
+        (a): red
+        (b): red
+        (c): red
+  ww_three_unlit:
+    - duration: -1
+      lights:
+        (a): off
+        (b): off
+        (c): off
+  ww_one_lit:
+    - duration: 1
+      lights:
+        (a): blue
+  ww_one_lit_wiggler:
+    - duration: 1
+      lights:
+        (a): red
+  ww_one_unlit:
+    - duration: -1
+      lights:
+        (a): off
+

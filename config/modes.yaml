@@ -10,5 +10,6 @@ modes:
   # songs ('modes' in pinball parlance)
   - foo               
   - bar
+  - wiggly_world
   # ball over
   - bonus

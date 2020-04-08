@@ -2,6 +2,7 @@
 
 mode:
   start_events: ball_starting
+  stop_events: song_select_wait_started
   code: song_select.SongSelect
   priority: 100
 
@@ -31,7 +32,7 @@ widgets:
       color: gray
   song_select_2_song_widget:
     - type: text
-      text: Girl U Want
+      text: Wiggly World
       x: 10
       y: 520
       font_size: 20
@@ -161,12 +162,9 @@ state_machines:
       qualified:
         label: mode is ready to start at the scoop
         events_when_started: song_select_qualified_started
-      song_wait:
-        label: song is about to start, cleanup and wait for shows to finish
-        events_when_started: song_select_song_wait_started
-      song_running:
-        label: song has started, using this state primarily to wait
-        events_when_started: song_select_song_running_started
+      wait:
+        label: placeholder
+        events_when_started: song_select_wait_started
     transitions:
       - source: start
         target: skill_shot
@@ -181,16 +179,9 @@ state_machines:
         target: qualified
         events: song_select_qualifying_complete
       - source: qualified
-        target: song_wait
+        target: wait
         # todo - due to how shot inheritance works i have to use the base scoop hit here
         events: sh_scoop_hit
-      - source: song_wait
-        target: song_running
-        events: balldevice_bd_scoop_ball_eject_success
-      - source: song_running
-        target: start
-        # todo add the right drain event
-        events: some_drain_event
 
 timers:
   song_select_skill_shot_timeout:

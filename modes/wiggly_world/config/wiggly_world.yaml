@@ -1,0 +1,41 @@
+#config_version=5
+
+mode:
+  start_events: song_select_2_status_running
+  priority: 100
+  code: wiggly_world.WigglyWorld
+
+config:
+  - shot_profiles
+  - shots
+  - shows
+  - timers
+
+state_machines:
+  ww:
+    states:
+      start:
+        label: Introductory light shows and displays before mode start and ball eject from scoop
+      search:
+        label: Roving shot on playfied
+        events_when_started: ww_state_search_started
+        events_when_stopped: ww_state_search_stopped
+      collected:
+        label: A brief state where we show the player they succeeded in catching the wiggler
+        events_when_started: ww_state_collected_started
+      completed:
+        label: Placeholder
+        events_when_started: ww_state_completed_started
+    transitions:
+      - source: start
+        target: search
+        events: mode_wiggly_world_started
+      - source: search
+        target: collected
+        events: ww_code_collected
+      - source: collected
+        target: search
+        events: timer_ww_collected_timeout_complete
+      - source: search
+        target: completed
+        events: ww_code_complete

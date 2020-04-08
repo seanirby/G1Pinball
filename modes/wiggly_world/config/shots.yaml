@@ -1,0 +1,72 @@
+#config_version=5
+
+shots:
+  sh_ww_ramp_left_lower:
+    profile: three_indicator
+    show_tokens:
+      a: l_serial_chain_0_37
+      b: l_serial_chain_0_38
+      c: l_serial_chain_0_39
+  sh_ww_orbit_left:
+    profile: three_indicator
+    show_tokens:
+      a: l_serial_chain_0_12
+      b: l_serial_chain_0_11
+      c: l_serial_chain_0_10
+  sh_ww_ramp_left_upper:
+    profile: three_indicator
+    show_tokens:
+      a: l_serial_chain_0_7
+      b: l_serial_chain_0_8
+      c: l_serial_chain_0_9
+  sh_ww_bash_left:
+    profile: one_indicator
+    show_tokens:
+      a:   l_serial_chain_0_13
+  sh_ww_bash_diagonal_left:
+    profile: one_indicator
+    show_tokens:
+      a:   l_serial_chain_0_14
+  sh_ww_bash_center:
+    profile: one_indicator
+    show_tokens:
+      a:   l_serial_chain_0_15
+  sh_ww_bash_diagonal_right:
+    profile: one_indicator
+    show_tokens:
+      a:   l_serial_chain_0_16
+  sh_ww_bash_right:
+    profile: one_indicator
+    show_tokens:
+      a:   l_serial_chain_0_17
+  sh_ww_zone_left:
+    profile: three_indicator
+    show_tokens:
+      a: l_serial_chain_0_6
+      b: l_serial_chain_0_5
+      c: l_serial_chain_0_4
+  sh_ww_gate_right:
+    profile: three_indicator
+    show_tokens:
+      a: l_serial_chain_0_18
+      b: l_serial_chain_0_19
+      c: l_serial_chain_0_20
+  sh_ww_inner_loop:
+    profile: three_indicator
+    show_tokens:
+      a: l_serial_chain_0_23
+      b: l_serial_chain_0_22
+      c: l_serial_chain_0_21
+  sh_ww_ramp_right:
+    profile: three_indicator
+    show_tokens:
+      a: l_serial_chain_0_26
+      b: l_serial_chain_0_25
+      c: l_serial_chain_0_24
+  sh_ww_orbit_right:
+    profile: three_indicator
+    show_tokens:
+      a: l_serial_chain_0_30
+      b: l_serial_chain_0_31
+      c: l_serial_chain_0_32
+

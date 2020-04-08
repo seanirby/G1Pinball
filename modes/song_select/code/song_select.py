@@ -37,6 +37,10 @@ class SongSelect(Mode):
         self.add_mode_event_handler('song_select_qualifying_started', self._handle_qualifying_started)
         self.add_mode_event_handler('song_select_qualified_started', self._handle_qualified_started)
 
+    def mode_stop(self, **kwargs):
+        selected_song = self.machine.game.player['song_selected']
+        self.machine.events.post("song_select_{0}_status_running".format(selected_song))
+
     def _initialize_state_machine(self):
         song_selected = self.machine.game.player['song_selected']
 

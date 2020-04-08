@@ -1,0 +1,17 @@
+#config_version=5
+
+timers:
+  ww_roving_shot_update:
+    tick_interval: .2s
+    end_value: 1
+    restart_on_complete: True
+    control_events:
+      - action: start
+        event: ww_state_search_started
+      - action: stop
+        event: ww_state_search_stopped
+  ww_collected_timeout:
+    end_value: 1
+    control_events:
+      - action: start
+        event: ww_state_collected_started
