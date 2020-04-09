@@ -7,6 +7,8 @@ shot_profiles:
         show: ww_three_lit
       - name: lit_wiggler
         show: ww_three_lit_wiggler
+      - name: narrowing
+        show: ww_three_narrowing
       - name: unlit
         show: ww_three_unlit
   one_indicator:
@@ -15,6 +17,8 @@ shot_profiles:
         show: ww_one_lit
       - name: lit_wiggler
         show: ww_one_lit_wiggler
+      - name: narrowing
+        show: ww_one_narrowing
       - name: unlit
         show: ww_one_unlit
 

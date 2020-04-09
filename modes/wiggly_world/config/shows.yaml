@@ -13,6 +13,22 @@ shows:
         (a): red
         (b): red
         (c): red
+  ww_three_narrowing:
+    - duration: .05
+      lights:
+        (a): off
+        (b): blue
+        (c): blue
+    - duration: .05
+      lights:
+        (a): off
+        (b): off
+        (c): blue
+    - duration: .05
+      lights:
+        (a): off
+        (b): off
+        (c): off
   ww_three_unlit:
     - duration: -1
       lights:
@@ -27,6 +43,10 @@ shows:
     - duration: 1
       lights:
         (a): red
+  ww_one_narrowing:
+    - duration: 1
+      lights:
+        (a): off
   ww_one_unlit:
     - duration: -1
       lights:

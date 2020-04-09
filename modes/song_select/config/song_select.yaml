@@ -1,196 +1,42 @@
 #config_version=5
 
 mode:
-  start_events: ball_starting
-  stop_events: song_select_wait_started
+  start_events: ball_starting, code_song_stopped
+  stop_events: state_song_select_wait_started
   code: song_select.SongSelect
   priority: 100
 
-widgets:
-  song_select_section_title_widget:
-    - type: text
-      text: SONGS
-      x: 10
-      y: 580
-      font_size: 20
-      anchor_x: left  
-  song_select_0_song_widget:
-    - type: text
-      text: Gates of Steel
-      x: 10
-      y: 560
-      font_size: 20
-      anchor_x: left
-      color: gray
-  song_select_1_song_widget:
-    - type: text
-      text: Strange Pursuit
-      x: 10
-      y: 540
-      font_size: 20
-      anchor_x: left
-      color: gray
-  song_select_2_song_widget:
-    - type: text
-      text: Wiggly World
-      x: 10
-      y: 520
-      font_size: 20
-      anchor_x: left
-      color: gray
-  song_select_3_song_widget:
-    - type: text
-      text: Cold War
-      x: 10
-      y: 500
-      font_size: 20
-      anchor_x: left
-      color: gray
-  song_select_4_song_widget:
-    - type: text
-      text: Gut Feelin
-      x: 10
-      y: 480
-      font_size: 20
-      anchor_x: left
-      color: gray
-
-shows:
-  song_select_bash_charge_0:
-    - duration: -1
-      lights:
-        (a): yellow
-  song_select_bash_charge_1:
-    - duration: -1
-      lights:
-        (a): orange
-  song_select_bash_charge_2:
-    - duration: -1
-      lights:
-        (a): red
-  song_select_bash_unlit:
-    - duration: -1
-      lights:
-        (a): off
-  song_select_selected:
-    - duration: -1
-      lights:
-        (a): white
-  song_select_scoop_unlit:
-    - duration: -1
-      lights:
-        (a): off
-        (b): off
-        (c): off
-  song_select_scoop_lit:
-    - duration: .1
-      lights:
-        (a): blue
-        (b): off
-        (c): off
-    - duration: .1
-      lights:
-        (a): off
-        (b): blue
-        (c): off
-    - duration: .1
-      lights:
-        (a): off
-        (b): off
-        (c): blue
-
-
-shot_profiles:
-  song_select_bash:
-    states:
-      - name: charge_0
-        show: song_select_bash_charge_0
-      - name: charge_1
-        show: song_select_bash_charge_1
-      - name: charge_2
-        show: song_select_bash_charge_2
-      - name: unlit
-        show: song_select_bash_unlit
-      - name: song_selected
-        show: song_select_selected
-  song_select_scoop:
-    states:
-      - name: unlit
-        show: song_select_scoop_unlit
-      - name: lit
-        show: song_select_scoop_lit
-
-shots:
-  sh_song_select_bash_left:
-    profile: song_select_bash
-    show_tokens:
-      a:   l_serial_chain_0_13
-  sh_song_select_bash_diagonal_left:
-    profile: song_select_bash
-    show_tokens:
-      a:   l_serial_chain_0_14
-  sh_song_select_bash_center:
-    profile: song_select_bash
-    show_tokens:
-      a:   l_serial_chain_0_15
-  sh_song_select_bash_diagonal_right:
-    profile: song_select_bash
-    show_tokens:
-      a:   l_serial_chain_0_16
-  sh_song_select_bash_right:
-    profile: song_select_bash
-    show_tokens:
-      a:   l_serial_chain_0_17
-  sh_song_select_scoop:
-    profile: song_select_scoop
-    show_tokens:
-      a: l_serial_chain_0_29
-      b: l_serial_chain_0_28
-      c: l_serial_chain_0_27
+config:
+  - shot_profiles.yaml
+  - shots.yaml
+  - shows.yaml
+  - widgets.yaml
 
 state_machines:
   song_select:
     states:
       start:
         label: placeholder, i figure mode start will set this to the right state if state doesnt persist
-      skill_shot:
-        label: placeholder, but figure that on plunge there will be a short time to qualify a mode instantly
-        events_when_started: song_select_skill_shot_started
       qualifying:
         label: here we hit the bash the booji until the its ready
-        events_when_started: song_select_qualifying_started
+        events_when_started: state_song_select_qualifying_started
       qualified:
         label: mode is ready to start at the scoop
-        events_when_started: song_select_qualified_started
+        events_when_started: state_song_select_qualified_started
       wait:
         label: placeholder
-        events_when_started: song_select_wait_started
+        events_when_started: state_song_select_wait_started
     transitions:
       - source: start
-        target: skill_shot
-        events: song_select_start_skill_shot
+        target: qualifying
+        events: code_song_select_start_qualifying
       - source: start
         target: qualified
-        events: song_select_start_qualified
-      - source: skill_shot
-        target: qualifying
-        events: timer_song_select_skill_shot_timeout_complete
+        events: code_song_select_start_qualified
       - source: qualifying
         target: qualified
-        events: song_select_qualifying_complete
+        events: code_song_select_qualifying_completed
       - source: qualified
         target: wait
         # todo - due to how shot inheritance works i have to use the base scoop hit here
         events: sh_scoop_hit
-
-timers:
-  song_select_skill_shot_timeout:
-    tick_interval: 1s
-    end_value: 4
-    control_events:
-      - action: start
-        event: song_select_skill_shot_started
-      - action: reset
-        event: timer_song_select_skill_shot_timeout_complete
-
-

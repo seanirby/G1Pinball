@@ -1,35 +1,25 @@
 #config_version=5
 
+mode:
+  code: attract.Attract
+
+config:
+  - widgets.yaml
+
 show_player:
   mode_attract_started: attract_display_loop
 
 slides:
   attract_started:
     widgets:
-      - type: text
-        text: ATTRACT MODE HI SEAN
-
+      - widget: first_row_test
+      - widget: second_row_test
+      - widget: first_row_blank
+      - widget: second_row_blank
+          
 slide_player:
   mode_attract_started: attract_started
 
-# we are playing the song in sequence
-# what we need is a reliable way to jump to landmark parts in the song reliably
-# with a counter or a beat counter we can do this
-
-# # could start a timer when 
-# sound_loop_player:
-#   mode_attract_started:
-#     music:
-#       action: play
-#       sound_loop_set: gates_of_steel_set
-#   # timer_foo_tick:
-#   #   music:
-#   #     action: jump_to
-#   #     time: 0
-
-# a - 10.148
-# b - 28.189
-# c - 
 timers:
   foo:
     start_value: 0
@@ -39,5 +29,10 @@ timers:
     control_events:
       - action: start
         event: mode_attract_started
-      
-
+  attract_ticker:
+    end_value: 32
+    tick_interval: 100ms
+    restart_on_complete: True
+    control_events:
+      - action: start
+        event: mode_attract_started

@@ -5,7 +5,6 @@ hardware:
   driverboards: pdb
 
 p_roc:
-  debug: True
   pd_led_boards:
     5:
       use_ws281x_0: True
@@ -14,14 +13,16 @@ config:
 - autofire_coils.yaml
 - ball_devices.yaml 
 - coils.yaml
+- diverters.yaml
 - drop_targets.yaml
 - flippers.yaml
 - keyboard.yaml
 - lights.yaml
+- machine_vars.yaml
 - modes.yaml
+- player_vars.yaml
 - playfields.yaml
 - switches.yaml
-- player_vars.yaml
 
 sound_system:
   master_volume: 1.5
@@ -60,6 +61,8 @@ sounds:
   charge:
     max_queue_time: 0
   charge_release:
+    max_queue_time: 0
+  other_short_1: 
     max_queue_time: 0
   # sling sounds
   other_short_3: 
@@ -105,6 +108,31 @@ sound_pools:
       - other_short_12
       - other_short_13
     
+  # mode_attract_started.2:
+  #   effect_slide:
+  #     target: my_frame
+
+window:
+    width: 800
+    height: 600
+    title: DEVO Pinball
+    source_display: window
+    effects:
+      - type: glow
+        blur_size: 5
+        intensity: .5
+        glow_speed: 10
+        glow_amplitude: .15
+      # - type: horizontal_blur
+      #   size: 2
+      # - type: vertical_blur
+      #   size: 2
+      # blur_size
+      # intensity 
+      # throb_speed = default is 0
+      # throb_amplitude = default 
+        
+
 displays:
   window:
     width: 800

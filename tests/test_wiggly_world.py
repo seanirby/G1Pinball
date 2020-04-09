@@ -19,7 +19,6 @@ class TestWigglyWorld(ModeTestCase):
 
     def setup_wiggly_world(self):
         self.setup_game()
-        self.skip_skillshot()
         self.qualify_song()
         song_selected = self.machine.game.player['song_selected']
         self.assertEqual(2, song_selected)
@@ -63,11 +62,19 @@ class TestWigglyWorld(ModeTestCase):
         # hit a shot to the left and right of it and verify shots to
         # the left and right of those are respectively wiped out
         left_shot_index = centerish_shot_index - 2
+        self.mock_event("ww_code_narrowed_start")
+        self.mock_event("ww_state_narrowed_started")
+        self.mock_event("ww_state_narrowed_stopped")
         self.post_event(BASE_SHOTS[left_shot_index]+'_hit', 1)
+        self.assertEventCalled('ww_code_narrowed_start', 1)
+        self.assertEventCalled('ww_state_narrowed_started', 1)
+        self.assertEventCalled('ww_state_narrowed_stopped', 1)
+
         right_shot_index = centerish_shot_index + 2
         self.post_event(BASE_SHOTS[right_shot_index]+'_hit', 1)
 
         for i, shot_name in enumerate(SHOTS):
+            print(shot_name)
             state_name = self.machine.shots[shot_name].state_name
             # shots to the left should be unlit
             if i <= left_shot_index:
@@ -81,8 +88,10 @@ class TestWigglyWorld(ModeTestCase):
             else:
                 self.assertEqual(state_name, 'lit_wiggler')
 
-    def test_missing_the_wiggler_narrows_shots(self):
-        pass
-
-    def test_charged_shot_freezes_the_wiggler(self):
-        pass
+    def test_mode_is_over_when_song_countdown_expires(self):
+        self.setup_wiggly_world()
+        self.assertModeRunning('wiggly_world')
+        self.advance_time_and_run(100)
+        self.assertModeNotRunning('wiggly_world')
+        self.assertModeRunning('song_select')
+        self.assertEqual(self.machine.state_machines.song_select.state, 'qualifying')

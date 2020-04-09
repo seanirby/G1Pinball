@@ -39,7 +39,8 @@ WIGGLER_SHOT_STATE_INDEX = 1
 # wiggler can be in
 NORMAL_SHOT_STATE_INDEX = 0
 
-UNLIT_SHOT_STATE_INDEX = 2
+NARROWED_SHOT_STATE_INDEX = 2
+UNLIT_SHOT_STATE_INDEX = 3
 
 class WigglyWorld(Mode):
     def __init__(self, *args, **kwargs):
@@ -61,11 +62,14 @@ class WigglyWorld(Mode):
 
         # state handlers
         self.add_mode_event_handler('ww_state_start_started', self.handle_state_start_started)
-        self.add_mode_event_handler('ww_state_search_started', self.handle_state_search_started)
+        self.add_mode_event_handler('ww_state_restart_search', self.handle_state_restart_search)
         self.add_mode_event_handler('ww_state_collected_started', self.handle_state_collected_started)
+        # self.add_mode_event_handler('ww_state_search_narrowed_started', self.handle_state_search_narrowed_started)
+        # self.add_mode_event_handler('ww_state_search_narrowed_stopped', self.handle_state_search_narrowed_stopped)
         self.add_mode_event_handler('ww_state_completed_started', self.handle_state_completed_started)
 
-        # timer tick handler
+        # timer tick handlers
+        self.add_mode_event_handler('timer_ww_narrowed_tick', self.handle_narrowed_tick)
         self.add_mode_event_handler('timer_ww_roving_shot_update_tick', self.handle_roving_shot_timer_tick)
 
         # shot hit event handler
@@ -73,6 +77,21 @@ class WigglyWorld(Mode):
             hit_event = shot_name + '_hit'
             self.add_mode_event_handler(hit_event, self.handle_shot_hit, shot_name=SHOTS[i])
 
+    # todo: encapsulate this in an inherited songMode
+    def mode_stop(self, **kwargs):
+        self.machine.events.post('code_song_stopped')
+
+    def handle_narrowed_tick(self, **kwargs):
+        direction = 1 if self.narrow_start_index < self.narrow_end_index else -1
+        next_index = self.narrow_curr_index + direction
+
+        self.machine.shots[SHOTS[self.narrow_curr_index]].jump(UNLIT_SHOT_STATE_INDEX)
+
+        if (direction == 1 and next_index > self.narrow_end_index) or (direction == -1 and next_index < self.narrow_end_index):
+            self.machine.events.post('ww_code_narrowed_complete')
+        else:
+            self.narrow_curr_index = next_index
+            
     def handle_roving_shot_timer_tick(self, **kwargs):
         force_tick = kwargs.get('force_tick')
         if self._testing and not force_tick:
@@ -99,14 +118,18 @@ class WigglyWorld(Mode):
         self.machine.shots[SHOTS[next_index]].jump(WIGGLER_SHOT_STATE_INDEX)
 
     def handle_shot_hit(self, **kwargs):
+        if self.machine.state_machines.ww.state != 'search':
+            return
+        
         shot_name = kwargs['shot_name']
         shot = self.machine.shots[shot_name]
         shot_index = SHOTS.index(shot_name)
-        shot_state = shot.state_name
 
-        if shot_state == 'unlit':
+        # do nothing
+        if (shot_index < self.roving_lower_bound) or (shot_index > self.roving_upper_bound):
             return
 
+        # wiggler hit
         elif shot_index == self.roving_shot_index:
             # just reset evefything for now
             self.roving_lower_bound = 0
@@ -119,17 +142,13 @@ class WigglyWorld(Mode):
 
             self.machine.shots[SHOTS[0]].jump(WIGGLER_SHOT_STATE_INDEX)
 
+        # narrow the left side
         elif shot_index < self.roving_shot_index:
-            for i in range(self.roving_lower_bound, shot_index + 1):
-                shot_to_unlight = self.machine.shots[SHOTS[i]]
-                shot_to_unlight.jump(UNLIT_SHOT_STATE_INDEX)
-
-            self.roving_lower_bound = shot_index + 1 
+            self.start_narrowed(shot_index, 0)
+            self.roving_lower_bound = shot_index + 1
+        # narrow the right side
         else:
-            for i in range(shot_index, self.roving_upper_bound + 1):
-                shot_to_unlight = self.machine.shots[SHOTS[i]]
-                shot_to_unlight.jump(UNLIT_SHOT_STATE_INDEX)
-
+            self.start_narrowed(shot_index, len(SHOTS) - 1)
             self.roving_upper_bound = shot_index - 1
 
     def handle_state_collected_started(self, **kwargs):
@@ -138,18 +157,29 @@ class WigglyWorld(Mode):
     def handle_state_completed_started(self, **kwargs):
         pass
 
-    def handle_state_search_started(self, **kwargs):
+    def handle_state_restart_search(self, **kwargs):
         self.reset_instance_vars()
+
+    def handle_state_narrowed_started(self, **kwargs):
+        pass
+
+    def handle_state_narrowed_stopped(self, **kwargs):
+        pass
 
     def handle_state_start_started(self, **kwargs):
         pass
 
+    def start_narrowed(self, start_index, end_index):
+        self.machine.events.post('ww_code_narrowed_start')
+        self.narrow_curr_index = start_index
+        self.narrow_start_index = start_index
+        self.narrow_end_index = end_index
+
     def reset_instance_vars(self):
+        self.narrow_direction = 0
         self.roving_shot_index = 0
         self.roving_shot_direction = 1
         self.roving_lower_bound = 0
         self.roving_upper_bound = len(SHOTS) - 1
         self.machine.shots[SHOTS[self.roving_shot_index]].jump(WIGGLER_SHOT_STATE_INDEX)
-
-        
 

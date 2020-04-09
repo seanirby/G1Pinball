@@ -1,0 +1,30 @@
+#config_version=5
+
+shots:
+  sh_song_select_bash_left:
+    profile: song_select_bash
+    show_tokens:
+      a:   l_serial_chain_0_13
+  sh_song_select_bash_diagonal_left:
+    profile: song_select_bash
+    show_tokens:
+      a:   l_serial_chain_0_14
+  sh_song_select_bash_center:
+    profile: song_select_bash
+    show_tokens:
+      a:   l_serial_chain_0_15
+  sh_song_select_bash_diagonal_right:
+    profile: song_select_bash
+    show_tokens:
+      a:   l_serial_chain_0_16
+  sh_song_select_bash_right:
+    profile: song_select_bash
+    show_tokens:
+      a:   l_serial_chain_0_17
+  sh_song_select_scoop:
+    profile: song_select_scoop
+    show_tokens:
+      a: l_serial_chain_0_29
+      b: l_serial_chain_0_28
+      c: l_serial_chain_0_27
+

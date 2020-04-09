@@ -8,8 +8,17 @@ timers:
     control_events:
       - action: start
         event: ww_state_search_started
-      - action: stop
-        event: ww_state_search_stopped
+  # timer used to give feedback to the player they've narrowed the shots on the playfield
+  ww_narrowed:
+    # end value doesnt matter
+    end_value: 15
+    tick_interval: .05s
+    control_events:
+      - action: start
+        event: ww_code_narrowed_start
+      - action: reset
+        event: ww_state_search_started
+  # timer used to give feedback to the player they've caught the wiggler before restarting
   ww_collected_timeout:
     end_value: 1
     control_events:

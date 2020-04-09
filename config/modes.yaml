@@ -2,11 +2,13 @@
 
 modes:
   # attract
-  # constantly running
+  # perennial
   - base
   - bash_resolver
   - charged_flips
+  # management management
   - song_select
+  - song_countdown
   # songs ('modes' in pinball parlance)
   - foo               
   - bar

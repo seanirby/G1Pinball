@@ -38,11 +38,6 @@ class ModeTestCase(MpfMachineTestCase):
         self.start_game()
         self.assertModeRunning('song_select')
 
-    def skip_skillshot(self):
-        state_machine = self.machine.state_machines.song_select
-        self.assertEqual(state_machine.state, 'skill_shot')
-        self.advance_time_and_run(5)
-
     def start_game(self):
         self.machine.playfield.add_ball = MagicMock()
         # self.machine.ball_controller.num_balls_known = 3
