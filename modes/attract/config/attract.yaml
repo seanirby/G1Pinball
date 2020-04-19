@@ -31,7 +31,7 @@ timers:
         event: mode_attract_started
   attract_ticker:
     end_value: 32
-    tick_interval: 100ms
+    tick_interval: 300ms
     restart_on_complete: True
     control_events:
       - action: start

@@ -119,10 +119,10 @@ window:
     source_display: window
     effects:
       - type: glow
-        blur_size: 5
-        intensity: .5
-        glow_speed: 10
-        glow_amplitude: .15
+        blur_size: 5.0
+        intensity: .6
+        glow_speed: 1.0
+        glow_amplitude: .2
       # - type: horizontal_blur
       #   size: 2
       # - type: vertical_blur
@@ -135,8 +135,8 @@ window:
 
 displays:
   window:
-    width: 800
-    height: 600
+     width: 800
+     height: 600
 
 slides:
   welcome_slide:

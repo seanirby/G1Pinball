@@ -4,7 +4,7 @@ widgets:
   first_row_test:
     - type: text
       text: (machine|d_test_first)
-      color: orange
+      color: green
       x: 10
       y: 500
       font_name: DSEG14Classic-Italic
@@ -15,7 +15,7 @@ widgets:
   second_row_test:
     - type: text
       text: (machine|d_test_second)
-      color: orange
+      color: green
       x: 10
       y: 400
       font_name: DSEG14Classic-Italic
@@ -26,7 +26,7 @@ widgets:
   first_row:
     - type: text
       text: (machine|d0)(machine|d1)(machine|d2)(machine|d3)(machine|d4)(machine|d5)(machine|d6)(machine|d7)(machine|d8)(machine|d9)(machine|d10)(machine|d11)(machine|d12)(machine|d13)(machine|d14)(machine|d15)
-      color: orange
+      color: green
       x: 10
       y: 500
       font_name: DSEG14Classic-Italic
@@ -37,7 +37,7 @@ widgets:
   second_row:
     - type: text
       text: (machine|d16)(machine|d17)(machine|d18)(machine|d19)(machine|d20)(machine|d21)(machine|d22)(machine|d23)(machine|d24)(machine|d25)(machine|d26)(machine|d27)(machine|d28)(machine|d29)(machine|d30)(machine|d31)
-      color: orange
+      color: green
       x: 10
       y: 400
       font_name: DSEG14Classic-Italic
