@@ -1,0 +1,86 @@
+#config_version=5
+
+shots:
+  sh_ramp_left_lower:
+    switch: s_ramp_left_lower
+    show_tokens:
+      a: l_serial_chain_0_37
+      b: l_serial_chain_0_38
+      c: l_serial_chain_0_39
+  sh_rollover_button:
+    switch: s_rollover_button
+    show_tokens:
+      a: l_serial_chain_0_40
+  sh_ramp_left_upper:
+    switch: s_ramp_left_upper
+    show_tokens:
+      a: l_serial_chain_0_7
+      b: l_serial_chain_0_8
+      c: l_serial_chain_0_9
+  sh_zone_left:
+    switch: s_zone_left_center, s_zone_left_left, s_zone_left_right
+    show_tokens:
+      a: l_serial_chain_0_6
+      b: l_serial_chain_0_5
+      c: l_serial_chain_0_4
+  sh_gate_right:
+    switch: s_gate_right
+    show_tokens:
+      a: l_serial_chain_0_18
+      b: l_serial_chain_0_19
+      c: l_serial_chain_0_20
+  sh_inner_loop:
+    switch: s_inner_loop
+    show_tokens:
+      a: l_serial_chain_0_23
+      b: l_serial_chain_0_22
+      c: l_serial_chain_0_21
+  sh_scoop:
+    switch: s_scoop
+    show_tokens:
+      a: l_serial_chain_0_29
+      b: l_serial_chain_0_28
+      c: l_serial_chain_0_27
+  sh_ramp_right:
+    switch: s_ramp_right
+    show_tokens:
+      a: l_serial_chain_0_26
+      b: l_serial_chain_0_25
+      c: l_serial_chain_0_24
+  sh_orbit_right:
+    hit_events: seq_orbit_right_hit
+    show_tokens:
+      a: l_serial_chain_0_30
+      b: l_serial_chain_0_31
+      c: l_serial_chain_0_32
+  sh_orbit_left:
+    hit_events: seq_orbit_left_hit
+    show_tokens:
+      a: l_serial_chain_0_12
+      b: l_serial_chain_0_11
+      c: l_serial_chain_0_10
+  sh_bash_left:
+    hit_events: seq_bash_left_hit
+    show_tokens:
+      a:   l_serial_chain_0_13
+  sh_bash_diagonal_left:
+    hit_events: seq_bash_diagonal_left_hit
+    show_tokens:
+      a:   l_serial_chain_0_14
+  sh_bash_center:
+    hit_events: seq_bash_center_hit
+    show_tokens:
+      a:   l_serial_chain_0_15
+  sh_bash_diagonal_right:
+    hit_events: seq_bash_diagonal_right_hit
+    show_tokens:
+      a:   l_serial_chain_0_16
+  sh_bash_right:
+    hit_events: seq_bash_right_hit
+    show_tokens:
+      a:   l_serial_chain_0_17
+  # lower playfield
+  sh_sling_left:
+    hit_events: s_sling_left_top_active, s_sling_left_bottom_active
+  sh_sling_right:
+    hit_events: s_sling_right_top_active, s_sling_right_bottom_active

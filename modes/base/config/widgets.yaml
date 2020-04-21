@@ -1,9 +1,9 @@
 #config_version=5
 
 widgets:
-  row_1:
+  base_row_1:
     - type: text
-      text: (machine|d_attract_1)
+      text: (machine|d_base_1)
       color: orange
       x: 10
       y: 500
@@ -12,9 +12,9 @@ widgets:
       anchor_x: left
       anchor_y: top
       z: 2
-  row_2:
+  base_row_2:
     - type: text
-      text: (machine|d_attract_2)
+      text: (machine|d_base_2)
       color: orange
       x: 10
       y: 400
@@ -23,7 +23,7 @@ widgets:
       anchor_x: left
       anchor_y: top
       z: 2
-  row_1_blank:
+  base_row_1_blank:
     - type: text
       text: '~~~~~~~~~~~~~~~~'
       color: gray
@@ -35,7 +35,7 @@ widgets:
       anchor_y: top
       z: 1
       opacity: .05
-  row_2_blank:
+  base_row_2_blank:
     - type: text
       text: '~~~~~~~~~~~~~~~~'
       color: gray
@@ -47,4 +47,3 @@ widgets:
       anchor_y: top
       z: 1
       opacity: .05
-

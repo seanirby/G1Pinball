@@ -6,5 +6,5 @@ monitor/logs/*
 __pycache__/
 *.py[co]
 venv/
-
+*.bundle
 

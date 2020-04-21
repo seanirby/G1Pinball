@@ -5,139 +5,20 @@ machine_vars:
     initial_value: 60
   d_widget_x_spacing:
     initial_value: 50
-  d_test_first:
+  # Used for testing, delete these
+  d_attract_1:
     initial_value: 'PRESS!START!!!!!!'
     value_type: str
     persist: False
-  d_test_second:
+  d_attract_2:
     initial_value: '!!!!!!PRESS!START'
     value_type: str
     persist: False
-  d0:
-    initial_value: '0'
+  d_base_1:
+    initial_value: 'BASE!!!!!!!!!!!!!'
     value_type: str
     persist: False
-  d1:
-    initial_value: '1'
-    value_type: str
-    persist: False
-  d2:
-    initial_value: '2'
-    value_type: str
-    persist: False
-  d3:
-    initial_value: '3'
-    value_type: str
-    persist: False
-  d4:
-    initial_value: '4'
-    value_type: str
-    persist: False
-  d5:
-    initial_value: '5'
-    value_type: str
-    persist: False
-  d6:
-    initial_value: '6'
-    value_type: str
-    persist: False
-  d7:
-    initial_value: '7'
-    value_type: str
-    persist: False
-  d8:
-    initial_value: '8'
-    value_type: str
-    persist: False
-  d9:
-    initial_value: '9'
-    value_type: str
-    persist: False
-  d10:
-    initial_value: 'A'
-    value_type: str
-    persist: False
-  d11:
-    initial_value: 'B'
-    value_type: str
-    persist: False
-  d12:
-    initial_value: 'C'
-    value_type: str
-    persist: False
-  d13:
-    initial_value: 'D'
-    value_type: str
-    persist: False
-  d14:
-    initial_value: 'E'
-    value_type: str
-    persist: False
-  d15:
-    initial_value: 'F'
-    value_type: str
-    persist: False
-  d16:
-    initial_value: '0'
-    value_type: str
-    persist: False
-  d17:
-    initial_value: '1'
-    value_type: str
-    persist: False
-  d18:
-    initial_value: '2'
-    value_type: str
-    persist: False
-  d19:
-    initial_value: '3'
-    value_type: str
-    persist: False
-  d20:
-    initial_value: '4'
-    value_type: str
-    persist: False
-  d21:
-    initial_value: '5'
-    value_type: str
-    persist: False
-  d22:
-    initial_value: '6'
-    value_type: str
-    persist: False
-  d23:
-    initial_value: '7'
-    value_type: str
-    persist: False
-  d24:
-    initial_value: '8'
-    value_type: str
-    persist: False
-  d25:
-    initial_value: '9'
-    value_type: str
-    persist: False
-  d26:
-    initial_value: 'A'
-    value_type: str
-    persist: False
-  d27:
-    initial_value: 'B'
-    value_type: str
-    persist: False
-  d28:
-    initial_value: 'C'
-    value_type: str
-    persist: False
-  d29:
-    initial_value: 'D'
-    value_type: str
-    persist: False
-  d30:
-    initial_value: 'E'
-    value_type: str
-    persist: False
-  d31:
-    initial_value: 'F'
+  d_base_2:
+    initial_value: '!!!!!!!!!!!!!!!!!'
     value_type: str
     persist: False

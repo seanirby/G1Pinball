@@ -8,6 +8,8 @@ keyboard:
     toggle: True
   r:
     switch: s_orbit_right
+  i:
+    switch: s_right_inlane
   p:
     switch: s_plunger
 

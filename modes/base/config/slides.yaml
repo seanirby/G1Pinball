@@ -1,0 +1,9 @@
+#config_version=5
+
+slides:
+  base:
+    widgets:
+      - widget: base_row_1
+      - widget: base_row_2
+      - widget: base_row_1_blank
+      - widget: base_row_2_blank

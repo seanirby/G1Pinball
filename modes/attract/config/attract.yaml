@@ -1,21 +1,24 @@
 #config_version=5
 
-mode:
-  code: attract.Attract
+# TODO, figure out why I cant end this mode when I have a custom
+# class.  do I need to add a mode_stop_events or something?
+
+# mode:
+#   code: attract.Attract
 
 config:
   - widgets.yaml
 
 show_player:
-  mode_attract_started: attract_display_loop
+  mode_attract_started: attract_sparkle
 
 slides:
   attract_started:
     widgets:
-      - widget: first_row_test
-      - widget: second_row_test
-      - widget: first_row_blank
-      - widget: second_row_blank
+      - widget: row_1
+      - widget: row_2
+      - widget: row_1_blank
+      - widget: row_2_blank
           
 slide_player:
   mode_attract_started: attract_started

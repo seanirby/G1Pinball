@@ -1,0 +1,28 @@
+#config_version=5
+
+sound_player:
+  sh_sling_left_hit:
+    sling:
+      action: play
+  sh_sling_right_hit:
+    sling:
+      action: play
+  s_pop_a_active:
+    pop:
+      action: play
+  s_pop_b_active:
+    pop:
+      action: play
+  s_pop_c_active:
+    pop:
+      action: play
+  sh_inner_loop_hit:
+    pos_med_3:
+      action: play
+  sh_ramp_left_lower_hit:
+    pos_med_5:
+      action: play
+  sh_ramp_right_hit:
+    pos_med_5:
+      action: play
+

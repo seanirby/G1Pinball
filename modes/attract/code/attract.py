@@ -19,10 +19,9 @@ class Attract(Mode):
         self._l = 0
 
         self._state = 'start'
-        self.add_mode_event_handler('timer_attract_ticker_tick', self.handle_tick)
+        # self.add_mode_event_handler('timer_attract_ticker_tick', self.handle_tick)
         # self.add_mode_event_handler('timer_attract_ticker_complete', self.handle_timeout)
-
-        self.machine.events.post('state_attract_start_started')
+        # self.machine.events.post('state_attract_start_started')
 
     def handle_timeout(self, **kwargs):
         state = self._state

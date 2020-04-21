@@ -32,3 +32,5 @@ player_vars:
     initial_value: 1
   energy:
     initial_value: 0
+  score:
+    initial_value: 0
