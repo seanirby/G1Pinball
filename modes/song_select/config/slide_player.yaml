@@ -1,0 +1,7 @@
+#config_version=5
+
+slide_player:
+  code_song_select_show_selected_song:
+    song_select:
+      action: play
+      expire: 2
