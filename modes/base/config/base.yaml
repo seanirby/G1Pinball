@@ -15,7 +15,7 @@ widget_player:
   timer_base_flash_tick{device.timers.base_flash.ticks % 2 == 0}:
     flash_mask:
       action: add
-  timer_base_flash_tick{device.timers.base_flash.ticks % 2 == 1}:
+  timer_base_flash_tick{device.timers.base_flash.ticks % 2 != 0}:
     flash_mask:
       action: remove
   timer_base_flash_complete:
@@ -36,6 +36,15 @@ timers:
 
 slide_player:
   mode_base_started: base
+
+
+# need a situation where we pause on the scoop processing when the state is qualified
+# should be doable with a conditional event
+queue_relay_player:
+  balldevice_bd_scoop_ball_eject_attempt{device.state_machines.song_select.state == 'qualified'}:
+    wait_for: song_intro_complete
+    post: scoop_eject_paused_for_song_intro
+
 
 variable_player:
   s_orbit_right_active:

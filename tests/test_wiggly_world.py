@@ -23,14 +23,22 @@ class TestWigglyWorld(ModeTestCase):
         song_selected = self.machine.game.player['song_selected']
         self.assertEqual(2, song_selected)
         self.get_mode_instance().testing = True
-        self.hit_and_release_switch('s_scoop')
+        self.hit_switch_and_run('s_scoop', 4)
         self.assertModeNotRunning('song_select')
+        self.release_switch_and_run('s_scoop', 1)
 
     def test_is_selected_after_qualifying(self):
         """ This song is selected by default after qualifying for the first time """
+        self.mock_event('ww_state_intro_started')
+        self.mock_event('song_intro_played')
+        self.mock_event('song_intro_complete')
         self.setup_wiggly_world()
         self.advance_time_and_run(5)
         self.assertModeRunning('wiggly_world')
+        self.assertEventCalled('ww_state_intro_started', 1)
+        self.assertEventCalled('song_intro_played', 1)
+        self.advance_time_and_run(10)
+        self.assertEventCalled('song_intro_complete', 1)
 
     def test_initial_shots(self):
         """ At first a number of shots are lit, and one shot is the 'wiggler' (the shot you are supposed to collect) """

@@ -1,0 +1,53 @@
+#config_version=5
+
+state_machines:
+  ww:
+    states:
+      # TODO: This should be fixed
+      # currently this will get started before the mode initiates, so 
+      start:
+        label: Placeholder
+      intro:
+        label: Introductory light shows and displays before mode start and ball eject from scoop
+        events_when_started: ww_state_intro_started
+      search:
+        label: Roving shot on playfied
+        events_when_started: ww_state_search_started
+        events_when_stopped: ww_state_search_stopped
+      narrowed:
+        label: brief state for showing a lightshow
+        events_when_started: ww_state_narrowed_started
+        events_when_stopped: ww_state_narrowed_stopped
+      collected:
+        label: A brief state where we show the player they succeeded in catching the wiggler
+        events_when_started: ww_state_collected_started
+      completed:
+        label: Placeholder
+        events_when_started: ww_state_completed_started
+    transitions:
+      # TODO: See above
+      - source: start
+        target: intro
+        events: mode_wiggly_world_started
+      - source: intro
+        target: search
+        # the queue relay for our scoop is also set to release the ball on this event
+        events: song_intro_complete
+        events_when_transitioning: ww_state_restart_search
+      - source: search
+        target: narrowed
+        events: ww_code_narrowed_start
+      - source: narrowed
+        target: search
+        events: timer_ww_narrowed_complete
+      - source: search
+        target: collected
+        events: ww_code_collected
+      - source: collected
+        target: search
+        events: timer_ww_collected_timeout_complete
+        events_when_transitioning: ww_state_restart_search
+      - source: search
+        target: completed
+        events: ww_code_complete
+

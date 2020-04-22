@@ -2,7 +2,7 @@
 
 mode:
   start_events: song_select_2_status_running
-  priority: 100
+  priority: 200
   code: wiggly_world.WigglyWorld
   stop_events: timer_song_countdown_complete
 
@@ -10,51 +10,24 @@ config:
   - shot_profiles
   - shots
   - shows
+  - slides
+  - state_machines
+  - sound_player
   - timers
+  - widgets
 
-state_machines:
-  ww:
-    states:
-      start:
-        label: Introductory light shows and displays before mode start and ball eject from scoop
-      search:
-        label: Roving shot on playfied
-        events_when_started: ww_state_search_started
-        events_when_stopped: ww_state_search_stopped
-      narrowed:
-        label: brief state for showing a lightshow
-        events_when_started: ww_state_narrowed_started
-        events_when_stopped: ww_state_narrowed_stopped
-      collected:
-        label: A brief state where we show the player they succeeded in catching the wiggler
-        events_when_started: ww_state_collected_started
-      completed:
-        label: Placeholder
-        events_when_started: ww_state_completed_started
-    transitions:
-      - source: start
-        target: search
-        events: mode_wiggly_world_started
-        events_when_transitioning: ww_state_restart_search
-      - source: search
-        target: narrowed
-        events: ww_code_narrowed_start
-      - source: narrowed
-        target: search
-        events: timer_ww_narrowed_complete
-      - source: search
-        target: collected
-        events: ww_code_collected
-      - source: collected
-        target: search
-        events: timer_ww_collected_timeout_complete
-        events_when_transitioning: ww_state_restart_search
-      - source: search
-        target: completed
-        events: ww_code_complete
+show_player:
+  ww_state_intro_started:
+    ww_intro:
+      loops: 0
+      events_when_played: song_intro_played
+      events_when_completed: song_intro_complete
 
-sound_player:
-  ww_code_narrowed_start:
-    other_short_1:
+slide_player:
+  ww_state_intro_started:
+    ww:
       action: play
+  ww_state_search_started:
+    ww:
+      action: remove
   

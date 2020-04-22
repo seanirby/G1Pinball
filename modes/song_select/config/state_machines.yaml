@@ -27,4 +27,4 @@ state_machines:
       - source: qualified
         target: wait
         # todo - due to how shot inheritance works i have to use the base scoop hit here
-        events: sh_scoop_hit
+        events: scoop_eject_paused_for_song_intro

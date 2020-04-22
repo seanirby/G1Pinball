@@ -30,3 +30,12 @@ machine_vars:
     initial_value: '!!!!!!!!!!!!!!!!!'
     value_type: str
     persist: False
+  # display variables for modes
+  d_ww_1:
+    initial_value: 'WIGGLY!WORLD!!!!!'
+    value_type: str
+    persist: False
+  d_ww_2:
+    initial_value: 'WIGGLY!WORLD!!!!!'
+    value_type: str
+    persist: False

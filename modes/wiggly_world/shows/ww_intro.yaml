@@ -1,0 +1,20 @@
+#show_version=5
+
+# TODO- i should be using dynamic tokens but MPF doesnt seem to like
+# that for variable shows like this
+- duration: 2
+  variables:
+    d_ww_1:
+      action: set_machine
+      string: 'HEY!SPUDBOY!!!!!'
+    d_ww_2:
+      action: set_machine
+      string: '!!!!!!!!!!!!!!!!'
+- duration: 2
+  variables:
+    d_ww_1:
+      action: set_machine
+      string: 'HIT!2!RED!SHOTS!'
+    d_ww_2:
+      action: set_machine
+      string: 'BEFORE!TIMES!UP!'

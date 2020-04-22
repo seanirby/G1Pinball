@@ -1,0 +1,7 @@
+#config_version=5
+
+sound_player:
+  ww_code_narrowed_start:
+    other_short_1:
+      action: play
+  

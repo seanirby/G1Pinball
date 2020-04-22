@@ -138,8 +138,13 @@ class TestSongSelect(ModeTestCase):
         "Hitting the scoop when qualified starts the selected song"
         self.setup_game()
         self.mock_event('song_select_2_status_running')
+        self.mock_event('scoop_eject_paused_for_song_intro')
 
         self.qualify_song()
         self.assert_song_selected(2)
-        self.hit_and_release_switch("s_scoop")
+        self.hit_switch_and_run("s_scoop", 1)
+        self.assertEventCalled('scoop_eject_paused_for_song_intro', 1)
         self.assertEventCalled('song_select_2_status_running', 1)
+        self.assertModeNotRunning('song_select')
+
+

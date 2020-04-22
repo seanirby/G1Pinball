@@ -1,4 +1,5 @@
 from mpf.core.mode import Mode
+from modes.display import Display
 
 BASE_SHOTS = [
     "sh_ramp_left_lower",
@@ -46,7 +47,9 @@ class WigglyWorld(Mode):
     def __init__(self, *args, **kwargs):
         """Initialize bonus mode."""
         super().__init__(*args, **kwargs)
+        # convenience for unit testing
         self._testing = False
+        # 
 
     @property
     def testing(self):
@@ -57,11 +60,10 @@ class WigglyWorld(Mode):
         self._testing = x
 
     def mode_start(self, **kwargs):
-
+        self.printer = Display(self.machine, 'd_ww_1', 'd_ww_2')
         self.reset_instance_vars()
 
         # state handlers
-        self.add_mode_event_handler('ww_state_start_started', self.handle_state_start_started)
         self.add_mode_event_handler('ww_state_restart_search', self.handle_state_restart_search)
         self.add_mode_event_handler('ww_state_collected_started', self.handle_state_collected_started)
         # self.add_mode_event_handler('ww_state_search_narrowed_started', self.handle_state_search_narrowed_started)
@@ -164,9 +166,6 @@ class WigglyWorld(Mode):
         pass
 
     def handle_state_narrowed_stopped(self, **kwargs):
-        pass
-
-    def handle_state_start_started(self, **kwargs):
         pass
 
     def start_narrowed(self, start_index, end_index):
