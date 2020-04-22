@@ -13,29 +13,14 @@ show_player:
   mode_attract_started: attract_sparkle
 
 slides:
-  attract_started:
+  attract:
     widgets:
       - widget: row_1
       - widget: row_2
-      - widget: row_1_blank
-      - widget: row_2_blank
-          
-slide_player:
-  mode_attract_started: attract_started
 
-timers:
-  foo:
-    start_value: 0
-    end_value: 1
-    tick_interval: 2560ms
-    restart_on_complete: true
-    control_events:
-      - action: start
-        event: mode_attract_started
-  attract_ticker:
-    end_value: 32
-    tick_interval: 300ms
-    restart_on_complete: True
-    control_events:
-      - action: start
-        event: mode_attract_started
+slide_player:
+  mode_attract_started: attract
+          
+
+
+    

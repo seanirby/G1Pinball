@@ -1,0 +1,7 @@
+#config_version=5
+
+slides:
+  song_select:
+    widgets:
+      - widget: song_select_row_1
+      - widget: song_select_row_2

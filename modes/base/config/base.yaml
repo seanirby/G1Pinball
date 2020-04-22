@@ -11,6 +11,29 @@ config:
   - slides.yaml
   - widgets.yaml
 
+widget_player:
+  timer_base_flash_tick{device.timers.base_flash.ticks % 2 == 0}:
+    flash_mask:
+      action: add
+  timer_base_flash_tick{device.timers.base_flash.ticks % 2 == 1}:
+    flash_mask:
+      action: remove
+  timer_base_flash_complete:
+    flash_mask:
+      action: remove
+
+timers:
+  base_flash:
+    end_value: 30
+    tick_interval: 100ms
+    control_events:
+      - action: start
+        event: base_flash_start
+      - action: restart
+        event: base_flash_start
+      - action: reset
+        event: timer_base_flash_complete
+
 slide_player:
   mode_base_started: base
 

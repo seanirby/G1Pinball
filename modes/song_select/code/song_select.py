@@ -1,8 +1,10 @@
 from mpf.core.mode import Mode
+from modes.display import Display, ROW_LENGTH, TOTAL_LENGTH
 
 CODE_EVENT_START_QUALIFYING = 'code_song_select_start_qualifying'
 CODE_EVENT_START_QUALIFIED = 'code_song_select_start_qualified'
 CODE_EVENT_QUALIFYING_COMPLETED = 'code_song_select_qualifying_completed'
+CODE_EVENT_SHOW_SELECTED_SONG = 'code_song_select_show_selected_song'
 STATE_EVENT_QUALIFYING_STARTED = 'state_song_select_qualifying_started'
 STATE_EVENT_QUALIFIED_STARTED = 'state_song_select_qualified_started'
 STATE_EVENT_WAIT_STARTED = 'state_song_select_wait_started'
@@ -18,6 +20,16 @@ NUM_SONGS = 5
 SCOOP_UNLIT_INDEX = 0
 ZERO_CHARGE_SHOT_INDEX = 0
 
+DISPLAY_SONG_NAMES = [
+    "GUT!FEELING",
+    "WHIP!IT",
+    "WIGGLY!WORLD",
+    "TIMING!X",
+    "GIRL!U!WANT"
+    ]
+
+DISPLAY_SONG_SELECT_LABEL = "HIT!SCOOP!FOR!!!"
+
 SHOT_NAMES = [
     "sh_song_select_bash_left",
     "sh_song_select_bash_diagonal_left",
@@ -26,13 +38,15 @@ SHOT_NAMES = [
     "sh_song_select_bash_right"
 ]
 
-
 class SongSelect(Mode):
-    def _init__(self, *args, **kwargs):
-        """Initialize bonus mode."""
-        super().__init__(*args, **kwargs)
+    # # TODO: Need to figure out why this doesn't work
+    # def __init__(self, *args, **kwargs):
+    #     """Initialize bonus mode."""
+    #     Mode.__init__(self, *args, **kwargs)
+    #     Display.__init__(self, 'd_song_select_1', 'd_song_select_2')
 
     def mode_start(self, **kwargs):
+        self.printer=Display(self.machine, 'd_song_select_1', 'd_song_select_2')
         self.initialize_bash_charges()
         self.initialize_state_machine()
 
@@ -155,22 +169,24 @@ class SongSelect(Mode):
         else: 
             self.machine.events.post(CODE_EVENT_START_QUALIFYING)
 
+    def display_selected_song(self, i):
+        first_row = DISPLAY_SONG_SELECT_LABEL.ljust(ROW_LENGTH, '!')
+        second_row = DISPLAY_SONG_NAMES[i].ljust(ROW_LENGTH, '!')
+        self.printer.flash(20)
+        self.printer.prnt(first_row+second_row, 0, 0, TOTAL_LENGTH)
+
     def select_song(self, i):
         for j in range(0, NUM_SONGS):
             shot_name = self.get_shot_name(j)
+            # light shot and update the display slide
             if i == j:
                 self.machine.game.player["song_selected"] = j
-                # selected
                 self.machine.shots[shot_name].jump(4)
-                self.machine.events.post("song_select_{0}_status_selected".format(j))
+                self.display_selected_song(i)
+                self.machine.events.post(CODE_EVENT_SHOW_SELECTED_SONG)
+            # unlight other shots
             else:
-                completed_status = self.machine.game.player["song_{0}_completed".format(j)]
                 self.machine.shots[shot_name].jump(3)
-                # for updating widgets
-                if completed_status > 0:
-                    self.machine.events.post("song_select_{0}_status_completed".format(j))
-                else:
-                    self.machine.events.post("song_select_{0}_status_unselected".format(j))
 
     def set_bash_charge(self, i, amt):
         limited_charge = max(min(amt, MAX_BASH_CHARGE), 0)

@@ -1,50 +1,25 @@
 #config_version=5
 
 widgets:
-  song_select_section_title_widget:
+  song_select_row_1:
     - type: text
-      text: SONGS
-      x: 10
-      y: 580
-      font_size: 20
-      anchor_x: left  
-  song_select_0_song_widget:
-    - type: text
-      text: Gates of Steel
-      x: 10
-      y: 560
-      font_size: 20
-      anchor_x: left
-      color: gray
-  song_select_1_song_widget:
-    - type: text
-      text: Strange Pursuit
-      x: 10
-      y: 540
-      font_size: 20
-      anchor_x: left
-      color: gray
-  song_select_2_song_widget:
-    - type: text
-      text: Wiggly World
-      x: 10
-      y: 520
-      font_size: 20
-      anchor_x: left
-      color: gray
-  song_select_3_song_widget:
-    - type: text
-      text: Cold War
+      text: (machine|d_song_select_1)
+      color: orange
       x: 10
       y: 500
-      font_size: 20
+      font_name: DSEG14Classic-Italic
+      font_size: 60
       anchor_x: left
-      color: gray
-  song_select_4_song_widget:
+      anchor_y: top
+      z: 2
+  song_select_row_2:
     - type: text
-      text: Gut Feelin
+      text: (machine|d_song_select_2)
+      color: orange
       x: 10
-      y: 480
-      font_size: 20
+      y: 400
+      font_name: DSEG14Classic-Italic
+      font_size: 60
       anchor_x: left
-      color: gray
+      anchor_y: top
+      z: 2

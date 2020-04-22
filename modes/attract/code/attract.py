@@ -42,7 +42,7 @@ class Attract(Mode):
 
     def handle_tick(self, **kwargs):
         state = self._state
-        self.handle_wave_tick()
+        # self.handle_wave_tick()
 
         # if state == 'start':
         #     self.handle_start_tick()

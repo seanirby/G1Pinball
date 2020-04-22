@@ -4,39 +4,19 @@ mode:
   start_events: ball_starting, code_song_stopped
   stop_events: state_song_select_wait_started
   code: song_select.SongSelect
-  priority: 100
+  priority: 200
 
 config:
   - shot_profiles.yaml
   - shots.yaml
   - shows.yaml
+  - slides.yaml
+  - state_machines.yaml
   - widgets.yaml
 
-state_machines:
-  song_select:
-    states:
-      start:
-        label: placeholder, i figure mode start will set this to the right state if state doesnt persist
-      qualifying:
-        label: here we hit the bash the booji until the its ready
-        events_when_started: state_song_select_qualifying_started
-      qualified:
-        label: mode is ready to start at the scoop
-        events_when_started: state_song_select_qualified_started
-      wait:
-        label: placeholder
-        events_when_started: state_song_select_wait_started
-    transitions:
-      - source: start
-        target: qualifying
-        events: code_song_select_start_qualifying
-      - source: start
-        target: qualified
-        events: code_song_select_start_qualified
-      - source: qualifying
-        target: qualified
-        events: code_song_select_qualifying_completed
-      - source: qualified
-        target: wait
-        # todo - due to how shot inheritance works i have to use the base scoop hit here
-        events: sh_scoop_hit
+slide_player:
+  code_song_select_show_selected_song:
+    song_select:
+      action: play
+      # expire value needs to match printer.flash call in code
+      expire: 2
