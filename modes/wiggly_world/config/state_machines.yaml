@@ -10,6 +10,7 @@ state_machines:
       intro:
         label: Introductory light shows and displays before mode start and ball eject from scoop
         events_when_started: ww_state_intro_started
+        events_when_stopped: ww_state_intro_stopped
       search:
         label: Roving shot on playfied
         events_when_started: ww_state_search_started

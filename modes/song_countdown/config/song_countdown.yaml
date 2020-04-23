@@ -1,32 +1,13 @@
 #config_version=5
 
 mode:
-  start_events: mode_wiggly_world_started
+  start_events: ww_state_intro_stopped
   stop_events: timer_song_countdown_complete
   priority: 100
-
-widgets:
-  song_countdown_widget:
-    - type: text
-      text: SONG TIMER (song_countdown_ticks_remaining)
-      x: 600
-      y: 580
-      font_size: 20
-      anchor_x: left
 
 timers:
   song_countdown:
     start_value: 45
-    end_value: 0
+    end_value: -1
     direction: down
-    control_events:
-      - action: start
-        event: mode_song_countdown_started
-
-variable_player:
-  timer_song_countdown_started:
-    song_countdown_ticks_remaining:
-      int: device.timers.song_countdown.start_value
-      action: set
-  timer_song_countdown_tick:
-    song_countdown_ticks_remaining: -1
+    start_running: True

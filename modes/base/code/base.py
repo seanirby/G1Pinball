@@ -12,6 +12,8 @@ class Base(Mode):
 
         self.add_mode_event_handler('player_score', self.handle_score_update)
         self.add_mode_event_handler('player_energy', self.handle_energy_update)
+        self.add_mode_event_handler('timer_song_countdown_tick', self.update_countdown_display)
+        self.add_mode_event_handler('timer_song_countdown_complete', self.remove_countdown_display)
     
     def handle_score_update(self, **kwargs):
         change = kwargs['change']
@@ -42,3 +44,9 @@ class Base(Mode):
         label_and_ball = 'BALL!{}'.format(str(ball))
         self.printer.prnt(label_and_ball, TOTAL_LENGTH - len(label_and_ball), ROW_LENGTH, TOTAL_LENGTH) 
 
+    def update_countdown_display(self, **kwargs):
+        ticks = kwargs['ticks']
+        self.printer.prnt(str(ticks).rjust(2, '0'), ROW_LENGTH + 7, ROW_LENGTH, TOTAL_LENGTH) 
+
+    def remove_countdown_display(self, **kwargs):
+        self.printer.prnt('!!', ROW_LENGTH + 7, ROW_LENGTH, TOTAL_LENGTH) 

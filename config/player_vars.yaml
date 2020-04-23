@@ -26,8 +26,6 @@ player_vars:
     initial_value: 0
   song_4_completed:
     initial_value: 0
-  song_countdown_ticks_remaining:
-    initial_value: 0
   bonus_multiplier:
     initial_value: 1
   energy:
