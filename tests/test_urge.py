@@ -1,54 +1,39 @@
 from mode_test_case import ModeTestCase
+from modes.urge.code.urge import (
+    SHOTS,
+    STATE,
+    STATE_PAUSED,
+    STATE_COMPLETE
+)
 
-class TestDrops(ModeTestCase):
+EVENT_RESET_DROPS = 'drops_state_reset_bank'
+
+class TestUrge(ModeTestCase):
 
     def setup(self):
         self.setup_game()
         self.mock_event(EVENT_RESET_DROPS)
         self.assertModeRunning('drops')
+        self.assertStateMachineState(STATE, STATE_HURRY_UP_INACTIVE)
+        self.assertHurryUpTimerRunning(False)
+        self.assertFalse(self.machine.timers.drops_hurry_up.running)
 
-    def test_starts_urge_mode_when_drops_are_completed(self):
-        pass
+    def assertHurryUpTimerRunning(self, is_running):
+        self.assertEqual(self.machine.timers.drops_hurry_up.running, is_running)
 
-    def resets_drops_after_ball_drain(self):
-        pass
+    def test_hurry_up_times_out(self):
+        self.setup()
 
-    # def hit_rollover_button(self):
-    #     self.hit_and_release_switch('s_rollover_button')
-    #     self.advance_time_and_run(5)
+        self.advance_time_and_run(40)
 
-    # def start_hurry_up(self):
-    #     self.hit_switch_and_run('s_drop_top', 1)
-    #     self.hit_switch_and_run('s_drop_middle', 1)
-    #     self.hit_switch_and_run('s_drop_bottom', 1)
-
-    # def assertHurryUpTimerRunning(self, is_running):
-    #     self.assertEqual(self.machine.timers.drops_hurry_up.running, is_running)
-
-    # def test_hurry_up_times_out(self):
-    #     self.setup()
-
-    #     self.start_hurry_up()
-    #     self.assertStateMachineState(STATE, STATE_HURRY_UP_ACTIVE)
-
-    #     self.assertHurryUpTimerRunning(True)
-    #     self.assertStateMachineState(STATE, STATE_HURRY_UP_ACTIVE)
-    #     self.assertShotState(ROLLOVER_SHOT, ROLLOVER_SHOT_LIT_INDEX)
-
-    #     self.advance_time_and_run(40)
-
-    #     self.assertStateMachineState(STATE, STATE_HURRY_UP_INACTIVE)
-    #     self.assertShotState(ROLLOVER_SHOT, ROLLOVER_SHOT_UNLIT_INDEX)
-    #     self.assertHurryUpTimerRunning(False)
-    #     self.assertEventCalled(EVENT_RESET_DROPS, 1)
+        self.assertStateMachineState(STATE, STATE_HURRY_UP_INACTIVE)
+        self.assertShotState(ROLLOVER_SHOT, ROLLOVER_SHOT_UNLIT_INDEX)
+        self.assertHurryUpTimerRunning(False)
+        self.assertEventCalled(EVENT_RESET_DROPS, 1)
 
     # def test_collects_hurry_up(self):
     #     self.setup()
 
-    #     self.start_hurry_up()
-    #     self.assertHurryUpTimerRunning(True)
-    #     self.assertStateMachineState(STATE, STATE_HURRY_UP_ACTIVE)
-    #     self.assertShotState(ROLLOVER_SHOT, ROLLOVER_SHOT_LIT_INDEX)
     #     self.hit_rollover_button()
     #     self.assertEventCalled(EVENT_RESET_DROPS, 1)
 
@@ -59,7 +44,6 @@ class TestDrops(ModeTestCase):
     # def test_drains_while_hurry_up_is_active(self):
     #     self.setup()
 
-    #     self.start_hurry_up()
     #     self.advance_time_and_run(10)
     #     self.assertSwitchState('s_drop_top', True)
     #     self.assertSwitchState('s_drop_middle', True)
@@ -68,8 +52,8 @@ class TestDrops(ModeTestCase):
     #     self.drain_to_next_ball()
 
     #     # make sure timer is reset completely to its start value
-    #     start_value = self.machine.timers.drops_hurry_up.start_value
-    #     ticks = self.machine.timers.drops_hurry_up.ticks
+    #     start_value = self.machine.timers.urge_hurry_up.start_value
+    #     ticks = self.machine.timers.urge_hurry_up.ticks
     #     self.assertEqual(start_value, ticks)
 
     #     self.assertStateMachineState(STATE, STATE_HURRY_UP_INACTIVE)
