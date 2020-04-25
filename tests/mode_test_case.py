@@ -8,10 +8,16 @@ class ModeTestCase(MpfMachineTestCase):
             shot_name = "sh_song_select_bash_{0}".format(direction)
             shot = self.machine.shots[shot_name]
             if (i == j):
-                print(j)
                 self.assertEqual(shot.state_name, 'song_selected')
             else:
                 self.assertEqual(shot.state_name, 'unlit')
+
+
+    def assertStateMachineState(self, machine, state):
+        self.assertEqual(self.machine.state_machines[machine].state, state)
+
+    def assertShotState(self, shot, state):
+        self.assertEqual(self.machine.shots[shot].state, state)
 
     def drain_to_next_ball(self):
         self.hit_switch_and_run("s_trough", 1)
@@ -22,7 +28,7 @@ class ModeTestCase(MpfMachineTestCase):
         self.advance_time_and_run(5)
 
     def hit_scoop_and_wait(self, amt):
-        self.release_switch_and_run("s_scoop", amt)
+        self.hit_switch_and_run("s_scoop", amt)
 
     def qualify_song(self):
         self.assertEqual(self.machine.state_machines.song_select.state, 'qualifying')
@@ -33,6 +39,12 @@ class ModeTestCase(MpfMachineTestCase):
         self.hit_and_release_switch("s_bash_right")
         self.advance_time_and_run(1)
         self.assertEqual(self.machine.state_machines.song_select.state, 'qualified')
+
+    # TODO: is this the best way to do this?
+    def reset_drops(self):
+        self.release_switch_and_run('s_drop_top', .1)
+        self.release_switch_and_run('s_drop_middle', .1)
+        self.release_switch_and_run('s_drop_bottom', .1)
 
     def setup_game(self):
         self.start_game()

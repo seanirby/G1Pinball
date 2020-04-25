@@ -45,7 +45,6 @@ queue_relay_player:
     wait_for: song_intro_complete
     post: scoop_eject_paused_for_song_intro
 
-
 variable_player:
   s_orbit_right_active:
     score: 1

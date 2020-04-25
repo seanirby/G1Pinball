@@ -15,7 +15,8 @@ coils:
     default_hold_power: .5
   c_flipper_mid_right_main:
     number: A1-B1-2
-    default_pulse_ms: 13
+    # worked pretty well at 13 but shots from a standstill weren't enough
+    default_pulse_ms: 14
   c_flipper_mid_right_hold:
     number: A1-B1-3
     default_hold_power: .5

@@ -1,0 +1,97 @@
+#config_version=5
+
+mode:
+  code: drops.Drops
+  start_events: ball_starting
+  priority: 200
+
+timers:
+  drops_hurry_up:
+    start_value: 30
+    end_value: -1
+    direction: down
+    control_events:
+      - action: start
+        event: drops_state_hurry_up_active_started
+      - action: reset
+        event: drops_state_reset_bank
+      - action: stop
+        event: drops_state_reset_bank
+      - action: pause
+        event: drops_state_hurry_up_paused_started
+        value: 0
+      - action: start
+        event: drops_state_hurry_up_paused_stopped
+
+shows:
+  drops_one_lit:
+    - duration: 100ms
+      lights:
+        (a): red
+    - duration: 100ms
+      lights:
+        (a): green
+    - duration: 100ms
+      lights:
+        (a): yellow
+  drops_one_unlit:
+    - duration: 1
+      lights:
+        (a): off
+
+shot_profiles:
+  drops_one_indicator:
+    advance_on_hit: False
+    states:
+      - name: unlit
+        show: drops_one_unlit
+      - name: lit
+        show: drops_one_lit
+
+shots:
+  sh_drops_rollover_button:
+    hit_events: sh_rollover_button_hit
+    profile: drops_one_indicator
+    show_tokens:
+      a: l_serial_chain_0_40
+
+state_machines:
+  drops:
+    states:
+      start:
+        label: placeholder
+      hurry_up_inactive:
+        label: Waiting for drops to be completed
+      hurry_up_active:
+        label: Hurry up has started
+        events_when_started: drops_state_hurry_up_active_started
+        events_when_stopped: drops_state_hurry_up_active_stopped
+      hurry_up_paused:
+        label: For when we need to pause the hurry up while its running, like during a mode intro sequence
+        events_when_started: drops_state_hurry_up_paused_started
+        events_when_stopped: drops_state_hurry_up_paused_stopped
+    transitions:
+      - source: start
+        target: hurry_up_inactive
+        events: mode_drops_started
+      - source: hurry_up_inactive
+        target: hurry_up_active
+        events: drop_target_bank_drops_down
+      - source: hurry_up_active
+        target: hurry_up_inactive
+        events: sh_drops_rollover_button_hit, timer_drops_hurry_up_complete
+        events_when_transitioning: drops_state_reset_bank
+      - source: hurry_up_active
+        target: hurry_up_paused
+        # posted from scoop ball device
+        events: scoop_eject_paused_for_song_intro
+      - source: hurry_up_active
+        target: hurry_up_paused
+        events: scoop_eject_paused_for_song_intro
+      - source: hurry_up_paused
+        target: hurry_up_active
+        events: song_intro_complete
+
+event_player:
+  mode_drops_started: drops_state_reset_bank
+

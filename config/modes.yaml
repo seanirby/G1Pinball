@@ -1,12 +1,11 @@
 #config_version=5
 
 modes:
-  # attract
-  # perennial
+  # perennial/management
   - base
   - bash_resolver
   - charged_flips
-  # management management
+  - drops
   - song_select
   - song_countdown
   # songs ('modes' in pinball parlance)
