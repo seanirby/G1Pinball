@@ -1,0 +1,45 @@
+#config_version=5
+
+shows:
+  urge_three_lit:
+    - duration: 1
+      lights:
+        (a): red
+        (b): red
+        (c): red
+    - duration: 1
+      lights:
+        (a): orange
+        (b): orange
+        (c): orange
+    - duration: 1
+      lights:
+        (a): yellow
+        (b): yellow
+        (c): yellow
+    - duration: 1
+      lights:
+        (a): green
+        (b): green
+        (c): green
+    - duration: 1
+      lights:
+        (a): blue
+        (b): blue
+        (c): blue
+    - duration: 1
+      lights:
+        (a): purple
+        (b): purple
+        (c): purple
+    # this duration needs to be 6 times that of the duration of those above for a flash
+    - duration: 6
+      lights:
+        (a): stop
+        (b): stop
+        (c): stop
+  urge_three_unlit:
+    - lights:
+        (a): stop
+        (b): stop
+        (c): stop

@@ -3,10 +3,10 @@
 mode:
   code: drops.Drops
   start_events: ball_starting
-  # stop_events: ball_ended
 
 state_machines:
   drops:
+    persist_state: false
     states:
       start:
         label: placeholder

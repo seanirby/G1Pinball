@@ -32,3 +32,6 @@ player_vars:
     initial_value: 0
   score:
     initial_value: 0
+  # number of uncontrollable urge hurry ups collected
+  urges_collected:
+    initial_value: 0

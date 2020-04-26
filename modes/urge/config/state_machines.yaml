@@ -1,0 +1,35 @@
+#config_version=5
+
+state_machines:
+  urge:
+    persist_state: False
+    states:
+      start:
+        label: hurry up is running
+        events_when_started: urge_state_start_started
+      paused:
+        label: For when we need to pause the hurry up while its running, like during a mode intro sequence
+        events_when_started: urge_state_paused_started
+        events_when_stopped: urge_state_paused_stopped
+      collected:
+        label: hurry up was collected, waiting for show to complete
+        events_when_started: urge_state_collected_started
+      end:
+        label: placeholder
+        events_when_started: urge_state_end_started
+    transitions:
+      - source: start
+        target: paused
+        events: scoop_eject_paused_for_song_intro
+      - source: paused
+        target: start
+        events: song_intro_complete
+      - source: start
+        target: end
+        events: timer_urge_completed
+      - source: start
+        target: collected
+        events: urge_code_collected
+      - source: collected
+        target: end
+        events: urge_show_collected_completed

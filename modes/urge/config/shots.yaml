@@ -1,0 +1,45 @@
+#config_version=5
+
+shots:
+  sh_urge_ramp_left_lower:
+    profile: urge_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_37
+      b: l_serial_chain_0_38
+      c: l_serial_chain_0_39
+  sh_urge_orbit_left:
+    profile: urge_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_12
+      b: l_serial_chain_0_11
+      c: l_serial_chain_0_10
+  sh_urge_ramp_left_upper:
+    profile: urge_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_7
+      b: l_serial_chain_0_8
+      c: l_serial_chain_0_9
+  sh_urge_gate_right:
+    profile: urge_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_18
+      b: l_serial_chain_0_19
+      c: l_serial_chain_0_20
+  sh_urge_inner_loop:
+    profile: urge_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_23
+      b: l_serial_chain_0_22
+      c: l_serial_chain_0_21
+  sh_urge_ramp_right:
+    profile: urge_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_26
+      b: l_serial_chain_0_25
+      c: l_serial_chain_0_24
+  sh_urge_orbit_right:
+    profile: urge_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_30
+      b: l_serial_chain_0_31
+      c: l_serial_chain_0_32

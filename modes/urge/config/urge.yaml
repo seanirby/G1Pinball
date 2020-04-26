@@ -3,43 +3,34 @@
 mode:
   code: urge.Urge
   start_events: drops_state_urge_active_started
+  # TODO: do i need to add ball_end here?
+  stop_events: urge_state_end_started
+
+config:
+  - shot_profiles
+  - shots
+  - shows
+  - state_machines
 
 shows:
-  urge_one_lit:
-    - duration: 100ms
-      lights:
-        (a): red
-    - duration: 100ms
-      lights:
-        (a): green
-    - duration: 100ms
-      lights:
-        (a): yellow
-  urge_one_unlit:
-    - duration: 1
-      lights:
-        (a): off
+  urge_collected:
+    - duration: 2
+      variables:
+        d_urge_1:
+          action: set_machine
+          string: 'UNCONTROLLABLE!!'
+        d_urge_2:
+          action: set_machine
+          string: 'URGE!!!COLLECTED'
 
-shot_profiles:
-  urge_one_indicator:
-    advance_on_hit: False
-    states:
-      - name: unlit
-        show: urge_one_unlit
-      - name: lit
-        show: urge_one_lit
-
-# TODO: make it a collection of shots that can be the hurry up
-# just going to make this the hurry up shot for now
-shots:
-  sh_urge_ramp_left_lower:
-    hit_events: sh_rollover_button_hit
-    profile: urge_one_indicator
-    show_tokens:
-      a: l_serial_chain_0_40
+show_player:
+  urge_state_collected_started:
+    urge_collected:
+      loops: 0
+      events_when_completed: urge_show_collected_completed
 
 timers:
-  urge_hurry_up:
+  urge:
     start_value: 30
     end_value: -1
     direction: down
@@ -52,20 +43,3 @@ timers:
       - action: start
         event: urge_state_hurry_up_paused_stopped
 
-state_machines:
-  urge:
-    states:
-      start:
-        label: hurry up is running
-        events_when_started: urge_state_start_started
-      paused:
-        label: For when we need to pause the hurry up while its running, like during a mode intro sequence
-        events_when_started: urge_state_paused_started
-        events_when_stopped: urge_state_paused_stopped
-    transitions:
-      - source: start
-        target: paused
-        events: scoop_eject_paused_for_song_intro
-      - source: paused
-        target: start
-        events: song_intro_complete
