@@ -1,4 +1,4 @@
-from mode_test_case import ModeTestCase
+from tests.mode_test_case import ModeTestCase
 
 class TestSongSelect(ModeTestCase):
     def assert_charge_profile(self, left, diagonal_left, center, diagonal_right, right):

@@ -1,28 +1,12 @@
-from mpf.tests.MpfTestCase import MagicMock
-from mpf.tests.MpfMachineTestCase import MpfMachineTestCase
+from tests.mode_test_case import ModeTestCase
 
-class TestBar(MpfMachineTestCase):
-
-    def _start_game(self):
-        self.machine.playfield.add_ball = MagicMock()
-        # self.machine.ball_controller.num_balls_known = 3
-        self.assertModeRunning('attract')
-        self.hit_switch_and_run("s_trough", 1)
-        self.hit_and_release_switch("s_start")
-
-        # All this stuff may be unnecessary but its what I need to do currently when I run mpf both -x 
-        self.release_switch_and_run("s_trough", 1)
-        self.hit_and_release_switch("s_plunger")
-        self.hit_and_release_switch("s_orbit_right")
-        self.assertIsNotNone(self.machine.game)
-
-
-    def _setup_game(self):
-        self._start_game()
+class TestBar(ModeTestCase):
+    def setup(self):
+        self.setup_game()
         self.assertModeRunning('bar')
 
     def test_normal(self):
-        self._setup_game()
+        self.setup()
         # Both ramps start lit, bash timer is not running, ramp count is 0
         # TODO should start mode here
         self.assertEqual(self.machine.shots.bar_ramp_left_lower.state_name, 'lit')

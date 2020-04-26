@@ -3,6 +3,7 @@
 mode:
   code: drops.Drops
   start_events: ball_starting
+  # stop_events: ball_ended
 
 state_machines:
   drops:
@@ -15,9 +16,9 @@ state_machines:
         events_when_stopped: drops_state_urge_active_stopped
     transitions:
       - source: start
-        target: hurry_up_active
+        target: urge_active
         events: drop_target_bank_drops_down
-      - source: hurry_up_active
+      - source: urge_active
         target: start
         events: mode_urge_ended
 

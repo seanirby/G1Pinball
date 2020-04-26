@@ -1,7 +1,7 @@
-from mpf.tests.MpfTestCase import MagicMock
-from mpf.tests.MpfMachineTestCase import MpfMachineTestCase
+from tests.mode_test_case import ModeTestCase
 
-class TestChargedFlips(MpfMachineTestCase):
+# TODO: refactor and reformat this file so its consistent with other tests
+class TestChargedFlips(ModeTestCase):
 
     def _start_game(self):
         self.machine.playfield.add_ball = MagicMock()
@@ -18,7 +18,7 @@ class TestChargedFlips(MpfMachineTestCase):
 
 
     def _setup_game(self):
-        self._start_game()
+        self.setup_game()
         self.assertModeRunning('charged_flips')
 
         # erergy should be 0

@@ -1,7 +1,27 @@
 from mpf.tests.MpfTestCase import MagicMock
+from mpf.tests.MpfFakeGameTestCase import MpfFakeGameTestCase
+from mpf.tests.MpfGameTestCase import MpfGameTestCase
 from mpf.tests.MpfMachineTestCase import MpfMachineTestCase
 
-class ModeTestCase(MpfMachineTestCase):
+class ModeTestCase(MpfFakeGameTestCase):
+    def get_config_file(self):
+        return "config.yaml"
+
+    def get_machine_path(self):
+        return ""
+
+    def get_absolute_machine_path(self):
+        # do not use path relative to MPF folder
+        return self.get_machine_path()
+
+    def get_platform(self):
+        return 'smart_virtual'
+
+    def assert_drops_state(self, state):
+        self.assertSwitchState('s_drop_top', state)
+        self.assertSwitchState('s_drop_middle', state)
+        self.assertSwitchState('s_drop_bottom', state)
+
     def assert_song_selected(self, i):
         song_map = ['left', 'diagonal_left', 'center', 'diagonal_right', 'right']
         for j, direction in enumerate(song_map):
@@ -41,6 +61,11 @@ class ModeTestCase(MpfMachineTestCase):
         self.assertEqual(self.machine.state_machines.song_select.state, 'qualified')
 
     # TODO: is this the best way to do this?
+    def knockdown_drops(self):
+        self.hit_switch_and_run('s_drop_top', .1)
+        self.hit_switch_and_run('s_drop_middle', .1)
+        self.hit_switch_and_run('s_drop_bottom', .1)
+
     def reset_drops(self):
         self.release_switch_and_run('s_drop_top', .1)
         self.release_switch_and_run('s_drop_middle', .1)

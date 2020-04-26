@@ -1,4 +1,4 @@
-from mode_test_case import ModeTestCase
+from tests.mode_test_case import ModeTestCase
 from modes.wiggly_world.code.wiggly_world import BASE_SHOTS, SHOTS, WIGGLER_SHOT_STATE_INDEX
 
 class TestWigglyWorld(ModeTestCase):
@@ -16,8 +16,7 @@ class TestWigglyWorld(ModeTestCase):
             mode.handle_roving_shot_timer_tick(force_tick=True)
             self.advance_time_and_run(1)
             
-
-    def setup_wiggly_world(self):
+    def setup(self):
         self.setup_game()
         self.qualify_song()
         song_selected = self.machine.game.player['song_selected']
@@ -32,7 +31,7 @@ class TestWigglyWorld(ModeTestCase):
         self.mock_event('ww_state_intro_started')
         self.mock_event('song_intro_played')
         self.mock_event('song_intro_complete')
-        self.setup_wiggly_world()
+        self.setup()
         self.advance_time_and_run(5)
         self.assertModeRunning('wiggly_world')
         self.assertEventCalled('ww_state_intro_started', 1)
@@ -42,7 +41,7 @@ class TestWigglyWorld(ModeTestCase):
 
     def test_initial_shots(self):
         """ At first a number of shots are lit, and one shot is the 'wiggler' (the shot you are supposed to collect) """
-        self.setup_wiggly_world()
+        self.setup()
 
         lit_shots = []
         lit_wiggler_shot = []
@@ -58,7 +57,7 @@ class TestWigglyWorld(ModeTestCase):
         self.assertEqual(len(lit_shots), len(SHOTS) - 1)
 
     def test_hitting_the_wiggler_collects(self):
-        self.setup_wiggly_world()
+        self.setup()
         # verify leftmost shot is lit
         self.assertEqual(self.get_wiggler_shot_index(), 0)
 
@@ -82,7 +81,6 @@ class TestWigglyWorld(ModeTestCase):
         self.post_event(BASE_SHOTS[right_shot_index]+'_hit', 1)
 
         for i, shot_name in enumerate(SHOTS):
-            print(shot_name)
             state_name = self.machine.shots[shot_name].state_name
             # shots to the left should be unlit
             if i <= left_shot_index:
@@ -97,7 +95,7 @@ class TestWigglyWorld(ModeTestCase):
                 self.assertEqual(state_name, 'lit_wiggler')
 
     def test_mode_is_over_when_song_countdown_expires(self):
-        self.setup_wiggly_world()
+        self.setup()
         self.assertModeRunning('wiggly_world')
         self.advance_time_and_run(100)
         self.assertModeNotRunning('wiggly_world')

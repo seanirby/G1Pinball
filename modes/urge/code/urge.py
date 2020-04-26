@@ -1,12 +1,9 @@
 from mpf.core.mode import Mode
 from modes.display import Display
 
-class Drops(Mode):
+class Urge(Mode):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def mode_start(self, **kwargs):
-        self.printer = Display(self.machine, 'd_drops_1', 'd_drops_2')
-
-    def mode_stop(self, **kwargs):
-        pass
+        self.printer = Display(self.machine, 'd_urge_1', 'd_urge_2')

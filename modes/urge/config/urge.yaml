@@ -2,7 +2,7 @@
 
 mode:
   code: urge.Urge
-  start_events: drops_state_hurry_up_active_started
+  start_events: drops_state_urge_active_started
 
 shows:
   urge_one_lit:
@@ -34,7 +34,7 @@ shot_profiles:
 shots:
   sh_urge_ramp_left_lower:
     hit_events: sh_rollover_button_hit
-    profile: drops_one_indicator
+    profile: urge_one_indicator
     show_tokens:
       a: l_serial_chain_0_40
 
@@ -53,7 +53,7 @@ timers:
         event: urge_state_hurry_up_paused_stopped
 
 state_machines:
-  drops:
+  urge:
     states:
       start:
         label: hurry up is running

@@ -1,20 +1,50 @@
-import os; 
-print("FOOOO")
-print(os.getcwd())
 from tests.mode_test_case import ModeTestCase
+
+EVENT_STATE_URGE_ACTIVE_STARTED = 'drops_state_urge_active_started'
+EVENT_RESET_DROPS = 'drops_state_reset_bank'
+EVENT_URGE_STARTED = 'mode_urge_started'
+EVENT_DROPS_DOWN = 'drop_target_bank_drops_down'
+DROPS_MODE = 'drops'
+URGE_MODE = 'urge'
 
 class TestDrops(ModeTestCase):
 
     def setup(self):
         self.setup_game()
-        self.mock_event(EVENT_RESET_DROPS)
-        self.assertModeRunning('drops')
+        self.assertModeRunning(DROPS_MODE)
 
     def test_starts_urge_mode_when_drops_are_completed(self):
-        setup()
+        self.setup()
+        self.mock_event(EVENT_DROPS_DOWN)
+        self.mock_event(EVENT_STATE_URGE_ACTIVE_STARTED)
 
-    def resets_drops_after_ball_drain(self):
-        pass
+        self.assertModeNotRunning(URGE_MODE)
+        self.assertStateMachineState('drops', 'start')
+        self.knockdown_drops()
+
+        self.assertEventCalled(EVENT_DROPS_DOWN)
+        self.assertEventCalled(EVENT_STATE_URGE_ACTIVE_STARTED, 1)
+        self.assertStateMachineState('drops', 'urge_active')
+        self.assertModeRunning(URGE_MODE)
+
+        # however long this timer lasts, not sure yet
+        self.advance_time_and_run(30)
+        self.assertModeNotRunning(URGE_MODE)
+        self.assertStateMachineState('drops', 'start')
+
+    def test_resets_drops_after_ball_drain(self):
+        self.mock_event(EVENT_RESET_DROPS)
+        self.setup()
+
+        self.assertEventCalled(EVENT_RESET_DROPS, 1)
+        self.assert_drops_state(False)
+        self.knockdown_drops()
+        self.assert_drops_state(True)
+
+        self.drain_one_ball()
+        self.advance_time_and_run(5)
+        self.assertEventCalled(EVENT_RESET_DROPS, 2)
+        self.assert_drops_state(False)
 
     # def hit_rollover_button(self):
     #     self.hit_and_release_switch('s_rollover_button')
@@ -26,7 +56,7 @@ class TestDrops(ModeTestCase):
     #     self.hit_switch_and_run('s_drop_bottom', 1)
 
     # def assertHurryUpTimerRunning(self, is_running):
-    #     self.assertEqual(self.machine.timers.drops_hurry_up.running, is_running)
+    #     self.assertEqual(self.machine.timers.drop_hurry_up.running, is_running)
 
     # def test_hurry_up_times_out(self):
     #     self.setup()
@@ -43,7 +73,7 @@ class TestDrops(ModeTestCase):
     #     self.assertStateMachineState(STATE, STATE_HURRY_UP_INACTIVE)
     #     self.assertShotState(ROLLOVER_SHOT, ROLLOVER_SHOT_UNLIT_INDEX)
     #     self.assertHurryUpTimerRunning(False)
-    #     self.assertEventCalled(EVENT_RESET_DROPS, 1)
+    #     self.assertEventCalled(EVENT_RESET_DROP, 1)
 
     # def test_collects_hurry_up(self):
     #     self.setup()
@@ -53,7 +83,7 @@ class TestDrops(ModeTestCase):
     #     self.assertStateMachineState(STATE, STATE_HURRY_UP_ACTIVE)
     #     self.assertShotState(ROLLOVER_SHOT, ROLLOVER_SHOT_LIT_INDEX)
     #     self.hit_rollover_button()
-    #     self.assertEventCalled(EVENT_RESET_DROPS, 1)
+    #     self.assertEventCalled(EVENT_RESET_DROP, 1)
 
     #     self.assertHurryUpTimerRunning(False)
     #     self.assertStateMachineState(STATE, STATE_HURRY_UP_INACTIVE)
@@ -64,27 +94,27 @@ class TestDrops(ModeTestCase):
 
     #     self.start_hurry_up()
     #     self.advance_time_and_run(10)
-    #     self.assertSwitchState('s_drop_top', True)
-    #     self.assertSwitchState('s_drop_middle', True)
-    #     self.assertSwitchState('s_drop_bottom', True)
+    #     self.assert_drops_state('s_drop_top', True)
+    #     self.assert_drops_state('s_drop_middle', True)
+    #     self.assert_drops_state('s_drop_bottom', True)
 
     #     self.drain_to_next_ball()
 
     #     # make sure timer is reset completely to its start value
-    #     start_value = self.machine.timers.drops_hurry_up.start_value
-    #     ticks = self.machine.timers.drops_hurry_up.ticks
+    #     start_value = self.machine.timers.drop_hurry_up.start_value
+    #     ticks = self.machine.timers.drop_hurry_up.ticks
     #     self.assertEqual(start_value, ticks)
 
     #     self.assertStateMachineState(STATE, STATE_HURRY_UP_INACTIVE)
     #     self.assertHurryUpTimerRunning(False)
-    #     self.assertSwitchState('s_drop_top', False)
-    #     self.assertSwitchState('s_drop_middle', False)
-    #     self.assertSwitchState('s_drop_bottom', False)
+    #     self.assert_drops_state('s_drop_top', False)
+    #     self.assert_drops_state('s_drop_middle', False)
+    #     self.assert_drops_state('s_drop_bottom', False)
 
     # def test_start_mode_while_hurry_up_is_active(self):
     #     self.setup()
     #     self.start_hurry_up()
-    #     ticks_before_song = self.machine.timers.drops_hurry_up.ticks
+    #     ticks_before_song = self.machine.timers.drop_hurry_up.ticks
         
     #     self.qualify_song()
 

@@ -8,6 +8,8 @@ modes:
   - drops
   - song_select
   - song_countdown
+  # uncontrollable urge hurry ups
+  - urge
   # songs ('modes' in pinball parlance)
   - foo               
   - bar

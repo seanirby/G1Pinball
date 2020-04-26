@@ -102,7 +102,6 @@ switches:
     number: A4-B1-6
   s_outlane_left:
     number: A4-B1-7
-# fake
   s_drain:
     number: A10-B0-0
   s_trough:
