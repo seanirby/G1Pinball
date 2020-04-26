@@ -1,8 +1,5 @@
 #config_version=5
 
-mode:
-  code: urge.Urge
-  start_events: drops_state_hurry_up_active_started
 
 
   

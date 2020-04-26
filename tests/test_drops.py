@@ -1,4 +1,7 @@
-from mode_test_case import ModeTestCase
+import os; 
+print("FOOOO")
+print(os.getcwd())
+from tests.mode_test_case import ModeTestCase
 
 class TestDrops(ModeTestCase):
 
@@ -8,7 +11,7 @@ class TestDrops(ModeTestCase):
         self.assertModeRunning('drops')
 
     def test_starts_urge_mode_when_drops_are_completed(self):
-        pass
+        setup()
 
     def resets_drops_after_ball_drain(self):
         pass
