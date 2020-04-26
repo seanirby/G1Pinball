@@ -26,7 +26,7 @@ state_machines:
         events: song_intro_complete
       - source: start
         target: end
-        events: timer_urge_completed
+        events: timer_urge_complete
       - source: start
         target: collected
         events: urge_code_collected

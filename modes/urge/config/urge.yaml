@@ -10,7 +10,10 @@ config:
   - shot_profiles
   - shots
   - shows
+  - slide_player
+  - slides
   - state_machines
+  - widgets
 
 shows:
   urge_collected:
@@ -27,6 +30,7 @@ show_player:
   urge_state_collected_started:
     urge_collected:
       loops: 0
+      events_when_played: urge_show_collected_started
       events_when_completed: urge_show_collected_completed
 
 timers:
@@ -34,12 +38,11 @@ timers:
     start_value: 30
     end_value: -1
     direction: down
+    start_running: True
     control_events:
-      - action: start
-        event: mode_urge_started
       - action: pause
-        event: urge_state_hurry_up_paused_started
+        event: urge_state_paused_started
         value: 0
       - action: start
-        event: urge_state_hurry_up_paused_stopped
+        event: urge_state_paused_stopped
 

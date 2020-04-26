@@ -1,0 +1,7 @@
+#config_version=5
+
+slides:
+  urge:
+    widgets:
+      - widget: urge_row_1
+      - widget: urge_row_2

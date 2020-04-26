@@ -20,9 +20,9 @@ state_machines:
         events: drop_target_bank_drops_down
       - source: urge_active
         target: start
-        events: mode_urge_ended
+        events: mode_urge_stopped
 
 event_player:
   mode_drops_started: drops_state_reset_bank
-  mode_urge_ended: drops_state_reset_bank
+  mode_urge_stopped: drops_state_reset_bank
 
