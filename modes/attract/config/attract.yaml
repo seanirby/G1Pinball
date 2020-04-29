@@ -9,8 +9,8 @@
 config:
   - widgets.yaml
 
-# show_player:
-#   mode_attract_started: attract_sparkle
+show_player:
+  mode_attract_started: attract_sparkle
 
 slides:
   attract:

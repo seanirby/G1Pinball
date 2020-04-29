@@ -117,12 +117,12 @@ window:
     height: 600
     title: DEVO Pinball
     source_display: window
-    # effects:
-    #   - type: glow
-    #     blur_size: 5.0
-    #     intensity: .6
-    #     glow_speed: 1.0
-    #     glow_amplitude: .2
+    effects:
+      - type: glow
+        blur_size: 5.0
+        intensity: .6
+        glow_speed: 1.0
+        glow_amplitude: .2
       # - type: horizontal_blur
       #   size: 2
       # - type: vertical_blur
