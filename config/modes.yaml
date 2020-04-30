@@ -3,7 +3,7 @@
 modes:
   # testing
   - test
-  # perennial/management
+  # management
   - base
   - bash_resolver
   - charged_flips
@@ -13,7 +13,6 @@ modes:
   # uncontrollable urge hurry ups
   - urge
   # songs ('modes' in pinball parlance)
-  - foo               
   - bar
   - wiggly_world
   # ball over
