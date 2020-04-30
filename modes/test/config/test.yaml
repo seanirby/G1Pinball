@@ -1,0 +1,73 @@
+#config_version=5
+
+mode:
+  code: test.Test
+  start_events: ball_starting
+  stop_events: test_show_completed
+  priority: 500
+
+widgets:
+  test_row_1:
+    - type: text
+      text: (machine|d_test_1)
+      color: orange
+      x: 10
+      y: 500
+      font_name: DSEG14Classic-Italic
+      font_size: 60
+      anchor_x: left
+      anchor_y: top
+      z: 2
+  test_row_2:
+    - type: text
+      text: (machine|d_test_2)
+      color: orange
+      x: 10
+      y: 400
+      font_name: DSEG14Classic-Italic
+      font_size: 60
+      anchor_x: left
+      anchor_y: top
+      z: 2
+
+slides:
+  test:
+    widgets:
+      - widget: test_row_1
+      - widget: test_row_2
+
+slide_player:
+  mode_test_started: test
+
+shows:
+  test:
+    - time: 0
+    - time: +16ms
+      events:
+        test_display_set_vars:
+          r1: "UNCONTROLLABLE!!"
+          r2: "URGE!COLLECTED!!"
+    - time: 3
+      events:
+        test_display_flash:
+          seconds: 3
+        test_display_set_vars_format:
+          r1: "COLLECT!{}!MORE!!"
+          r1_player_var: "urge"
+          r2: "FOR!DEVO!LETTER!"
+    - time: 6
+
+show_player:
+  mode_test_started:
+    test:
+      loops: 1
+      events_when_completed: test_show_completed
+        
+timers:
+  test_display_timer:
+    file_log: none
+    end_value: 1
+    tick_interval: 100ms
+  test_long_running:
+    end_value: 1000
+    start_running: True

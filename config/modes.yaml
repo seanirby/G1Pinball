@@ -1,6 +1,8 @@
 #config_version=5
 
 modes:
+  # testing
+  - test
   # perennial/management
   - base
   - bash_resolver

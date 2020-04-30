@@ -32,8 +32,7 @@ class Urge(Mode):
         super().__init__(*args, **kwargs)
 
     def mode_start(self, **kwargs):
-        print("starting urge")
-        self.printer = Display(self.machine, 'd_urge_1', 'd_urge_2')
+        super().mode_start(**kwargs)
         active_shot = self.machine.game.player[URGES_COLLECTED]
         self.machine.shots[SHOTS[active_shot]].jump(LIT_SHOT_INDEX)
 
@@ -41,7 +40,7 @@ class Urge(Mode):
             self.add_mode_event_handler(shot + '_hit', self.handle_shot_hit, shot_index=i, lit_shot_index=active_shot)
 
     def mode_stop(self, **kwargs):
-        print("stopping urge")
+        pass
 
     def handle_shot_hit(self, **kwargs):
         state = self.machine.state_machines.urge.state

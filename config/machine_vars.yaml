@@ -1,17 +1,21 @@
 #config_version=5
 
 machine_vars:
-  d_font_size:
-    initial_value: 60
-  d_widget_x_spacing:
-    initial_value: 50
-  # Used for testing, delete these
+  # display variables for modes
   d_attract_1:
     initial_value: 'PRESS!START!!!!!'
     value_type: str
     persist: False
   d_attract_2:
     initial_value: '!!!!!!PRESS!STAR'
+    value_type: str
+    persist: False
+  d_test_1:
+    initial_value: '!!!!!!!!!!!!!!!!'
+    value_type: str
+    persist: False
+  d_test_2:
+    initial_value: '!!!!!!!!!!!!!!!!'
     value_type: str
     persist: False
   d_base_1:
@@ -30,7 +34,6 @@ machine_vars:
     initial_value: '!!!!!!!!!!!!!!!!'
     value_type: str
     persist: False
-  # display variables for modes
   d_ww_1:
     initial_value: 'WIGGLY!WORLD!!!!'
     value_type: str

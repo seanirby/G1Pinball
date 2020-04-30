@@ -1,5 +1,5 @@
-from mpf.core.mode import Mode
-from modes.display import Display, ROW_LENGTH, TOTAL_LENGTH
+from modes.base_mode import BaseMode
+from modes.display import ROW_LENGTH, TOTAL_LENGTH
 
 CODE_EVENT_START_QUALIFYING = 'code_song_select_start_qualifying'
 CODE_EVENT_START_QUALIFIED = 'code_song_select_start_qualified'
@@ -38,7 +38,7 @@ SHOT_NAMES = [
     "sh_song_select_bash_right"
 ]
 
-class SongSelect(Mode):
+class SongSelect(BaseMode):
     # # TODO: Need to figure out why this doesn't work
     # def __init__(self, *args, **kwargs):
     #     """Initialize bonus mode."""
@@ -46,7 +46,7 @@ class SongSelect(Mode):
     #     Display.__init__(self, 'd_song_select_1', 'd_song_select_2')
 
     def mode_start(self, **kwargs):
-        self.printer=Display(self.machine, 'd_song_select_1', 'd_song_select_2')
+        super().mode_start(**kwargs)
         self.initialize_bash_charges()
         self.initialize_state_machine()
 
@@ -172,8 +172,8 @@ class SongSelect(Mode):
     def display_selected_song(self, i):
         first_row = DISPLAY_SONG_SELECT_LABEL.ljust(ROW_LENGTH, '!')
         second_row = DISPLAY_SONG_NAMES[i].ljust(ROW_LENGTH, '!')
-        self.printer.flash(20)
-        self.printer.prnt(first_row+second_row, 0, 0, TOTAL_LENGTH)
+        self.display.flash(seconds=2)
+        self.display.prnt(first_row+second_row, 0, 0, TOTAL_LENGTH)
 
     def select_song(self, i):
         for j in range(0, NUM_SONGS):

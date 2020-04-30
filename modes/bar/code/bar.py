@@ -6,6 +6,8 @@ class Bar(Mode):
         super().__init__(*args, **kwargs)
 
     def mode_start(self, **kwargs):
+        super().mode_start(**kwargs)
+
         self.add_mode_event_handler("sh_ramp_left_lower_hit", self.ramp_hit, side="left")
         self.add_mode_event_handler("sh_ramp_right_hit", self.ramp_hit, side="right")
 

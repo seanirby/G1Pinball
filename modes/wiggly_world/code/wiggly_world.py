@@ -1,5 +1,4 @@
 from mpf.core.mode import Mode
-from modes.display import Display
 
 BASE_SHOTS = [
     "sh_ramp_left_lower",
@@ -60,7 +59,7 @@ class WigglyWorld(Mode):
         self._testing = x
 
     def mode_start(self, **kwargs):
-        self.printer = Display(self.machine, 'd_ww_1', 'd_ww_2')
+        super().mode_start(**kwargs)
         self.reset_instance_vars()
 
         # state handlers

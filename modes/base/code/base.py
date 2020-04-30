@@ -1,11 +1,11 @@
-from mpf.core.mode import Mode
+from modes.base_mode import BaseMode
 from modes.display import Display, ROW_LENGTH, TOTAL_LENGTH
 
 SCORE_LENGTH = 10
 
-class Base(Mode):
+class Base(BaseMode):
     def mode_start(self, **kwargs):
-        self.printer=Display(self.machine, 'd_base_1', 'd_base_2')
+        super().mode_start(**kwargs)
         self.update_energy_display(self.player.energy)
         self.update_score_display(self.player.score)
         self.update_ball_display()
@@ -33,20 +33,20 @@ class Base(Mode):
 
         player_label = 'P{}!'.format(self.player.number)
         label_and_score = player_label + str(score).rjust(ROW_LENGTH-len(player_label), '!')
-        self.printer.prnt(label_and_score, 0, 0, ROW_LENGTH)
+        self.display.prnt(label_and_score, 0, 0, ROW_LENGTH)
 
     def update_energy_display(self, energy):
         label_and_energy = 'NRG!{}'.format(str(energy))
-        self.printer.prnt(label_and_energy, ROW_LENGTH, ROW_LENGTH, TOTAL_LENGTH) 
+        self.display.prnt(label_and_energy, ROW_LENGTH, ROW_LENGTH, TOTAL_LENGTH) 
 
     def update_ball_display(self):
         ball = self.machine.game.player.ball
         label_and_ball = 'BALL!{}'.format(str(ball))
-        self.printer.prnt(label_and_ball, TOTAL_LENGTH - len(label_and_ball), ROW_LENGTH, TOTAL_LENGTH) 
+        self.display.prnt(label_and_ball, TOTAL_LENGTH - len(label_and_ball), ROW_LENGTH, TOTAL_LENGTH) 
 
     def update_countdown_display(self, **kwargs):
         ticks = kwargs['ticks']
-        self.printer.prnt(str(ticks).rjust(2, '0'), ROW_LENGTH + 7, ROW_LENGTH, TOTAL_LENGTH) 
+        self.display.prnt(str(ticks).rjust(2, '0'), ROW_LENGTH + 7, ROW_LENGTH, TOTAL_LENGTH) 
 
     def remove_countdown_display(self, **kwargs):
-        self.printer.prnt('!!', ROW_LENGTH + 7, ROW_LENGTH, TOTAL_LENGTH) 
+        self.display.prnt('!!', ROW_LENGTH + 7, ROW_LENGTH, TOTAL_LENGTH) 

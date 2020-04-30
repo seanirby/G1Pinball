@@ -14,14 +14,15 @@ class Display():
     This class is used to print to a mode's slide
     """
 
-    def __init__(self, machine, first_row_name, second_row_name):
+    def __init__(self, machine, mode_name):
         self.machine = machine
-        self._first_row_name = first_row_name
-        self._second_row_name = second_row_name
+        self._first_row_name = 'd_{}_1'.format(mode_name)
+        self._second_row_name = 'd_{}_2'.format(mode_name)
 
-    def flash(self, ms):
+    def flash(self, **kwargs):
+        seconds = kwargs.get('seconds')
         timer = self.machine.timers[FLASH_TIMER]
-        timer.end_value = ms
+        timer.end_value = int(seconds*10) if seconds else 10
         self.machine.events.post(EVENT_FLASH_START)
 
     def prnt(self, string, i_start, i_lower, i_upper, repeat=False):
@@ -47,4 +48,22 @@ class Display():
         self.machine.variables.set_machine_var(self._first_row_name, ''.join(buff[:16]))
         self.machine.variables.set_machine_var(self._second_row_name, ''.join(buff[16:]))
 
-    
+    def set_vars(self, **kwargs):
+        self.machine.variables.set_machine_var(self._first_row_name, kwargs['r1'])
+        self.machine.variables.set_machine_var(self._second_row_name, kwargs['r2'])
+
+    def set_vars_format(self, **kwargs):
+        row_one_format_str = kwargs.get("r1")
+        row_two_format_str = kwargs.get("r2")
+
+        row_one_player_var = kwargs.get("r1_player_var")
+        row_two_player_var = kwargs.get("r2_player_var")
+
+        row_one_arg = '' if not(bool(row_one_player_var)) else self.machine.game.player[row_one_player_var]
+        row_two_arg = '' if not(bool(row_two_player_var)) else self.machine.game.player[row_two_player_var]
+
+        row_one_formatted = row_one_format_str.format(row_one_arg)
+        row_two_formatted = row_two_format_str.format(row_two_arg)
+
+        self.machine.variables.set_machine_var(self._first_row_name, row_one_formatted)
+        self.machine.variables.set_machine_var(self._second_row_name, row_two_formatted)
