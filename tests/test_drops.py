@@ -41,8 +41,11 @@ class TestDrops(ModeTestCase):
         self.knockdown_drops()
         self.assert_drops_state(True)
 
+        # wait for success show to complete
+        self.advance_time_and_run(10)
+
         self.drain_one_ball()
         self.advance_time_and_run(5)
         # event is called when urge mode stops and when drops mode starts
-        self.assertEventCalled(EVENT_RESET_DROPS, 3)
+        self.assertEventCalled(EVENT_RESET_DROPS, 2)
         self.assert_drops_state(False)

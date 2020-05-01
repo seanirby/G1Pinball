@@ -50,7 +50,7 @@ class TestUrge(ModeTestCase):
         # TODO: this requires implicit knowledge of the switches associated with shots, should refactor
         self.hit_and_release_switch('s_ramp_left_lower')
         self.post_event(EVENT_DROPS_DOWN)
-        self.advance_time_and_run(2)
+        self.advance_time_and_run(10)
 
         self.assertEventCalled(EVENT_SHOW_COLLECTED_COMPLETED, 1)
         self.assertModeNotRunning(URGE)
@@ -64,7 +64,7 @@ class TestUrge(ModeTestCase):
         self.assertModeRunning(URGE)
 
         self.post_event('sh_orbit_left_hit')
-        self.advance_time_and_run(5)
+        self.advance_time_and_run(10)
         self.assertEventCalled(EVENT_SHOW_COLLECTED_COMPLETED, 2)
         self.assertModeNotRunning(URGE)
 
@@ -120,3 +120,4 @@ class TestUrge(ModeTestCase):
 
     def test_for_multiple_players(self):
         pass
+

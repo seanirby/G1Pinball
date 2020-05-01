@@ -1,6 +1,59 @@
 #config_version=5
 
 shows:
+  urge_collected_no_letter:
+    - time: 0
+      events:
+        urge_display_flash:
+          seconds: 6
+    - time: +16ms
+      slides: urge
+      events:
+        urge_display_set_vars:
+          r1: "!UNCONTROLLABLE!"
+          r2: "!URGE!COLLECTED!"
+    - time: 1.5
+      events:
+        urge_display_awarded_score: {}
+    - time: 3
+      events:
+        urge_display_urges_left: {}
+    - time: 6
+  urge_and_letter_collected:
+    - time: 0
+      events:
+        urge_display_flash:
+          seconds: 6
+    - time: +16ms
+      slides: urge
+      events:
+        urge_display_set_vars:
+          r1: "!UNCONTROLLABLE!"
+          r2: "!URGE!COLLECTED!"
+    - time: 1.5
+      events:
+        urge_display_awarded_score: {}
+    - time: 3
+      events:
+        urge_display_set_vars:
+          r1: "DEVOLVED!LETTER!"
+          r2: "!!!COLLECTED!!!!"
+    - time: 6
+  urge_collected:
+    - time: 0
+      events:
+        urge_display_flash:
+          seconds: 3
+    - time: 16ms
+      slides: urge
+      events:
+        urge_display_set_vars:
+          r1: "!UNCONTROLLABLE!"
+          r2: "!URGE!COLLECTED!"
+    - time: 1.5
+      events:
+        urge_display_awarded_score: {}
+    - time: 3
   urge_three_lit:
     - duration: 1
       lights:

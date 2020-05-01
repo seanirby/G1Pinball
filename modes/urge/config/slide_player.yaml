@@ -1,7 +1,0 @@
-#config_version=5
-
-slide_player:
-  urge_show_collected_started:
-    urge:
-      action: play
-      expire: 2

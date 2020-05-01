@@ -2,7 +2,7 @@
 
 modes:
   # testing
-  - test
+  # - test
   # management
   - base
   - bash_resolver

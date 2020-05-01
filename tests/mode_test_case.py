@@ -2,6 +2,7 @@ from mpf.tests.MpfTestCase import MagicMock
 from mpf.tests.MpfFakeGameTestCase import MpfFakeGameTestCase
 from mpf.tests.MpfGameTestCase import MpfGameTestCase
 from mpf.tests.MpfMachineTestCase import MpfMachineTestCase
+from mpfmc.tests.FullMpfMachineTestCase import FullMachineTestCase
 
 class ModeTestCase(MpfFakeGameTestCase):
     def get_config_file(self):

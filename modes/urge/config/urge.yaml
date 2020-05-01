@@ -3,31 +3,29 @@
 mode:
   code: urge.Urge
   start_events: drops_state_urge_active_started
-  # TODO: do i need to add ball_end here?
   stop_events: urge_state_end_started
+  priority: 300
 
 config:
   - shot_profiles
   - shots
   - shows
-  - slide_player
   - slides
   - state_machines
   - widgets
 
-shows:
-  urge_collected:
-    - duration: 2
-      variables:
-        d_urge_1:
-          action: set_machine
-          string: 'UNCONTROLLABLE!!'
-        d_urge_2:
-          action: set_machine
-          string: 'URGE!!!COLLECTED'
-
 show_player:
-  urge_state_collected_started:
+  urge_state_collected_started{current_player.urges_collected < 3}:
+    urge_collected_no_letter:
+      loops: 0
+      events_when_played: urge_show_collected_started
+      events_when_completed: urge_show_collected_completed
+  urge_state_collected_started{current_player.urges_collected == 3}:
+    urge_and_letter_collected:
+      loops: 0
+      events_when_played: urge_show_collected_started
+      events_when_completed: urge_show_collected_completed
+  urge_state_collected_started{current_player.urges_collected > 3}:
     urge_collected:
       loops: 0
       events_when_played: urge_show_collected_started
