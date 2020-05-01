@@ -4,16 +4,17 @@ modes:
   # testing
   # - test
   # management
+  - autostack
   - base
   - bash_resolver
-  - charged_flips
-  - drops
+  # - charged_flips
+  # - drops
   - song_select
-  - song_countdown
-  # uncontrollable urge hurry ups
-  - urge
-  # songs ('modes' in pinball parlance)
-  - bar
-  - wiggly_world
-  # ball over
+  # - song_countdown
+  # # uncontrollable urge hurry ups
+  # - urge
+  # # songs ('modes' in pinball parlance)
+  # - bar
+  # - wiggly_world
+  # # ball over
   - bonus

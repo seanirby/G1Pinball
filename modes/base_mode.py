@@ -6,6 +6,7 @@ class BaseMode(Mode):
         super(BaseMode, self).__init__(*args, **kwargs)
 
     def mode_start(self, **kwargs):
+        super().mode_start(**kwargs)
         self.display = Display(self.machine, self.name)
         self.add_mode_event_handler('{}_display_flash'.format(self.name), self.display.flash)
 
@@ -13,5 +14,7 @@ class BaseMode(Mode):
         self.add_mode_event_handler('{0}_display_set_vars_format'.format(self.name), self.display.set_vars_format)
 
     def mode_stop(self, **kwargs):
-        pass
+        super().mode_stop(**kwargs)
+
+
 

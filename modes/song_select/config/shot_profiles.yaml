@@ -2,6 +2,7 @@
 
 shot_profiles:
   song_select_bash:
+    autostack: True
     states:
       - name: charge_0
         show: song_select_bash_charge_0
@@ -14,6 +15,7 @@ shot_profiles:
       - name: song_selected
         show: song_select_selected
   song_select_scoop:
+    autostack: True
     states:
       - name: unlit
         show: song_select_scoop_unlit

@@ -1,0 +1,7 @@
+#config_version=5
+mode:
+  start_events: ball_starting
+  code: mpf.modes.autostack.code.autostack.Autostack
+
+mode_settings:
+  
