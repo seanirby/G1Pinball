@@ -1,0 +1,10 @@
+#config_version=5
+
+mode:
+  start_events: ball_starting
+  priority: 200
+
+config:
+  - shot_profiles.yaml
+  - shots.yaml
+  - shows.yaml

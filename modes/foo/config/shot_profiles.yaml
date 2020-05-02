@@ -1,0 +1,14 @@
+#config_version=5
+
+shot_profiles:
+  foo_bash:
+    autostack: True
+    states:
+      - name: initial
+        show: foo_lit
+  foo_scoop:
+    autostack: True
+    states:
+      - name: initial
+        show: foo_scoop_lit
+

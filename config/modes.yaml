@@ -3,6 +3,7 @@
 modes:
   # testing
   # - test
+  - foo
   # management
   - autostack
   - base

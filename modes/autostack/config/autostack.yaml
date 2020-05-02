@@ -1,7 +1,14 @@
 #config_version=5
+
 mode:
   start_events: ball_starting
   code: mpf.modes.autostack.code.autostack.Autostack
 
 mode_settings:
-  
+  ignore: '1234'
+
+timers:
+  autostack:
+    start_value: 0
+    end_value: 2
+    tick_interval: 1

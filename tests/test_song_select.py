@@ -173,4 +173,4 @@ class TestSongSelect(ModeTestCase):
         # self.assertTrue(bool(self.machine.shots.sh_bash_center.running_show))
         # self.assertNotEqual(self.machine.shots.sh_bash_center.running_show.show, self.machine.shows['off'])
 
-# unittest.main()
+unittest.main()
