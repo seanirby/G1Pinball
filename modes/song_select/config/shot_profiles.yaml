@@ -6,19 +6,26 @@ shot_profiles:
     states:
       - name: charge_0
         show: song_select_bash_charge_0
+        priority: 300
       - name: charge_1
         show: song_select_bash_charge_1
+        priority: 300
       - name: charge_2
         show: song_select_bash_charge_2
+        priority: 300
       - name: unlit
         show: song_select_bash_unlit
+        priority: 300
       - name: song_selected
         show: song_select_selected
+        priority: 300
   song_select_scoop:
     autostack: True
     states:
       - name: unlit
         show: song_select_scoop_unlit
+        priority: 300
       - name: lit
         show: song_select_scoop_lit
+        priority: 300
 

@@ -6,9 +6,11 @@ shot_profiles:
     states:
       - name: initial
         show: foo_lit
+        priority: 300
   foo_scoop:
     autostack: True
     states:
       - name: initial
         show: foo_scoop_lit
+        priority: 300
 
