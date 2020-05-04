@@ -137,17 +137,3 @@ displays:
   window:
      width: 800
      height: 600
-
-slides:
-  welcome_slide:
-    widgets:
-      - type: text
-        text: SOME PINBALL GAME!
-        font_size: 100
-        color: red
-      - type: rectangle
-        width: 240
-        height: 60
-
-slide_player:
-  init_done: welcome_slide

@@ -1,0 +1,40 @@
+#config_version=5
+
+variable_player:
+  # pops
+  s_pop_a_active:
+    score: 1500
+  s_pop_b_active:
+    score: 1500
+  s_pop_c_active:
+    score: 1500
+  # shots
+  sh_first_ramp_left_lower_hit:
+    score: 10000
+  sh_first_orbit_left_hit:
+    score: 10000
+  sh_first_ramp_left_upper_hit:
+    score: 10000
+  sh_first_bash_left_hit:
+    score: 10000
+  sh_first_bash_diagonal_left_hit:
+    score: 10000
+  sh_first_bash_center_hit:
+    score: 10000
+  sh_first_bash_diagonal_right_hit:
+    score: 10000
+  sh_first_bash_right_hit:
+    score: 10000
+  sh_first_inner_loop_hit:
+    score: 10000
+  sh_first_scoop_hit:
+    score: 10000
+  sh_first_ramp_right_hit:
+    score: 10000
+  sh_first_orbit_right_hit:
+    score: 10000
+  # slings
+  sh_sling_left_hit:
+    score: 1500
+  sh_sling_right_hit:
+    score: 1500

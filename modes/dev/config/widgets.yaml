@@ -1,0 +1,25 @@
+#config_version=5
+
+widgets:
+  dev_row_1:
+    - type: text
+      text: (machine|d_dev_1)
+      color: orange
+      x: 10
+      y: 500
+      font_name: DSEG14Classic-Italic
+      font_size: 60
+      anchor_x: left
+      anchor_y: top
+      z: 2
+  dev_row_2:
+    - type: text
+      text: (machine|d_dev_2)
+      color: orange
+      x: 10
+      y: 400
+      font_name: DSEG14Classic-Italic
+      font_size: 60
+      anchor_x: left
+      anchor_y: top
+      z: 2

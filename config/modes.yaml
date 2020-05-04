@@ -4,12 +4,14 @@ modes:
   # testing
   # - test
   # management
-  - autostack
+  # - autostack
   - base
   - bash_resolver
   - charged_flips
+  - dev
   - drops
-  - song_select
+  # song challenges
+  - first
   # # uncontrollable urge hurry ups
   # - urge
   # # songs ('modes' in pinball parlance)

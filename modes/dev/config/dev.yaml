@@ -1,0 +1,70 @@
+#config_version=5
+
+# base mode for managing D-E-V-O-L-V-E-D song challenges
+
+mode:
+  code: dev.Dev
+  start_events: ball_starting
+  priority: 200
+
+config:
+  - widgets.yaml
+  - slides.yaml
+
+show_player:
+  # remove me
+  mode_dev_started:
+    dev_show_letter_awarded:
+      loops: 0
+  dev_play_show_letter_awarded:
+    dev_show_letter_awarded:
+      loops: 0
+      events_when_played: dev_show_letter_awarded_started
+      events_when_completed: dev_show_letter_awarded_completed
+
+shows:
+  dev_show_letter_awarded:
+    - time: 0
+      events:
+        dev_display_flash:
+          seconds: 3
+    - time: +16ms
+      slides: dev
+      events:
+        dev_display_letters_awarded: {}
+    - time: 3
+
+event_player:
+  # on ball start
+  mode_dev_started{device.counters.letters.value==0}: dev_start_first
+  mode_dev_started{device.counters.letters.value==1}: dev_start_second
+  mode_dev_started{device.counters.letters.value==2}: dev_start_third
+  mode_dev_started{device.counters.letters.value==3}: dev_start_fourth
+  mode_dev_started{device.counters.letters.value==4}: dev_start_fifth
+  mode_dev_started{device.counters.letters.value==5}: dev_start_sixth
+  mode_dev_started{device.counters.letters.value==6}: dev_start_seventh
+  mode_dev_started{device.counters.letters.value==7}: dev_start_eighth
+
+  # after song challenge completion
+  dev_letter_awarded: dev_play_show_letter_awarded
+
+  # after song challenge completion
+  hurry_up_stopped{device.counters.letters.value==1}: dev_start_second
+  hurry_up_stopped{device.counters.letters.value==2}: dev_start_third
+  hurry_up_stopped{device.counters.letters.value==3}: dev_start_fourth
+  hurry_up_stopped{device.counters.letters.value==4}: dev_start_fifth
+  hurry_up_stopped{device.counters.letters.value==5}: dev_start_sixth
+  hurry_up_stopped{device.counters.letters.value==6}: dev_start_seventh
+  hurry_up_stopped{device.counters.letters.value==7}: dev_start_eighth
+  hurry_up_stopped{device.counters.letters.value==8}: dev_start_wizard
+
+# using a counter here so I can react to events knowing my letters count has been updated
+counters:
+  letters:
+    starting_count: current_player.letters
+    count_events: dev_award_letter
+    events_when_hit: dev_letter_awarded
+
+variable_player:
+  dev_letter_awarded:
+    letters: 1

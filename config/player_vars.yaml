@@ -35,3 +35,6 @@ player_vars:
   # number of uncontrollable urge hurry ups collected
   urges_collected:
     initial_value: 0
+  # devolved letters collected
+  letters:
+    initial_value: 0

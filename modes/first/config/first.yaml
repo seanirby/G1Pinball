@@ -1,0 +1,23 @@
+#config_version=5
+
+mode:
+  start_events: dev_start_first
+  stop_events: dev_award_letter
+
+config:
+  - shots.yaml
+
+event_player:
+  mode_first_started.1: dev_enable_ramp_left_lower
+  mode_first_started.2: dev_enable_orbit_left
+  mode_first_started.3: dev_enable_ramp_right
+  mode_first_started.4: dev_enable_orbit_right
+
+accruals:
+  first:
+    events:
+      - sh_first_ramp_left_lower_hit
+      - sh_first_orbit_left_hit
+      - sh_first_ramp_right_hit
+      - sh_first_orbit_left_hit
+    events_when_complete: dev_award_letter

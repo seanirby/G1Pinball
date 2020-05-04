@@ -6,6 +6,7 @@ mode:
   code: base.Base
 
 config:
+  - scoring.yaml
   - sequence_shots.yaml
   - shots.yaml
   - slides.yaml
@@ -37,14 +38,3 @@ timers:
 slide_player:
   mode_base_started: base
 
-
-# need a situation where we pause on the scoop processing when the state is qualified
-# should be doable with a conditional event
-queue_relay_player:
-  balldevice_bd_scoop_ball_eject_attempt{device.state_machines.song_select.state == 'qualified'}:
-    wait_for: song_intro_complete
-    post: scoop_eject_paused_for_song_intro
-
-variable_player:
-  s_orbit_right_active:
-    score: 1
