@@ -5,17 +5,12 @@
 mode:
   code: dev.Dev
   start_events: ball_starting
-  priority: 200
 
 config:
   - widgets.yaml
   - slides.yaml
 
 show_player:
-  # remove me
-  mode_dev_started:
-    dev_show_letter_awarded:
-      loops: 0
   dev_play_show_letter_awarded:
     dev_show_letter_awarded:
       loops: 0
@@ -46,17 +41,18 @@ event_player:
   mode_dev_started{device.counters.letters.value==7}: dev_start_eighth
 
   # after song challenge completion
-  dev_letter_awarded: dev_play_show_letter_awarded
+  dev_letter_awarded.1: dev_play_show_letter_awarded
+  dev_letter_awarded.2: dev_start_song_award
 
   # after song challenge completion
-  hurry_up_stopped{device.counters.letters.value==1}: dev_start_second
-  hurry_up_stopped{device.counters.letters.value==2}: dev_start_third
-  hurry_up_stopped{device.counters.letters.value==3}: dev_start_fourth
-  hurry_up_stopped{device.counters.letters.value==4}: dev_start_fifth
-  hurry_up_stopped{device.counters.letters.value==5}: dev_start_sixth
-  hurry_up_stopped{device.counters.letters.value==6}: dev_start_seventh
-  hurry_up_stopped{device.counters.letters.value==7}: dev_start_eighth
-  hurry_up_stopped{device.counters.letters.value==8}: dev_start_wizard
+  song_award_complete{device.counters.letters.value==1}: dev_start_second
+  song_award_complete{device.counters.letters.value==2}: dev_start_third
+  song_award_complete{device.counters.letters.value==3}: dev_start_fourth
+  song_award_complete{device.counters.letters.value==4}: dev_start_fifth
+  song_award_complete{device.counters.letters.value==5}: dev_start_sixth
+  song_award_complete{device.counters.letters.value==6}: dev_start_seventh
+  song_award_complete{device.counters.letters.value==7}: dev_start_eighth
+  song_award_complete{device.counters.letters.value==8}: dev_start_wizard
 
 # using a counter here so I can react to events knowing my letters count has been updated
 counters:

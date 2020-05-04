@@ -1,0 +1,7 @@
+#config_version=5
+
+slides:
+  song_award:
+    widgets:
+      - widget: song_award_row_1
+      - widget: song_award_row_2

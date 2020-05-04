@@ -1,0 +1,57 @@
+#config_version=5
+
+# song award hurry up
+mode:
+  start_events: dev_start_song_award
+  # gets fired when show is complete or timer runs out
+  stop_events: song_award_show_collected_completed, timer_song_award_complete
+
+config:
+  - shots.yaml
+  - slides.yaml
+  - widgets.yaml
+
+show_player:
+  song_award_collected:
+    song_award_show_collected:
+      loops: 0
+      events_when_played: song_award_show_collected_started
+      events_when_completed: song_award_show_collected_completed
+
+event_player:
+  # fire these so next song mode can start
+  song_award_collected: song_award_complete
+  timer_song_award_complete: song_award_complete
+  # sh shots
+  mode_song_award_started.1: song_award_enable_bash_left
+  mode_song_award_started.2: song_award_enable_bash_diagonal_left
+  mode_song_award_started.3: song_award_enable_bash_center
+  mode_song_award_started.4: song_award_enable_bash_diagonal_right
+  mode_song_award_started.5: song_award_enable_right
+  # hit event listeners
+  sh_song_award_bash_left_hit: song_award_collected
+  sh_song_award_bash_diagonal_left_hit: song_award_collected
+  sh_song_award_bash_center_hit: song_award_collected
+  sh_song_award_bash_diagonal_right_hit: song_award_collected
+  sh_song_award_bash_right_hit: song_award_collected
+  # disable_shots
+  song_award_collected.1: song_award_disable_bash_left
+  song_award_collected.2: song_award_disable_bash_diagonal_left
+  song_award_collected.3: song_award_disable_bash_center
+  song_award_collected.4: song_award_disable_bash_diagonal_right
+  song_award_collected.5: song_award_disable_right
+
+timers:
+  song_award:
+    end_value: 16
+    restart_on_complete: True
+    start_running: True
+    control_events:
+      - event: song_award_collected
+        action: reset
+      - event: song_award_collected
+        action: stop
+
+variable_player:
+  song_award_collected:
+    score: 1000000

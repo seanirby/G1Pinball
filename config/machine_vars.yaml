@@ -66,4 +66,12 @@ machine_vars:
     initial_value: '!!!!!!!!!!!!!!!!'
     value_type: str
     persist: False
+  d_song_award_1:
+    initial_value: '!!!!!!!!!!!!!!!!'
+    value_type: str
+    persist: False
+  d_song_award_2:
+    initial_value: '!!!!!!!!!!!!!!!!'
+    value_type: str
+    persist: False
 

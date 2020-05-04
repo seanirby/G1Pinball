@@ -8,10 +8,10 @@ config:
   - shots.yaml
 
 event_player:
-  mode_first_started.1: dev_enable_ramp_left_lower
-  mode_first_started.2: dev_enable_orbit_left
-  mode_first_started.3: dev_enable_ramp_right
-  mode_first_started.4: dev_enable_orbit_right
+  mode_first_started.1: first_enable_ramp_left_lower
+  mode_first_started.2: first_enable_orbit_left
+  mode_first_started.3: first_enable_ramp_right
+  mode_first_started.4: first_enable_orbit_right
 
 accruals:
   first:
