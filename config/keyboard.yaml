@@ -12,4 +12,7 @@ keyboard:
     switch: s_right_inlane
   p:
     switch: s_plunger
-
+  d:
+    event: drop_target_bank_drops_down
+  l:
+    event: dev_award_letter

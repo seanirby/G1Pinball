@@ -225,3 +225,16 @@ lights:
     number: 5-217-218-219
     subtype: led
     type: grb
+  # lights that dont exist yet
+  l_serial_chain_0_41:
+    number: 5-220-221-222
+    subtype: led
+    type: grb
+  l_serial_chain_0_42:
+    number: 5-223-224-225
+    subtype: led
+    type: grb
+  l_serial_chain_0_43:
+    number: 5-226-227-228
+    subtype: led
+    type: grb

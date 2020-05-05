@@ -1,0 +1,38 @@
+#config_version=5
+
+shows:
+  drops_show_award_1:
+    - duration: .5
+      lights:
+        (a): red
+        (b): stop
+        (c): stop
+    - duration: .5
+      lights:
+        (a): stop
+        (b): stop
+        (c): stop
+  drops_show_award_2:
+    - duration: .5
+      lights:
+        (a): red
+        (b): yellow
+        (c): stop
+    - duration: .5
+      lights:
+        (a): red
+        (b): stop
+        (c): stop
+  drops_show_award_3:
+    - duration: .5
+      lights:
+        (a): red
+        (b): yellow
+        (c): green
+    - duration: .5
+      lights:
+        (a): red
+        (b): yellow
+        (c): stop
+
+
