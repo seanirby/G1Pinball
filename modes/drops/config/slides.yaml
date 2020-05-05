@@ -1,0 +1,7 @@
+#config_version=5
+
+slides:
+  drops:
+    widgets:
+      - widget: drops_row_1
+      - widget: drops_row_2

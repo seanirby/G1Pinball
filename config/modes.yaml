@@ -10,6 +10,7 @@ modes:
   - charged_flips
   - dev
   - drops
+  - mystery
   # song challenges
   - song_award
   - first

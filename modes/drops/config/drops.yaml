@@ -1,10 +1,24 @@
 #config_version=5
 
 mode:
+  code: drops.Drops
   start_events: ball_starting
 
 config:
   - shows.yaml
+  - slides.yaml
+  - widgets.yaml
+
+show_player:
+  drops_state_award_1_collected:
+    drops_show_mystery_lit:
+      loops: 0
+  drops_state_award_2_collected:
+    drops_show_ball_locked:
+      loops: 0
+  drops_state_award_3_collected:
+    drops_show_urge_lit:
+      loops: 0
 
 # TODO: add lights that start off reflecting state of drops
 # TODO: when drops complete, a brief show is played announcing award, award is given, and state is advanced
