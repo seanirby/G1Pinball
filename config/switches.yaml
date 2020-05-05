@@ -102,6 +102,7 @@ switches:
     number: A4-B1-6
   s_outlane_left:
     number: A4-B1-7
+  # fake convenience switches
   s_drain:
     number: A10-B0-0
   s_trough:
@@ -109,4 +110,6 @@ switches:
     type: NC
   s_plunger:
     number: A10-B0-2
+  s_award_letter:
+    number: A10-B0-3
 

@@ -54,6 +54,10 @@ event_player:
   song_award_complete{device.counters.letters.value==7}: dev_start_eighth
   song_award_complete{device.counters.letters.value==8}: dev_start_wizard
 
+  # convenience event for testing, this should end the active song
+  # challenge, award the letter, and start the hurry up
+  s_award_letter_active: dev_award_letter
+
 # using a counter here so I can react to events knowing my letters count has been updated
 counters:
   letters:

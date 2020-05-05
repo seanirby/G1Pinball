@@ -7,16 +7,12 @@ shot_profiles:
         show: three_lit
         show_tokens:
           color: white
-      - name: unlit
-        show: off
   song_award_one_indicator:
     states:
       - name: lit
         show: one_lit
         show_tokens:
           color: white
-      - name: unlit
-        show: off
 
 shots:
   sh_song_award_ramp_left_lower:
