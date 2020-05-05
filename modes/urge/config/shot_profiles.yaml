@@ -3,8 +3,6 @@
 shot_profiles:
   urge_three_indicator:
     states:
-      - name: unlit
-        show: urge_three_unlit
       - name: lit
         show: urge_three_lit
         speed: 20

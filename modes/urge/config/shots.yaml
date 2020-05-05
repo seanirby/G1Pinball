@@ -25,12 +25,6 @@ shots:
       a: l_serial_chain_0_18
       b: l_serial_chain_0_19
       c: l_serial_chain_0_20
-  sh_urge_inner_loop:
-    profile: urge_three_indicator
-    show_tokens:
-      a: l_serial_chain_0_23
-      b: l_serial_chain_0_22
-      c: l_serial_chain_0_21
   sh_urge_ramp_right:
     profile: urge_three_indicator
     show_tokens:

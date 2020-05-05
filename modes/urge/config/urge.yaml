@@ -2,45 +2,71 @@
 
 mode:
   code: urge.Urge
-  start_events: drops_state_urge_active_started
-  stop_events: urge_state_end_started
+  start_events: ball_starting
   priority: 300
 
 config:
   - shot_profiles
-  - shots
   - shows
   - slides
-  - state_machines
   - widgets
 
 show_player:
-  urge_state_collected_started{current_player.urges_collected < 3}:
-    urge_collected_no_letter:
+  urge_collected:
+    urge_show_collected:
       loops: 0
-      events_when_played: urge_show_collected_started
-      events_when_completed: urge_show_collected_completed
-  urge_state_collected_started{current_player.urges_collected == 3}:
-    urge_and_letter_collected:
-      loops: 0
-      events_when_played: urge_show_collected_started
-      events_when_completed: urge_show_collected_completed
-  urge_state_collected_started{current_player.urges_collected > 3}:
-    urge_collected:
-      loops: 0
-      events_when_played: urge_show_collected_started
-      events_when_completed: urge_show_collected_completed
+
+state_machines:
+  urge:
+    states:
+      start:
+        label: Shot is disabled
+      lit:
+        label: Shot is lit and ready to start
+        events_when_started: urge_state_lit_started
+      running:
+        label: Countdown has started
+        events_when_started: urge_state_running_started
+    transitions:
+      - source: start
+        target: lit
+        events: drops_state_award_3_collected
+      - source: lit
+        target: running
+        events: sh_urge_inner_loop_hit
+      - source: running
+        target: start
+        events: timer_urge_complete
+
+shots:
+  sh_urge_inner_loop:
+    persist_enable: False
+    enable_events: drops_state_award_3_collected
+    disable_events: timer_urge_complete
+    hit_events: sh_inner_loop_hit
+    profile: urge_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_23
+      b: l_serial_chain_0_22
+      c: l_serial_chain_0_21
 
 timers:
   urge:
-    start_value: 30
-    end_value: -1
-    direction: down
-    start_running: True
+    end_value: 5
     control_events:
-      - action: pause
-        event: urge_state_paused_started
-        value: 0
       - action: start
-        event: urge_state_paused_stopped
+        event: sh_urge_inner_loop_hit
+      - action: reset
+        event: timer_urge_complete
 
+counters:
+  urge:
+    starting_count: 0
+    count_events: sh_urge_inner_loop_hit
+    events_when_hit: urge_collected
+    control_events:
+      - event: urge_state_lit_started
+        action: jump
+        value: 0
+        
+  
