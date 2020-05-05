@@ -19,5 +19,5 @@ accruals:
       - sh_first_ramp_left_lower_hit
       - sh_first_orbit_left_hit
       - sh_first_ramp_right_hit
-      - sh_first_orbit_left_hit
+      - sh_first_orbit_right_hit
     events_when_complete: dev_award_letter

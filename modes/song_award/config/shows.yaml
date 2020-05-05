@@ -1,0 +1,20 @@
+#config_version=5
+
+shows:
+  song_award_show_collected:
+    - time: 0
+      events:
+        song_award_display_flash:
+          seconds: 4
+    - time: +16ms
+      slides: song_award
+      events:
+        song_award_display_set_vars:
+          r1: "!!!SONG!AWARD!!!"
+          r2: "!!!COLLECTED!!!!"
+    - time: 2
+      events:
+        song_award_display_set_vars:
+          r1: "!!!SONG!AWARD!!!"
+          r2: "!!!1,000,000!!!!"
+    - time: 4

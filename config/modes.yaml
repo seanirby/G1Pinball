@@ -10,8 +10,10 @@ modes:
   - charged_flips
   - dev
   - drops
-  # song challenges
+  # song 
+  - song_award
   - first
+  - second
   # # uncontrollable urge hurry ups
   # - urge
   # # songs ('modes' in pinball parlance)
