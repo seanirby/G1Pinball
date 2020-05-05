@@ -45,7 +45,7 @@ event_player:
 
 timers:
   song_award:
-    end_value: 16
+    end_value: 5
     restart_on_complete: True
     start_running: True
     control_events:

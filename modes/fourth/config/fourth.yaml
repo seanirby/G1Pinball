@@ -1,0 +1,33 @@
+#config_version=5
+
+mode:
+  start_events: dev_start_fourth
+  stop_events: dev_award_letter
+
+config:
+  - shots.yaml
+
+event_player:
+  mode_fourth_started.1: fourth_enable_ramp_left_lower
+  mode_fourth_started.2: fourth_enable_orbit_left
+  mode_fourth_started.3: fourth_enable_ramp_right
+  mode_fourth_started.4: fourth_enable_orbit_right
+  mode_fourth_started.5: fourth_enable_bash_left
+  mode_fourth_started.6: fourth_enable_bash_diagonal_left
+  mode_fourth_started.7: fourth_enable_bash_center
+  mode_fourth_started.8: fourth_enable_bash_diagonal_right
+  mode_fourth_started.9: fourth_enable_bash_right
+
+accruals:
+  fourth:
+    events:
+      - sh_fourth_ramp_left_lower_hit
+      - sh_fourth_orbit_left_hit
+      - sh_fourth_ramp_right_hit
+      - sh_fourth_orbit_right_hit
+      - sh_fourth_bash_left_hit
+      - sh_fourth_bash_diagonal_left_hit
+      - sh_fourth_bash_center_hit
+      - sh_fourth_bash_diagonal_right_hit
+      - sh_fourth_bash_right_hit
+    events_when_complete: dev_award_letter

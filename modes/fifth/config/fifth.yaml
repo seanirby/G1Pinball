@@ -1,0 +1,33 @@
+#config_version=5
+
+mode:
+  start_events: dev_start_fifth
+  stop_events: dev_award_letter
+
+config:
+  - shots.yaml
+
+event_player:
+  mode_fifth_started.1: fifth_enable_ramp_left_lower
+  mode_fifth_started.2: fifth_enable_orbit_left
+  mode_fifth_started.3: fifth_enable_ramp_right
+  mode_fifth_started.4: fifth_enable_orbit_right
+  mode_fifth_started.5: fifth_enable_bash_left
+  mode_fifth_started.6: fifth_enable_bash_diagonal_left
+  mode_fifth_started.7: fifth_enable_bash_center
+  mode_fifth_started.8: fifth_enable_bash_diagonal_right
+  mode_fifth_started.9: fifth_enable_bash_right
+
+accruals:
+  fifth:
+    events:
+      - sh_fifth_ramp_left_lower_hit
+      - sh_fifth_orbit_left_hit
+      - sh_fifth_ramp_right_hit
+      - sh_fifth_orbit_right_hit
+      - sh_fifth_bash_left_hit
+      - sh_fifth_bash_diagonal_left_hit
+      - sh_fifth_bash_center_hit
+      - sh_fifth_bash_diagonal_right_hit
+      - sh_fifth_bash_right_hit
+    events_when_complete: dev_award_letter

@@ -1,0 +1,119 @@
+#config_version=5
+
+shot_profiles:
+  fifth_three_indicator:
+    states:
+      - name: lit
+        show: three_lit
+        show_tokens:
+          color: purple
+      - name: unlit
+        show: off
+  fifth_one_indicator:
+    states:
+      - name: lit
+        show: one_lit
+        show_tokens:
+          color: purple
+      - name: unlit
+        show: off
+
+shots:
+  sh_fifth_ramp_left_lower:
+    profile: fifth_three_indicator
+    enable_events: fifth_enable_ramp_left_lower
+    disable_events: fifth_disable_ramp_left_lower
+    hit_events: sh_ramp_left_lower_hit
+    show_tokens:
+      a: l_serial_chain_0_37
+      b: l_serial_chain_0_38
+      c: l_serial_chain_0_39
+  sh_fifth_orbit_left:
+    profile: fifth_three_indicator
+    enable_events: fifth_enable_orbit_left
+    disable_events: fifth_disable_orbit_left
+    hit_events: sh_orbit_left_hit
+    show_tokens:
+      a: l_serial_chain_0_12
+      b: l_serial_chain_0_11
+      c: l_serial_chain_0_10
+  sh_fifth_ramp_left_upper:
+    profile: fifth_three_indicator
+    enable_events: fifth_enable_ramp_left_upper
+    disable_events: fifth_disable_ramp_left_upper
+    hit_events: sh_ramp_left_upper_hit
+    show_tokens:
+      a: l_serial_chain_0_7
+      b: l_serial_chain_0_8
+      c: l_serial_chain_0_9
+  sh_fifth_bash_left:
+    profile: fifth_one_indicator
+    enable_events: fifth_enable_bash_left
+    disable_events: fifth_disable_bash_left
+    hit_events: sh_bash_left_hit
+    show_tokens:
+      a:   l_serial_chain_0_13
+  sh_fifth_bash_diagonal_left:
+    profile: fifth_one_indicator
+    enable_events: fifth_enable_bash_diagonal_left
+    disable_events: fifth_disable_bash_diagonal_left
+    hit_events: sh_bash_diagonal_left_hit
+    show_tokens:
+      a:   l_serial_chain_0_14
+  sh_fifth_bash_center:
+    profile: fifth_one_indicator
+    enable_events: fifth_enable_bash_center
+    disable_events: fifth_disable_bash_center
+    hit_events: sh_bash_center_hit
+    show_tokens:
+      a:   l_serial_chain_0_15
+  sh_fifth_bash_diagonal_right:
+    profile: fifth_one_indicator
+    enable_events: fifth_enable_bash_diagonal_right
+    disable_events: fifth_disable_bash_diagonal_right
+    hit_events: sh_bash_diagonal_right_hit
+    show_tokens:
+      a:   l_serial_chain_0_16
+  sh_fifth_bash_right:
+    profile: fifth_one_indicator
+    enable_events: fifth_enable_bash_right
+    disable_events: fifth_disable_bash_right
+    hit_events: sh_bash_right_hit
+    show_tokens:
+      a:   l_serial_chain_0_17
+  sh_fifth_inner_loop:
+    profile: fifth_three_indicator
+    enable_events: fifth_enable_inner_loop
+    disable_events: fifth_disable_inner_loop
+    hit_events: sh_inner_loop
+    show_tokens:
+      a: l_serial_chain_0_23
+      b: l_serial_chain_0_22
+      c: l_serial_chain_0_21
+  sh_fifth_scoop:
+    profile: fifth_three_indicator
+    enable_events: fifth_enable_scoop
+    disable_events: fifth_disable_scoop
+    hit_events: sh_scoop_hit
+    show_tokens:
+      a: l_serial_chain_0_29
+      b: l_serial_chain_0_28
+      c: l_serial_chain_0_27
+  sh_fifth_ramp_right:
+    profile: fifth_three_indicator
+    enable_events: fifth_enable_ramp_right
+    disable_events: fifth_disable_ramp_right
+    hit_events: sh_ramp_right_hit
+    show_tokens:
+      a: l_serial_chain_0_26
+      b: l_serial_chain_0_25
+      c: l_serial_chain_0_24
+  sh_fifth_orbit_right:
+    profile: fifth_three_indicator
+    enable_events: fifth_enable_orbit_right
+    disable_events: fifth_disable_orbit_right
+    hit_events: sh_orbit_right_hit
+    show_tokens:
+      a: l_serial_chain_0_30
+      b: l_serial_chain_0_31
+      c: l_serial_chain_0_32

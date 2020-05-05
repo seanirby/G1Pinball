@@ -1,0 +1,33 @@
+#config_version=5
+
+mode:
+  start_events: dev_start_sixth
+  stop_events: dev_award_letter
+
+config:
+  - shots.yaml
+
+event_player:
+  mode_sixth_started.1: sixth_enable_ramp_left_lower
+  mode_sixth_started.2: sixth_enable_orbit_left
+  mode_sixth_started.3: sixth_enable_ramp_right
+  mode_sixth_started.4: sixth_enable_orbit_right
+  mode_sixth_started.5: sixth_enable_bash_left
+  mode_sixth_started.6: sixth_enable_bash_diagonal_left
+  mode_sixth_started.7: sixth_enable_bash_center
+  mode_sixth_started.8: sixth_enable_bash_diagonal_right
+  mode_sixth_started.9: sixth_enable_bash_right
+
+accruals:
+  sixth:
+    events:
+      - sh_sixth_ramp_left_lower_hit
+      - sh_sixth_orbit_left_hit
+      - sh_sixth_ramp_right_hit
+      - sh_sixth_orbit_right_hit
+      - sh_sixth_bash_left_hit
+      - sh_sixth_bash_diagonal_left_hit
+      - sh_sixth_bash_center_hit
+      - sh_sixth_bash_diagonal_right_hit
+      - sh_sixth_bash_right_hit
+    events_when_complete: dev_award_letter
