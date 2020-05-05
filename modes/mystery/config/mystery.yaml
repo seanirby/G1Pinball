@@ -1,0 +1,47 @@
+#config_version=5
+
+mode:
+  code: mystery.Mystery
+  start_events: ball_starting
+
+shows:
+  mystery_show:
+    - time: 0
+      events:
+        mystery_display_flash:
+          seconds: 3
+    - time: +16ms
+      slides: mystery
+      events:
+        mystery_display_mystery: {}
+    - time: 3
+
+show_player:
+  sh_scoop_hit:
+    mystery_show:
+      loops: 0
+
+shot_profiles:
+  mystery_three_indicator:
+    states:
+      - name: lit
+        show: three_lit
+        show_tokens:
+          color: white
+
+shots:
+  sh_mystery_scoop:
+    enable_events: drops_state_award_1_collected
+    hit_events: sh_scoop_hit
+    disable_events: sh_mystery_scoop_hit
+    profile: mystery_three_indicator
+    show_tokens:
+      a: l_serial_chain_0_29
+      b: l_serial_chain_0_28
+      c: l_serial_chain_0_27
+
+config:
+  - shows.yaml
+  - slides.yaml
+  - widgets.yaml
+

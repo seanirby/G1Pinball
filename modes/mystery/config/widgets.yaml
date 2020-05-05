@@ -1,0 +1,25 @@
+#config_version=5
+
+widgets:
+  mystery_row_1:
+    - type: text
+      text: (machine|d_mystery_1)
+      color: orange
+      x: 10
+      y: 500
+      font_name: DSEG14Classic-Italic
+      font_size: 60
+      anchor_x: left
+      anchor_y: top
+      z: 2
+  mystery_row_2:
+    - type: text
+      text: (machine|d_mystery_2)
+      color: orange
+      x: 10
+      y: 400
+      font_name: DSEG14Classic-Italic
+      font_size: 60
+      anchor_x: left
+      anchor_y: top
+      z: 2
