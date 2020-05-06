@@ -61,17 +61,18 @@ state_machines:
       - source: award_1
         target: award_2
         events: drop_target_bank_drops_down
-        events_when_transitioning: drops_state_award_1_collected
+        events_when_transitioning: drops_state_award_1_collected, drops_state_reset_bank
       - source: award_2
         target: award_3
         events: drop_target_bank_drops_down
-        events_when_transitioning: drops_state_award_2_collected
+        events_when_transitioning: drops_state_award_2_collected, drops_state_reset_bank
       - source: award_3
         target: award_1
         events: drop_target_bank_drops_down
-        events_when_transitioning: drops_state_award_3_collected
+        events_when_transitioning: drops_state_award_3_collected, drops_state_reset_bank
       
 event_player:
   mode_drops_started{current_player.ball==1}: drops_state_initialize
   mode_drops_started: drops_state_reset_bank
+  
 
