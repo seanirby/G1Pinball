@@ -1,0 +1,7 @@
+#config_version=5
+
+slides:
+  mball:
+    widgets:
+      - widget: mball_row_1
+      - widget: mball_row_2

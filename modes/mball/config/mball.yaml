@@ -1,0 +1,124 @@
+#config_version=5
+
+# TODO: integrate the actual multiball device when autolaunch is
+# ready:
+# http://docs.missionpinball.org/en/latest/config/multiballs.html
+
+mode:
+  code: mball.Multiball
+  start_events: ball_starting
+
+config:
+  - shows.yaml
+  - slides.yaml
+  - widgets.yaml
+
+show_player:
+  mball_state_running_started:
+    mball_multiball_started:
+      loops: 0
+
+state_machines:
+  mball:
+    states:
+      start:
+        label: no balls locked
+
+      balls_locked_1:
+        label: 1 ball is locked
+        show_when_active:
+          show: mball_locked_1
+
+      balls_locked_2:
+        label: 2 balls are locked
+        show_when_active:
+          show: mball_locked_2
+
+      release_active_1:
+        label: player has shot into the right zone, and the release is qualified for some time
+        events_when_started: mball_state_release_started
+        events_when_stopped: mball_state_release_stopped
+        show_when_active:
+          show: mball_release_active_1
+
+      release_active_2:
+        label: player has shot into the right zone, and the release is qualified for some time
+        events_when_started: mball_state_release_started
+        events_when_stopped: mball_state_release_stopped
+        show_when_active:
+          show: mball_release_active_2
+
+      running:
+        label: multiball is running
+        events_when_started: mball_state_running_started
+
+    transitions:
+      # start
+      - source: start
+        target: balls_locked_1
+        events: mball_lock_1_ball
+
+      # balls_locked_1
+      - source: balls_locked_1
+        target: release_active_1
+        events: sh_gate_right_hit
+
+      - source: balls_locked_1
+        target: balls_locked_2
+        events: mball_lock_2_balls
+
+      # balls_locked_2
+      - source: balls_locked_2
+        target: release_active_2
+        events: sh_gate_right_hit
+
+      # release_active_1
+      - source: release_active_1
+        target: balls_locked_1
+        # TODO: test that this gets called when draining while release is active
+        events: timer_mball_release_stopped
+
+      - source: release_active_1
+        target: running
+        events: sh_zone_left_hit
+
+      # release_active_2
+      - source: release_active_2
+        target: balls_locked_2
+        events: timer_mball_release_stopped
+
+      - source: release_active_2
+        target: running
+        events: sh_zone_left_hit
+
+      # running
+      # todo: verify that this gets reset if triple drain while mode is running
+      - source: running
+        target: start
+        events: timer_mball_placeholder_complete, mode_mball_will_stop
+
+# these events award locks and addaballs
+# drops_state_award_2_started
+# mystery_code_balllock_awarded
+# mystery_code_addaball_awarded
+
+event_player:
+  drops_state_award_2_collected{device.state_machines.mball.state == "start"}: mball_lock_1_ball
+  mystery_code_balllock_awarded{device.state_machines.mball.state == "start"}: mball_lock_1_ball
+  drops_state_award_2_collected{device.state_machines.mball.state == "balls_locked_1"}: mball_lock_2_balls
+  mystery_code_balllock_awarded{device.state_machines.mball.state == "balls_locked_1"}: mball_lock_2_balls
+
+timers:
+  mball_release:
+    end_value: 5
+    control_events:
+      - action: restart
+        event: mball_state_release_started
+      - action: stop
+        event: mball_state_release_stopped
+  # TODO: remove this when actual multiball is in place
+  mball_placeholder:
+    end_value: 1
+    control_events:
+      - action: restart
+        event: mball_state_running_started

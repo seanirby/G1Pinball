@@ -1,0 +1,82 @@
+#config_version=5
+
+shows:
+  mball_multiball_started:
+    - time: 0
+      events:
+        mball_display_flash:
+          seconds: 2
+    - time: +16ms
+      slides: mball
+      events:
+        mball_display_set_vars:
+          r1: "!!!MULTIBALL!!!!"
+          r2: "!!!!!!!!!!!!!!!!"
+    - time: 2
+  mball_locked_1:
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_18: white
+        l_serial_chain_0_19: stop
+        l_serial_chain_0_20: stop
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_18: stop
+        l_serial_chain_0_19: white
+        l_serial_chain_0_20: stop
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_18: stop
+        l_serial_chain_0_19: stop
+        l_serial_chain_0_20: white
+
+  mball_locked_2:
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_18: red
+        l_serial_chain_0_19: stop
+        l_serial_chain_0_20: stop
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_18: stop
+        l_serial_chain_0_19: red
+        l_serial_chain_0_20: stop
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_18: stop
+        l_serial_chain_0_19: stop
+        l_serial_chain_0_20: red
+
+  mball_release_active_1:
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_6: white
+        l_serial_chain_0_5: stop
+        l_serial_chain_0_4: stop
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_6: stop
+        l_serial_chain_0_5: white
+        l_serial_chain_0_4: stop
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_6: stop
+        l_serial_chain_0_5: stop
+        l_serial_chain_0_4: white
+
+  mball_release_active_2:
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_6: red
+        l_serial_chain_0_5: stop
+        l_serial_chain_0_4: stop
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_6: stop
+        l_serial_chain_0_5: red
+        l_serial_chain_0_4: stop
+    - duration: 100ms
+      lights:
+        l_serial_chain_0_6: stop
+        l_serial_chain_0_5: stop
+        l_serial_chain_0_4: red

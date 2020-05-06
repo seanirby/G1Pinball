@@ -38,3 +38,5 @@ player_vars:
   # devolved letters collected
   letters:
     initial_value: 0
+  balls_locked:
+    initial_value: 0
