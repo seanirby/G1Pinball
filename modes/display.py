@@ -22,7 +22,7 @@ class Display():
     def flash(self, **kwargs):
         seconds = kwargs.get('seconds')
         timer = self.machine.timers[FLASH_TIMER]
-        timer.end_value = int(seconds*10) if seconds else 10
+        timer.end_value = int(seconds/timer.tick_secs)
         self.machine.events.post(EVENT_FLASH_START)
 
     def prnt(self, string, i_start, i_lower, i_upper, repeat=False):
