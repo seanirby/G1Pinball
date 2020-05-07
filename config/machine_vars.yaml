@@ -1,6 +1,10 @@
 #config_version=5
 
 machine_vars:
+    d_active_mode:
+    initial_value: "base"
+    value_type: str
+    persist: False
   # display variables for modes
   d_attract_1:
     initial_value: 'PRESS!START!!!!!'
@@ -26,22 +30,6 @@ machine_vars:
     initial_value: '!!!!!!!!!!!!!!!!'
     value_type: str
     persist: False
-  d_song_select_1:
-    initial_value: 'SONG!SELECT!!!!!'
-    value_type: str
-    persist: False
-  d_song_select_2:
-    initial_value: '!!!!!!!!!!!!!!!!'
-    value_type: str
-    persist: False
-  d_ww_1:
-    initial_value: 'WIGGLY!WORLD!!!!'
-    value_type: str
-    persist: False
-  d_ww_2:
-    initial_value: 'WIGGLY!WORLD!!!!'
-    value_type: str
-    persist: False
   d_drops_1:
     initial_value: '!!!!!!!!!!!!!!!!'
     value_type: str
@@ -55,6 +43,22 @@ machine_vars:
     value_type: str
     persist: False
   d_urge_2:
+    initial_value: '!!!!!!!!!!!!!!!!'
+    value_type: str
+    persist: False
+  d_mystery_1:
+    initial_value: '!!!!!!!!!!!!!!!!'
+    value_type: str
+    persist: False
+  d_mystery_2:
+    initial_value: '!!!!!!!!!!!!!!!!'
+    value_type: str
+    persist: False
+  d_mball_1:
+    initial_value: '!!!!!!!!!!!!!!!!'
+    value_type: str
+    persist: False
+  d_mball_2:
     initial_value: '!!!!!!!!!!!!!!!!'
     value_type: str
     persist: False

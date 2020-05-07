@@ -8,6 +8,7 @@ ball_devices:
     eject_targets: bd_plunger
   bd_plunger:
     ball_switches: s_plunger
+    eject_coil: c_plunger_eject
     mechanical_eject: true
   bd_scoop:
     ball_switches: s_scoop

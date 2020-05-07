@@ -55,4 +55,6 @@ coils:
 # doesnt exist
   c_trough_eject:
     number: A10-B0-5
+  c_plunger_eject:
+    number: A10-B0-6
 

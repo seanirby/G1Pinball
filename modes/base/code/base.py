@@ -14,6 +14,8 @@ class Base(BaseMode):
         self.add_mode_event_handler('player_energy', self.handle_energy_update)
         self.add_mode_event_handler('timer_song_countdown_tick', self.update_countdown_display)
         self.add_mode_event_handler('timer_song_countdown_complete', self.remove_countdown_display)
+        self.add_mode_event_handler('timer_song_countdown_complete', self.remove_countdown_display)
+
     
     def handle_score_update(self, **kwargs):
         change = kwargs['change']

@@ -16,8 +16,20 @@ class Display():
 
     def __init__(self, machine, mode_name):
         self.machine = machine
+        self._mode_name = mode_name
+        self._i = 0
         self._first_row_name = 'd_{}_1'.format(mode_name)
         self._second_row_name = 'd_{}_2'.format(mode_name)
+
+        # display state we are transitioning away from
+        self._r1_out = "!!!!!!!!!!!!!!!!"
+        self._r2_out = "!!!!!!!!!!!!!!!!"
+
+        # display state we are transitioning towards
+        self._r1_in = "!!!!!!!!!!!!!!!!"
+        self._r2_in = "!!!!!!!!!!!!!!!!"
+
+        self._transition_handler_key = None
 
     def flash(self, **kwargs):
         seconds = kwargs.get('seconds')
@@ -67,3 +79,67 @@ class Display():
 
         self.machine.variables.set_machine_var(self._first_row_name, row_one_formatted)
         self.machine.variables.set_machine_var(self._second_row_name, row_two_formatted)
+
+    def transition_init(self, r1_in, r2_in, transition_handler_key):
+        self._i = -1
+        self._r1_in = r1_in
+        self._r2_in = r2_in
+        mode_name = self.machine.variables.get_machine_var('d_active_mode')
+        self._r1_out = self.machine.variables.get_machine_var('d_{}_1'.format(mode_name))
+        self._r2_out = self.machine.variables.get_machine_var('d_{}_2'.format(mode_name))
+        self._transition_handler_key = transition_handler_key
+
+    def transition_tick(self, **kwargs):
+        self._i = self._i + 1
+        
+        window_l = int(ROW_LENGTH/2) - self._i
+        window_r = int(ROW_LENGTH/2) + self._i
+        
+        r1_next = self._r1_out[0:window_l-1] + '~' + self._r1_in[window_l:window_r] + '~' + self._r1_out[window_r+1:ROW_LENGTH]
+        r2_next = self._r2_out[0:window_l-1] + '~' + self._r2_in[window_l:window_r] + '~' + self._r2_out[window_r+1:ROW_LENGTH]
+
+        if self._i >= int(ROW_LENGTH/2):
+            r1_next = self._r1_in
+            r2_next = self._r2_in
+            self.remove_transition_handler()
+
+        # import pdb; pdb.set_trace()
+        # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        # print(r1_next)
+        # print(r2_next)
+        self.set_vars(r1=r1_next, r2=r2_next)
+
+    def remove_transition_handler(self):
+        if bool(self._transition_handler_key):
+            self.machine.events.remove_handler_by_key(self._transition_handler_key)
+
+    def set_masked(self, **kwargs):
+        pass
+
+    def mask_strings(self, r1a="!!!!!!!!!!!!!!!!", r2a="!!!!!!!!!!!!!!!!", r1b="!!!!!!!!!!!!!!!!", r2b="!!!!!!!!!!!!!!!!", r1c="!!!!!!!!!!!!!!!!", r2c="!!!!!!!!!!!!!!!!"):
+
+        r1a = list(r1a.center(ROW_LENGTH, "!"))
+        r2a = list(r2a.center(ROW_LENGTH, "!"))
+        r1b = list(r1b.center(ROW_LENGTH, "!"))
+        r2b = list(r2b.center(ROW_LENGTH, "!"))
+        r1c = list(r1c.center(ROW_LENGTH, "!"))
+        r2c = list(r2c.center(ROW_LENGTH, "!"))
+
+        r1_out = []
+        r2_out = []
+
+        for i in range(0, ROW_LENGTH):
+            r1_out.append(self.mask_chars(r1a[i], r1b[i], r1c[i]))
+            r2_out.append(self.mask_chars(r2a[i], r2b[i], r2c[i]))
+
+        return (''.join(r1_out), ''.join(r2_out))
+
+    def mask_chars(self, c1, c2, c3="!"):
+        if c1 == "!":
+            if c2 == "!":
+                return c3
+            else:
+                return c2
+        else:
+            return c1
+    

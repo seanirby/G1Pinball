@@ -1,0 +1,13 @@
+#config_version=5
+
+mode:
+  start_events: ball_starting
+  code: slide_listener.SlideListener
+
+timers:
+  slide_listener_init:
+    end_value: 1
+    start_running: True
+    control_events:
+      - action: reset
+        event: timer_slide_listener_init_complete

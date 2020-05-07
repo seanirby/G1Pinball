@@ -2,7 +2,7 @@
 
 mode:
   start_events: ball_starting
-  priority: 100
+  # default priority is 100
   code: base.Base
 
 config:
@@ -24,6 +24,10 @@ widget_player:
       action: remove
 
 timers:
+  # only code will fire this so no need for control events
+  base_transition:
+    end_value: 16
+    tick_interval: 50ms
   base_flash:
     end_value: 30
     tick_interval: 50ms
