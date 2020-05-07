@@ -7,6 +7,8 @@ keyboard:
     switch: s_trough
     toggle: True
   r:
+    switch: s_orbit_left
+  o:
     switch: s_orbit_right
   i:
     switch: s_right_inlane

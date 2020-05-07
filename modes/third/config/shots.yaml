@@ -1,6 +1,22 @@
 #config_version=5
 
 shot_profiles:
+  third_orbit:
+    states:
+      - name: three_lit
+        show: three_lit
+        show_tokens:
+          color: green
+      - name: two_lit
+        show: two_lit
+        show_tokens:
+          color: green
+      - name: one_lit
+        show: one_lit
+        show_tokens:
+          color: green
+      - name: unlit
+        show: off
   third_three_indicator:
     states:
       - name: lit
@@ -29,7 +45,7 @@ shots:
       b: l_serial_chain_0_38
       c: l_serial_chain_0_39
   sh_third_orbit_left:
-    profile: third_three_indicator
+    profile: third_orbit
     enable_events: third_enable_orbit_left
     disable_events: third_disable_orbit_left
     hit_events: sh_orbit_left_hit
@@ -109,7 +125,7 @@ shots:
       b: l_serial_chain_0_25
       c: l_serial_chain_0_24
   sh_third_orbit_right:
-    profile: third_three_indicator
+    profile: third_orbit
     enable_events: third_enable_orbit_right
     disable_events: third_disable_orbit_right
     hit_events: sh_orbit_right_hit
