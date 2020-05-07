@@ -17,7 +17,7 @@ shows:
     - time: 3
 
 show_player:
-  sh_scoop_hit:
+  sh_mystery_scoop_hit:
     mystery_show:
       loops: 0
 
