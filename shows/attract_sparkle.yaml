@@ -1,6 +1,6 @@
 #show_version=5
 
-- duration: 300ms
+- time: 0
   variables:
     d_attract_1:
       action: set_machine
@@ -8,7 +8,7 @@
     d_attract_2:
       action: set_machine
       string: '!!!!!!!!!!!!!!!!'
-- duration: 300ms
+- time: 1
   variables:
     d_attract_1:
       action: set_machine
@@ -16,7 +16,7 @@
     d_attract_2:
       action: set_machine
       string: '!!!!!!!!!!!!!!!!'
-- duration: 300ms
+- time: 2
   variables:
     d_attract_1:
       action: set_machine
@@ -24,19 +24,3 @@
     d_attract_2:
       action: set_machine
       string: '!!!!!!!!!!!!!!!!'
-- duration: 300ms
-  variables:
-    d_attract_1:
-      action: set_machine
-      string: 'PRESS!!!!!!START'
-    d_attract_2:
-      action: set_machine
-      string: 'PRESS!!!!!!!!!!!'
-- duration: 300ms
-  variables:
-    d_attract_1:
-      action: set_machine
-      string: 'PRESS!!!!!!START'
-    d_attract_2:
-      action: set_machine
-      string: 'PRESS!!!!!!START'

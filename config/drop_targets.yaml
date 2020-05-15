@@ -14,5 +14,5 @@ drop_target_banks:
   drops:
     drop_targets: d_a,d_b,d_c
     reset_coils: c_drops
-    reset_events: drops_state_reset_bank
+    # reset_events: drops_state_reset_bank
 

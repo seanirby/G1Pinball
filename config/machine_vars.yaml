@@ -1,7 +1,7 @@
 #config_version=5
 
 machine_vars:
-    d_active_mode:
+  d_active_mode:
     initial_value: "base"
     value_type: str
     persist: False

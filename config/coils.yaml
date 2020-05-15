@@ -3,20 +3,20 @@
 coils:
   c_flipper_lower_left_main:
     number: A1-B0-0
-    default_pulse_ms: 26
+    default_pulse_ms: 24
   c_flipper_lower_left_hold:
     number: A1-B0-1
     default_hold_power: .5
   c_flipper_lower_right_main:
     number: A1-B0-2
-    default_pulse_ms: 26
+    default_pulse_ms: 24
   c_flipper_lower_right_hold:
     number: A1-B0-3
     default_hold_power: .5
   c_flipper_mid_right_main:
     number: A1-B1-2
     # worked pretty well at 13 but shots from a standstill weren't enough
-    default_pulse_ms: 14
+    default_pulse_ms: 12
   c_flipper_mid_right_hold:
     number: A1-B1-3
     default_hold_power: .5

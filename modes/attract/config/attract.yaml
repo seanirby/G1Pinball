@@ -10,8 +10,16 @@ config:
   - widgets.yaml
 
 show_player:
-  mode_attract_started: attract_sparkle
-
+  mode_attract_started:
+    attract_sparkle:
+      loops: -1
+  s_left_flipper_active:
+    attract_sparkle:
+      action: advance
+  s_right_flipper_active:
+    attract_sparkle:
+      action: step_back
+    
 slides:
   attract:
     widgets:
@@ -21,6 +29,28 @@ slides:
 slide_player:
   mode_attract_started: attract
 
-event_player:
-  mode_attract_started: game_start
 
+# # to ease testing
+# event_player:
+#   mode_attract_started: game_start
+
+
+
+# shows: 
+#   slide_show:
+#     - time: 0
+#       slides: slide_a
+#     - time: 1
+#       slides: slide_b
+#     - time: 2
+#       slides: slide_c
+
+# show_player:
+#   mode_attract_started: slide_show
+#   s_flipper_left_active:
+#     slide_show:
+#       action: advance
+#   s_flipper_right_active:
+#     slide_show:
+#       action: step_back
+    
