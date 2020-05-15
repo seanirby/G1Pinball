@@ -11,9 +11,9 @@ config:
   - slides.yaml
 
 show_player:
-  timer_test_show_start_complete:
-    dev_show_test:
-      loops: -1
+  # timer_test_show_start_complete:
+  #   dev_show_test:
+  #     loops: -1
   dev_play_show_letter_awarded:
     dev_show_letter_awarded:
       loops: 0
@@ -22,18 +22,18 @@ show_player:
 
 # TODO: get text from active slide print out currently active text
 shows:
-  dev_show_test:
-    - time: 0
-      events:
-        dev_display_flash:
-          seconds: 1
-    - time: 16ms
-      events:
-        dev_display_transition:
-          r1: "AAAAAAAAAAAAAAAA"
-          r2: "BBBBBBBBBBBBBBBB"
-      slides: dev
-    - time: 1
+  # dev_show_test:
+  #   - time: 0
+  #     events:
+  #       dev_display_flash:
+  #         seconds: 1
+  #   - time: 16ms
+  #     events:
+  #       dev_display_transition:
+  #         r1: "AAAAAAAAAAAAAAAA"
+  #         r2: "BBBBBBBBBBBBBBBB"
+  #     slides: dev
+  #   - time: 1
   dev_show_letter_awarded:
     - time: 0
       events:
@@ -85,8 +85,7 @@ variable_player:
   dev_letter_awarded:
     letters: 1
 
-
-timers:
-  test_show_start:
-    end_value: 3
-    start_running: True
+# timers:
+#   test_show_start:
+#     end_value: 3
+#     start_running: True
