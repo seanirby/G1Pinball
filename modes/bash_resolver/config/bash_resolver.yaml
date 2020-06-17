@@ -6,66 +6,66 @@ mode:
   start_events: ball_starting
   priority: 100
 
-# # Comment out if not testing
-# shows:
-#   bash_direction_pulse:
-#     - duration: 100ms
-#       lights:
-#         (a): blue
-#     - duration: 100ms
-#       lights:
-#         (a): off
-#     - duration: 100ms
-#       lights:
-#         (a): blue
-#     - duration: 100ms
-#       lights:
-#         (a): off
-#     - duration: 100ms
-#       lights:
-#         (a): blue
-#     - duration: -1
-#       lights:
-#         (a): off
+# Comment out if not testing
+shows:
+  bash_direction_pulse:
+    - duration: 100ms
+      lights:
+        (a): blue
+    - duration: 100ms
+      lights:
+        (a): off
+    - duration: 100ms
+      lights:
+        (a): blue
+    - duration: 100ms
+      lights:
+        (a): off
+    - duration: 100ms
+      lights:
+        (a): blue
+    - duration: -1
+      lights:
+        (a): off
 
-# show_player:
-#   seq_bash_left_hit:
-#     bash_direction_pulse:
-#       show_tokens:
-#         a:   l_serial_chain_0_13
-#   seq_bash_diagonal_left_hit:
-#     bash_direction_pulse:
-#       show_tokens:
-#         a:   l_serial_chain_0_14
-#   seq_bash_center_hit:
-#     bash_direction_pulse:
-#       show_tokens:
-#         a:   l_serial_chain_0_15
-#   seq_bash_diagonal_right_hit:
-#     bash_direction_pulse:
-#       show_tokens:
-#         a:   l_serial_chain_0_16
-#   seq_bash_right_hit:
-#     bash_direction_pulse:
-#       show_tokens:
-#         a:   l_serial_chain_0_17
+show_player:
+  bash_resolver_left_hit:
+    bash_direction_pulse:
+      show_tokens:
+        a:   l_serial_chain_0_13
+  bash_resolver_diagonal_left_hit:
+    bash_direction_pulse:
+      show_tokens:
+        a:   l_serial_chain_0_14
+  bash_resolver_center_hit:
+    bash_direction_pulse:
+      show_tokens:
+        a:   l_serial_chain_0_15
+  bash_resolver_diagonal_right_hit:
+    bash_direction_pulse:
+      show_tokens:
+        a:   l_serial_chain_0_16
+  bash_resolver_right_hit:
+    bash_direction_pulse:
+      show_tokens:
+        a:   l_serial_chain_0_17
 
-sequence_shots:
-  seq_bash_center:
-    event_sequence: bash_resolver_center_hit, bash_resolver_debounce_started
-    sequence_timeout: 100ms
-  seq_bash_left:
-    event_sequence: bash_resolver_left_hit, bash_resolver_debounce_started
-    sequence_timeout: 100ms
-  seq_bash_right:
-    event_sequence: bash_resolver_right_hit, bash_resolver_debounce_started
-    sequence_timeout: 100ms
-  seq_bash_diagonal_left:
-    event_sequence: bash_resolver_diagonal_left_hit, bash_resolver_debounce_started
-    sequence_timeout: 100ms
-  seq_bash_diagonal_right:
-    event_sequence: bash_resolver_diagonal_right_hit, bash_resolver_debounce_started
-    sequence_timeout: 100ms
+# sequence_shots:
+#   seq_bash_center:
+#     event_sequence: bash_resolver_center_hit, bash_resolver_debounce_started
+#     sequence_timeout: 100ms
+#   seq_bash_left:
+#     event_sequence: bash_resolver_left_hit, bash_resolver_debounce_started
+#     sequence_timeout: 100ms
+#   seq_bash_right:
+#     event_sequence: bash_resolver_right_hit, bash_resolver_debounce_started
+#     sequence_timeout: 100ms
+#   seq_bash_diagonal_left:
+#     event_sequence: bash_resolver_diagonal_left_hit, bash_resolver_debounce_started
+#     sequence_timeout: 100ms
+#   seq_bash_diagonal_right:
+#     event_sequence: bash_resolver_diagonal_right_hit, bash_resolver_debounce_started
+#     sequence_timeout: 100ms
 
 # this state machine is used to find the direction the bash mech was hit
 state_machines:
@@ -75,14 +75,10 @@ state_machines:
         label: standard starting state
         events_when_started: bash_resolver_started
         events_when_stopped: bash_resolver_first_hit_received
-      first_hit_forward:
-        label: x
-      first_hit_left:
-        label: x
-      first_hit_right:
-        label: x
+      first_hit_forward: {}
+      first_hit_left: {}
+      first_hit_right: {}
       debounce:
-        label: x
         events_when_started: bash_resolver_debounce_started
     transitions:
       # start

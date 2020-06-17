@@ -13,12 +13,6 @@ show_player:
   mode_attract_started:
     attract_sparkle:
       loops: -1
-  s_left_flipper_active:
-    attract_sparkle:
-      action: advance
-  s_right_flipper_active:
-    attract_sparkle:
-      action: step_back
     
 slides:
   attract:
@@ -28,7 +22,6 @@ slides:
 
 slide_player:
   mode_attract_started: attract
-
 
 # # to ease testing
 # event_player:

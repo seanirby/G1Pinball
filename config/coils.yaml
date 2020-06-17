@@ -31,13 +31,13 @@ coils:
     allow_enable: true
   c_pop_a:
     number: A3-B0-0
-    default_pulse_power: 0.85
+    default_pulse_power: 0.95
   c_pop_b:
     number: A3-B0-1
-    default_pulse_power: 0.85
+    default_pulse_power: 0.95
   c_pop_c:
     number: A3-B0-2
-    default_pulse_power: 0.85
+    default_pulse_power: 0.95
   c_diverter_left:
     number: A3-B0-3
     default_hold_power: .5
